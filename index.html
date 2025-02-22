@@ -238,7 +238,26 @@
         // Écouteur de changement de date
         document.getElementById('datetime-input').addEventListener('change', function(e) {
           const selectedDate = new Date(e.target.value).toLocaleDateString('fr-FR');
-          const foundData = data.valeurs.find(entry => entry.date === selectedDate);
+          let foundData = data.valeurs.find(entry => entry.date === selectedDate);
+          
+          if (!foundData) {
+            // Convertir les dates disponibles en timestamps
+            const selectedTimestamp = new Date(e.target.value).getTime();
+            let closestDate = null;
+            let minDiff = Infinity;
+            
+            data.valeurs.forEach(entry => {
+              const entryTimestamp = new Date(entry.date.split('/').reverse().join('-')).getTime();
+              const diff = Math.abs(entryTimestamp - selectedTimestamp);
+              
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestDate = entry;
+              }
+            });
+            
+            foundData = closestDate;
+          }
           
           if (foundData) {
             updateWeatherData(foundData);
