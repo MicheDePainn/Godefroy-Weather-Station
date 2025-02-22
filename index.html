@@ -26,7 +26,7 @@
                 this.style.transform='scale(1)';
                 this.style.boxShadow='rgba(0, 0, 0, 0.1) 0px 4px 6px';"
     onclick="document.getElementById('datetime-input').style.display='block';">Sélectionner une date et une heure</button>
-    <div data-layer="Infos du XX:XX XX/XX/XXXX" class="InfosDuXx:XXXxXxXxxx" id="weather-date" style="width: 257px; height: 38px; left: 1022px; top: 295px; position: absolute; color: white; font-size: 25px; font-family: Outfit; font-weight: 600; word-wrap: break-word">Infos du XX:XX XX/XX/XXXX</div>
+    <div data-layer="Infos du XX/XX/XXXX" class="InfosDuXxXxXxxx" id="weather-date" style="width: 257px; height: 38px; left: 1022px; top: 295px; position: absolute; color: white; font-size: 25px; font-family: Outfit; font-weight: 600; word-wrap: break-word">Infos du XX/XX/XXXX</div>
     <input type="datetime-local" id="datetime-input" style="position: absolute; left: 169px; top: 300px; width: 280px; padding: 12.5px; font-family: 'Outfit', sans-serif; font-size: 16px; border: 2px solid rgba(225, 255, 173, 0.4); border-radius: 33px; display: none;" onchange="validateDateTime()">
     
     <p id="error-message" style="color: red; display: none; position: absolute; left: 580px; top: 300px; font-family: 'Outfit', sans-serif; font-size: 14px;">La date et l'heure doivent être dans le passé ou actuelle.</p>
@@ -309,54 +309,6 @@
       }
     }
     </script>
-    <script>
-      let weatherData = null; // Variable globale pour stocker les données
-      
-      function handleDateTimeChange(e) {
-          const input = e.target;
-          const errorMessage = document.getElementById('error-message');
-          const selectedDate = new Date(input.value);
-          const now = new Date();
-      
-          // Validation de base
-          if (!input.value || selectedDate > now) {
-              errorMessage.style.display = 'block';
-              errorMessage.textContent = selectedDate > now ? 
-                  "La date et l'heure doivent être dans le passé ou actuelle." : 
-                  "Veuillez sélectionner une date et une heure.";
-              return;
-          }
-      
-          // Conversion de la date sélectionnée au format data.json
-          const formattedDate = `${String(selectedDate.getHours()).padStart(2, '0')}:${String(selectedDate.getMinutes()).padStart(2, '0')} ${String(selectedDate.getDate()).padStart(2, '0')}/${String(selectedDate.getMonth() + 1).padStart(2, '0')}/${selectedDate.getFullYear()}`;
-      
-          // Recherche dans les données
-          const foundData = weatherData.valeurs.find(entry => entry.date === formattedDate);
-      
-          if (foundData) {
-              errorMessage.style.display = 'none';
-              updateWeatherData(foundData);
-          } else {
-              errorMessage.style.display = 'block';
-              errorMessage.textContent = "Aucune donnée disponible pour cette date.";
-          }
-      }
-      
-      // Chargement initial des données
-      fetch('data.json')
-          .then(response => response.json())
-          .then(data => {
-              weatherData = data;
-              updateWeatherData(data.valeurs[0]);
-              document.getElementById('datetime-input').addEventListener('change', handleDateTimeChange);
-          })
-          .catch(error => console.error('Erreur:', error));
-      
-      // Fonction de mise à jour existante
-      function updateWeatherData(weatherData) { 
-          /* ... le code existant ... */
-      }
-      </script>
     <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; left: 1069px; top: 98px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
       <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; background: linear-gradient(180deg, #00FF2F 0%, #3FBC38 100%); border-radius: 9999px"></div>
     </div>
