@@ -309,6 +309,54 @@
       }
     }
     </script>
+    <script>
+      let weatherData = null; // Variable globale pour stocker les données
+      
+      function handleDateTimeChange(e) {
+          const input = e.target;
+          const errorMessage = document.getElementById('error-message');
+          const selectedDate = new Date(input.value);
+          const now = new Date();
+      
+          // Validation de base
+          if (!input.value || selectedDate > now) {
+              errorMessage.style.display = 'block';
+              errorMessage.textContent = selectedDate > now ? 
+                  "La date et l'heure doivent être dans le passé ou actuelle." : 
+                  "Veuillez sélectionner une date et une heure.";
+              return;
+          }
+      
+          // Conversion de la date sélectionnée au format data.json
+          const formattedDate = `${String(selectedDate.getHours()).padStart(2, '0')}:${String(selectedDate.getMinutes()).padStart(2, '0')} ${String(selectedDate.getDate()).padStart(2, '0')}/${String(selectedDate.getMonth() + 1).padStart(2, '0')}/${selectedDate.getFullYear()}`;
+      
+          // Recherche dans les données
+          const foundData = weatherData.valeurs.find(entry => entry.date === formattedDate);
+      
+          if (foundData) {
+              errorMessage.style.display = 'none';
+              updateWeatherData(foundData);
+          } else {
+              errorMessage.style.display = 'block';
+              errorMessage.textContent = "Aucune donnée disponible pour cette date.";
+          }
+      }
+      
+      // Chargement initial des données
+      fetch('data.json')
+          .then(response => response.json())
+          .then(data => {
+              weatherData = data;
+              updateWeatherData(data.valeurs[0]);
+              document.getElementById('datetime-input').addEventListener('change', handleDateTimeChange);
+          })
+          .catch(error => console.error('Erreur:', error));
+      
+      // Fonction de mise à jour existante
+      function updateWeatherData(weatherData) { 
+          /* ... le code existant ... */
+      }
+      </script>
     <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; left: 1069px; top: 98px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
       <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; background: linear-gradient(180deg, #00FF2F 0%, #3FBC38 100%); border-radius: 9999px"></div>
     </div>
