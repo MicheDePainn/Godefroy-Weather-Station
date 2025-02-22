@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station Météo | LaSalle63</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div data-layer="Desktop" class="Desktop" style="width: 1440px; height: 1024px">
+    <div data-layer="main_box" class="MenuPr" style="display: flex; justify-content: center; align-items: center; width: 1305px; height: 860px; left: 67px; top: 63px; position: absolute; opacity: 0.90; background: #6C8F93; box-shadow: 2px 2px 2px; border-radius: 33px; border: 3px #5388F0 solid; filter: blur(2px)"></div>
+    <div data-layer="copyright" class="Legal" style="width: 1305px; height: 51px; left: 68px; top: 948px; position: absolute; text-align: center"><span style="color: white; font-size: 18px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Icons made by HaroleDev from </span><span style="color: white; font-size: 18px; font-family: Outfit; font-weight: 500; text-decoration: underline; word-wrap: break-word">Airyicons</span><span style="color: white; font-size: 18px; font-family: Outfit; font-weight: 500; word-wrap: break-word"> distributed on the MIT license.<br/></span><span style="color: #C5E9FF; font-size: 18px; font-family: Outfit; font-weight: 500; text-decoration: underline; word-wrap: break-word">Learn more about this project</span><span style="color: white; font-size: 18px; font-family: Outfit; font-weight: 500; word-wrap: break-word">.</span></div>
+    <button id="datetime-btn" 
+    style="position: absolute; left: 169px; top: 300px; width: 306px; padding: 15px 25px;
+           font-family: Outfit, sans-serif; font-size: 16px; color: white; 
+           background: rgba(225, 255, 173, 0.4); border: none; border-radius: 33px; 
+           cursor: pointer; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform: scale(1);"
+    onmouseover="this.style.background='rgba(190, 215, 120, 0.6)'; 
+                 this.style.transform='scale(1.02)';
+                 this.style.boxShadow='0 6px 20px rgba(160, 180, 100, 0.3)';"
+    onmouseout="this.style.background='rgba(225, 255, 173, 0.4)'; 
+                this.style.transform='scale(1)';
+                this.style.boxShadow='rgba(0, 0, 0, 0.1) 0px 4px 6px';"
+    onclick="document.getElementById('datetime-input').style.display='block';">Sélectionner une date et une heure</button>
+    <div data-layer="Infos du XX/XX/XXXX" class="InfosDuXxXxXxxx" id="weather-date" style="width: 257px; height: 38px; left: 1022px; top: 295px; position: absolute; color: white; font-size: 25px; font-family: Outfit; font-weight: 600; word-wrap: break-word">Infos du XX/XX/XXXX</div>
+    <input type="datetime-local" id="datetime-input" style="position: absolute; left: 169px; top: 300px; width: 280px; padding: 12.5px; font-family: 'Outfit', sans-serif; font-size: 16px; border: 2px solid rgba(225, 255, 173, 0.4); border-radius: 33px; display: none;" onchange="validateDateTime()">
+    
+    <p id="error-message" style="color: red; display: none; position: absolute; left: 580px; top: 300px; font-family: 'Outfit', sans-serif; font-size: 14px;">La date et l'heure doivent être dans le passé ou actuelle.</p>
+    
+    <script>
+        function validateDateTime() {
+            var input = document.getElementById('datetime-input');
+            var errorMessage = document.getElementById('error-message');
+            
+            var inputDate = input.value ? new Date(input.value).getTime() : null;
+            var now = new Date().getTime();
+    
+            if (!input.value || inputDate > now) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = inputDate > now 
+                    ? "La date et l'heure doivent être dans le passé ou actuelle." 
+                    : "Veuillez sélectionner une date et une heure.";
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        }
+    </script>
+    <img data-layer="weather_icon" class="Clear32x1" style="width: 175px; height:175px; left: 100px; top: 109px; position: absolute" src="images/icon_placeholder.png" />
+    <div data-layer="temperature_main" class="C" id="temperature" style="width: 284px; height: 114px; left: 346px; top: 146px; position: absolute; text-align: center; color: white; font-size: 100px; font-family: Outfit; font-weight: 500; word-wrap: break-word">X°C</div>
+    <div data-layer="Vector" class="material-symbols-outlined" style="width: 64.50px; height: 64.50px; left: 310px; top: 182px; position: absolute;  border-radius: 3px">
+      <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M38.8333 28.6667C37.1765 28.6667 35.8333 27.3235 35.8333 25.6667V24.5C35.8333 22.8431 37.1765 21.5 38.8333 21.5H50.75C52.4069 21.5 53.75 22.8431 53.75 24.5V25.6667C53.75 27.3235 52.4069 28.6667 50.75 28.6667H38.8333ZM38.8333 14.3333C37.1765 14.3333 35.8333 12.9902 35.8333 11.3333V10.1667C35.8333 8.50981 37.1765 7.16667 38.8333 7.16667H61.5C63.1569 7.16667 64.5 8.50981 64.5 10.1667V11.3333C64.5 12.9902 63.1569 14.3333 61.5 14.3333H38.8333ZM17.9167 64.5C12.9597 64.5 8.73437 62.7531 5.24062 59.2594C1.74688 55.7656 0 51.5403 0 46.5833C0 43.7167 0.627083 41.0441 1.88125 38.5656C2.91586 36.521 4.29592 34.7305 6.02144 33.1939C6.72005 32.5718 7.16667 31.7011 7.16667 30.7657V10.75C7.16667 7.76389 8.21181 5.22569 10.3021 3.13542C12.3924 1.04514 14.9306 0 17.9167 0C20.9028 0 23.441 1.04514 25.5312 3.13542C27.6215 5.22569 28.6667 7.76389 28.6667 10.75V30.7657C28.6667 31.7011 29.1133 32.5718 29.8119 33.1939C31.5374 34.7305 32.9175 36.521 33.9521 38.5656C35.2063 41.0441 35.8333 43.7167 35.8333 46.5833C35.8333 51.5403 34.0865 55.7656 30.5927 59.2594C27.099 62.7531 22.8736 64.5 17.9167 64.5ZM7.563 43.619C7.11722 45.2148 8.50981 46.5833 10.1667 46.5833H25.6667C27.3235 46.5833 28.7161 45.2148 28.2703 43.619C28.0904 42.975 27.8493 42.3506 27.5469 41.7458C26.8003 40.2528 25.7403 38.9986 24.3667 37.9833L22.7 36.7333C21.9446 36.1668 21.5 35.2776 21.5 34.3333V10.75C21.5 9.73472 21.1566 8.88368 20.4698 8.19687C19.783 7.51007 18.9319 7.16667 17.9167 7.16667C16.9014 7.16667 16.0503 7.51007 15.3635 8.19687C14.6767 8.88368 14.3333 9.73472 14.3333 10.75V34.3333C14.3333 35.2776 13.8888 36.1668 13.1333 36.7333L11.4667 37.9833C10.0931 38.9986 9.03299 40.2528 8.28646 41.7458C7.98406 42.3506 7.74291 42.975 7.563 43.619Z" fill="white"/></svg></div>    
+    <div data-layer="Clermont Ferrand, France" class="ClermontFerrandFrance" style="width: 696px; height: 67px; left: 549px; top: 179px; position: absolute; text-align: center; color: white; font-size: 50px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Clermont-Ferrand, France</div>
+    <img data-layer="image 1" class="Image1" style="width: 96px; height: 96px; left: 1230px; top: 166px; position: absolute" src="images/la_france.png" />
+    <div data-layer="Rectangle 1" class="Rectangle1" style="width: 306px; height: 126px; left: 169px; top: 367px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+    <div data-layer="Rectangle 2" class="Rectangle2" style="width: 306px; height: 126px; left: 169px; top: 534px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+    <div data-layer="Ellipse 1" class="Ellipse1" style="width: 91px; height: 91px; left: 183px; top: 385px; position: absolute; opacity: 0.30; background: black; box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25); border-radius: 9999px"></div>
+    <div data-layer="Ellipse 2" class="Ellipse2" style="width: 91px; height: 91px; left: 181px; top: 553px; position: absolute; opacity: 0.30; background: black; box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25); border-radius: 9999px"></div>
+    <div data-layer="rainy" class="Rainy" style="width: 58.33px; height: 58.39px; left: 196.83px; top: 567.83px; position: absolute; border-radius: 2px">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M35.6875 58.875C34.9584 59.2639 34.2175 59.3242 33.465 59.0559C32.7106 58.7895 32.1389 58.2917 31.75 57.5625L27.375 48.8125C26.9862 48.0834 26.9259 47.3425 27.1942 46.59C27.4606 45.8356 27.9584 45.2639 28.6875 44.875C29.4167 44.4862 30.1575 44.4259 30.91 44.6942C31.6645 44.9606 32.2361 45.4584 32.625 46.1875L37 54.9375C37.3889 55.6667 37.4502 56.4075 37.1838 57.16C36.9155 57.9145 36.4167 58.4862 35.6875 58.875ZM53.1875 58.875C52.4584 59.2639 51.7175 59.3242 50.965 59.0559C50.2106 58.7895 49.6389 58.2917 49.25 57.5625L44.875 48.8125C44.4861 48.0834 44.4259 47.3425 44.6942 46.59C44.9606 45.8356 45.4584 45.2639 46.1875 44.875C46.9167 44.4862 47.6575 44.4259 48.41 44.6942C49.1645 44.9606 49.7361 45.4584 50.125 46.1875L54.5 54.9375C54.8889 55.6667 54.9502 56.4075 54.6838 57.16C54.4155 57.9145 53.9167 58.4862 53.1875 58.875ZM18.1875 58.875C17.4584 59.2639 16.7175 59.3242 15.965 59.0559C15.2106 58.7895 14.6389 58.2917 14.25 57.5625L9.87504 48.8125C9.48615 48.0834 9.42587 47.3425 9.69421 46.59C9.9606 45.8356 10.4584 45.2639 11.1875 44.875C11.9167 44.4862 12.6575 44.4259 13.41 44.6942C14.1645 44.9606 14.7362 45.4584 15.125 46.1875L19.5 54.9375C19.8889 55.6667 19.9502 56.4075 19.6838 57.16C19.4155 57.9145 18.9167 58.4862 18.1875 58.875ZM16.875 41.6667C12.4514 41.6667 8.6724 40.0985 5.53796 36.9621C2.40157 33.8277 0.833374 30.0487 0.833374 25.625C0.833374 21.5903 2.17018 18.066 4.84379 15.0521C7.29183 12.2925 10.2697 10.5721 13.7773 9.89102C14.3932 9.77143 14.9351 9.40365 15.2709 8.87367C16.7704 6.50673 18.7274 4.61607 21.1421 3.20171C23.8391 1.62282 26.7917 0.833374 30 0.833374C34.375 0.833374 38.1784 2.23143 41.41 5.02754C44.2423 7.47494 46.0953 10.4541 46.9689 13.9652C47.19 14.8535 47.9239 15.529 48.8217 15.7079C51.5076 16.2433 53.8136 17.556 55.7396 19.6459C58.0243 22.125 59.1667 25.0903 59.1667 28.5417C59.1667 32.1875 57.8911 35.287 55.34 37.84C52.787 40.3912 49.6875 41.6667 46.0417 41.6667H16.875ZM16.875 35.8334H46.0417C48.0834 35.8334 49.8091 35.1285 51.2188 33.7188C52.6285 32.3091 53.3334 30.5834 53.3334 28.5417C53.3334 26.5 52.6285 24.7743 51.2188 23.3646C49.8091 21.9549 48.0834 21.25 46.0417 21.25H43.6667C42.5621 21.25 41.6667 20.3546 41.6667 19.25V18.3334C41.6667 15.125 40.5243 12.3785 38.2396 10.0938C35.9549 7.80907 33.2084 6.66671 30 6.66671C27.6667 6.66671 25.5395 7.29865 23.6184 8.56254C21.6992 9.82643 20.2535 11.5278 19.2813 13.6667L19.0649 14.1859C18.7544 14.9312 18.0262 15.4167 17.2188 15.4167H16.7292C13.9584 15.5139 11.5891 16.5464 9.62129 18.5142C7.65157 20.4839 6.66671 22.8542 6.66671 25.625C6.66671 28.4445 7.66324 30.8507 9.65629 32.8438C11.6493 34.8368 14.0556 35.8334 16.875 35.8334Z" fill="white"/></svg></div>    
+    <div data-layer="Vector" class="Vector" style="width: 69.17px; height: 58.79px; left: 193px; top: 401px; position: absolute; border-radius: 2px">
+      <svg width="70" height="59" viewBox="0 0 70 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32.8542 58.7917C29.9722 58.7917 27.5226 57.783 25.5052 55.7656C23.9695 54.2299 23.0183 52.4436 22.6516 50.4068C22.4559 49.3197 23.3746 48.4167 24.4792 48.4167H27.3958C28.5004 48.4167 29.3277 49.3884 29.9293 50.3148C30.0592 50.5148 30.2128 50.7034 30.3901 50.8807C31.053 51.5436 31.8743 51.875 32.8542 51.875C33.834 51.875 34.6554 51.5436 35.3182 50.8807C35.9811 50.2179 36.3125 49.3965 36.3125 48.4167C36.3125 47.4368 35.9811 46.6155 35.3182 45.9526C34.6554 45.2898 33.834 44.9583 32.8542 44.9583H2C0.89543 44.9583 0 44.0629 0 42.9583V40.0417C0 38.9371 0.89543 38.0417 2 38.0417H32.8542C35.7361 38.0417 38.1858 39.0503 40.2031 41.0677C42.2205 43.0851 43.2292 45.5347 43.2292 48.4167C43.2292 51.2986 42.2205 53.7483 40.2031 55.7656C38.1858 57.783 35.7361 58.7917 32.8542 58.7917ZM2 24.2083C0.895431 24.2083 0 23.3129 0 22.2083V19.2917C0 18.1871 0.895431 17.2917 2 17.2917H46.6875C48.1861 17.2917 49.4253 16.8017 50.4052 15.8219C51.3851 14.842 51.875 13.6028 51.875 12.1042C51.875 10.6056 51.3851 9.36632 50.4052 8.38646C49.4253 7.4066 48.1861 6.91667 46.6875 6.91667C45.1889 6.91667 43.9497 7.4066 42.9698 8.38646C42.4558 8.90048 42.0766 9.48588 41.8322 10.1427C41.447 11.1779 40.6046 12.1042 39.5 12.1042H36.5833C35.4788 12.1042 34.5643 11.2034 34.7259 10.1108C35.1019 7.56798 36.2215 5.36492 38.0849 3.50156C40.4193 1.16719 43.2868 0 46.6875 0C50.0882 0 52.9557 1.16719 55.2901 3.50156C57.6245 5.83594 58.7917 8.70347 58.7917 12.1042C58.7917 15.5049 57.6245 18.3724 55.2901 20.7068C52.9557 23.0411 50.0882 24.2083 46.6875 24.2083H2ZM59.0559 51.7324C57.9632 51.894 57.0625 50.9796 57.0625 49.875V46.9583C57.0625 45.8538 57.9888 45.0113 59.024 44.6261C59.6808 44.3818 60.2662 44.0026 60.7802 43.4885C61.7601 42.5087 62.25 41.2694 62.25 39.7708C62.25 38.2722 61.7601 37.033 60.7802 36.0531C59.8003 35.0733 58.5611 34.5833 57.0625 34.5833H2C0.895429 34.5833 0 33.6879 0 32.5833V29.6667C0 28.5621 0.895431 27.6667 2 27.6667H57.0625C60.4632 27.6667 63.3307 28.8339 65.6651 31.1682C67.9995 33.5026 69.1667 36.3701 69.1667 39.7708C69.1667 43.1715 67.9995 46.0391 65.6651 48.3734C63.8018 50.2368 61.5987 51.3565 59.0559 51.7324Z" fill="white"/></svg></div>        
+    <div data-layer="Vitesse du vent" class="VitesseDuVent" style="width: 137px; height: 31px; left: 303px; top: 386px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Vitesse du vent</div>
+    <div data-layer="17 km/h" class="KmH" id="wind-speed" style="width: 200px; height: 51px; left: 300px; top: 417px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X km/h</div>
+    <div data-layer="Rectangle 7" class="Rectangle7" style="width: 306px; height: 293px; left: 567px; top: 367px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+    <div data-layer="Plus d’infos" class="PlusDInfos" style="width: 274px; height: 23px; left: 580px; top: 626px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; text-decoration: underline; word-wrap: break-word">Plus d’infos</div>
+    <div class="overlay" id="modalOverlay">
+      <div class="modal-content">
+        <div class="modal-background"></div>
+        <div class="modal-title">Pollution dans l’air</div>
+        <div class="modal-icon">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M36.6522 12.625C35.6087 13.75 34.4106 14.6042 33.058 15.1875C31.7053 15.7708 30.3527 16.0625 29 16.0625C27.6473 16.0625 26.314 15.7812 25 15.2188C23.686 14.6562 22.5072 13.7917 21.4638 12.625L17.1159 7.9375C16.5362 7.3125 15.8792 6.84375 15.1449 6.53125C14.4106 6.21875 13.657 6.0625 12.8841 6.0625C12.1111 6.0625 11.3575 6.21875 10.6232 6.53125C9.88889 6.84375 9.23188 7.3125 8.65217 7.9375L6.08057 10.71C5.12194 11.7435 3.48676 11.7435 2.52813 10.71C1.66622 9.78076 1.66622 8.34424 2.52813 7.41499L5.34783 4.375C6.3913 3.25 7.57005 2.40625 8.88406 1.84375C10.1981 1.28125 11.5314 1 12.8841 1C14.2367 1 15.5604 1.28125 16.8551 1.84375C18.1498 2.40625 19.3188 3.25 20.3623 4.375L24.7101 9.0625C25.3285 9.72917 26.0048 10.2188 26.7391 10.5312C27.4734 10.8438 28.2271 11 29 11C29.7729 11 30.5362 10.8438 31.2899 10.5312C32.0435 10.2188 32.7295 9.72917 33.3478 9.0625L35.9194 6.28999C36.8781 5.25646 38.5132 5.25646 39.4719 6.28999C40.3338 7.21924 40.3338 8.65576 39.4719 9.58501L36.6522 12.625ZM36.6522 25.125C35.6087 26.25 34.4203 27.0938 33.087 27.6562C31.7536 28.2188 30.4106 28.5 29.058 28.5C27.7053 28.5 26.3623 28.2188 25.029 27.6562C23.6957 27.0938 22.5072 26.25 21.4638 25.125L17.1159 20.4375C16.5362 19.8125 15.8792 19.3438 15.1449 19.0312C14.4106 18.7188 13.657 18.5625 12.8841 18.5625C12.1111 18.5625 11.3575 18.7188 10.6232 19.0312C9.88889 19.3438 9.23188 19.8125 8.65217 20.4375L6.05486 23.2377C5.10744 24.2592 3.49364 24.2663 2.53724 23.2533C1.67071 22.3354 1.65966 20.9043 2.51193 19.9732L5.34783 16.875C6.3913 15.75 7.57005 14.9062 8.88406 14.3438C10.1981 13.7812 11.5314 13.5 12.8841 13.5C14.2367 13.5 15.5604 13.7812 16.8551 14.3438C18.1498 14.9062 19.3188 15.75 20.3623 16.875L24.7101 21.5625C25.3285 22.2292 26.0048 22.7188 26.7391 23.0312C27.4734 23.3438 28.2271 23.5 29 23.5C29.7729 23.5 30.5362 23.3438 31.2899 23.0312C32.0435 22.7188 32.7295 22.2292 33.3478 21.5625L35.9194 18.79C36.8781 17.7565 38.5132 17.7565 39.4719 18.79C40.3338 19.7192 40.3338 21.1558 39.4719 22.085L36.6522 25.125ZM36.5942 37.625C35.5507 38.75 34.372 39.5938 33.058 40.1562C31.744 40.7188 30.4106 41 29.058 41C27.7053 41 26.3623 40.7188 25.029 40.1562C23.6957 39.5938 22.5072 38.75 21.4638 37.625L17.058 32.9375C16.4783 32.3125 15.8213 31.8438 15.087 31.5312C14.3527 31.2188 13.599 31.0625 12.8261 31.0625C12.0531 31.0625 11.2995 31.2188 10.5652 31.5312C9.83092 31.8438 9.17391 32.3125 8.5942 32.9375L5.99678 35.7378C5.05208 36.7563 3.44067 36.7564 2.49597 35.7378C1.65071 34.8265 1.64607 33.4192 2.4853 32.5023L5.34783 29.375C6.3913 28.25 7.57005 27.4062 8.88406 26.8438C10.1981 26.2812 11.5314 26 12.8841 26C14.2367 26 15.5604 26.2812 16.8551 26.8438C18.1498 27.4062 19.3188 28.25 20.3623 29.375L24.7101 34.0625C25.3285 34.7292 26.0145 35.2188 26.7681 35.5312C27.5217 35.8438 28.285 36 29.058 36C29.8309 36 30.5845 35.8438 31.3188 35.5312C32.0531 35.2188 32.7295 34.7292 33.3478 34.0625L35.9194 31.2901C36.8753 30.2594 38.5082 30.2666 39.455 31.3056C40.2957 32.2282 40.2895 33.641 39.4407 34.5562L36.5942 37.625Z" fill="white"/></svg></div>
+        <div class="modal-black-bg"></div>
+        <div class="modal-dropdown">dropdown</div>
+      </div>
+    </div>
+
+    <script>
+        document.querySelector('.PlusDInfos').addEventListener('click', function() {
+      document.getElementById('modalOverlay').style.display = 'flex';
+      document.body.classList.add('no-scroll');
+      document.addEventListener('wheel', preventScroll, { passive: false });
+    });
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+    </script>
+
+    <style>
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 529px;
+      height: 404px;
+    }
+
+    .modal-background {
+      width: 100%;
+      height: 100%;
+      opacity: 0.40;
+      background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%);
+      border-radius: 33px;
+      position: absolute;
+    }
+
+    .modal-title {
+      position: absolute;
+      top: 27px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 163px;
+      height: 31px;
+      color: white;
+      font-size: 20px;
+      font-family: Outfit;
+      font-weight: 400;
+    }
+
+    .modal-icon {
+      position: absolute;
+      top: 20px;
+      left: 27%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 3px;
+    }
+
+    .modal-black-bg {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 461px;
+      height: 294px;
+      opacity: 0.30;
+      background: black;
+      border-radius: 33px;
+    }
+
+    .modal-dropdown {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 211px;
+      height: 50px;
+      color: white;
+      font-size: 40px;
+      font-family: Outfit;
+      font-weight: 600;
+    }
+    </style>
+    <div data-layer="Rectangle 8" class="Rectangle8" style="width: 306px; height: 126px; left: 965px; top: 367px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+    <div data-layer="Ellipse 5" class="Ellipse5" style="width: 91px; height: 91px; left: 979px; top: 385px; position: absolute; opacity: 0.30; background: black; box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25); border-radius: 9999px"></div>
+    <div data-layer="Pression atmosphérique" class="PressionAtmosphRique" style="width: 159px; height: 31px; left: 1099px; top: 384px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Pression atmo.</div>
+    <div data-layer="1030 hPa" class="Hpa" id="pressure" style="width: 188px; height: 51px; left: 1096px; top: 417px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X hPa</div>
+    <div data-layer="Rectangle 9" class="Rectangle9" style="width: 306px; height: 126px; left: 965px; top: 534px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+    <div data-layer="Plus d’infos" class="PlusDInfos" style="width: 274px; height: 23px; left: 1061px; top: 626px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; text-decoration: underline; word-wrap: break-word">Plus d’infos</div>
+    <div data-layer="Ellipse 6" class="Ellipse6" style="width: 91px; height: 91px; left: 979px; top: 553px; position: absolute; opacity: 0.30; background: black; box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25); border-radius: 9999px"></div>
+    <div data-layer="Indice UV" class="IndiceUv" style="width: 137px; height: 31px; left: 1099px; top: 553px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Indice UV</div>
+    <div data-layer="2.5" class="5" id="uv-value"style="width: 138px; height: 51px; left: 1099px; top: 588px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X</div>
+    <div data-layer="12 mm" class="Mm" id="rain-amount" style="width: 138px; height: 51px; left: 300px; top: 589px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X mm</div>
+    <div data-layer="Quantité de pluie" class="QuantitDePluie" style="left: 293px; top: 553px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Quantité de pluie</div>
+    <div data-layer="Rectangle 6" class="Rectangle6" style="width: 278px; height: 62px; left: 1007px; top: 90px; position: absolute; opacity: 0.80; background: #5D8FEE; border-radius: 33px"></div>
+    <div data-layer="Rectangle 5" class="Rectangle5" style="width: 278px; height: 62px; left: 1059px; top: 90px; position: absolute; opacity: 0.80; background: #D9D9D9; border-radius: 33px"></div>
+    <div data-layer="Connecté (5min)" class="Connect5min" style="left: 1136px; top: 106px; position: absolute; text-align: center; color: black; font-size: 24px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Non Connecté</div>
+    <div data-layer="Basemap image" class="BasemapImage" 
+     style="width: 1010px; height: 120px; left: 226px; top: 761px; position: absolute; border-radius: 33px; overflow: hidden;" 
+     id="map">
+    </div>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+    function initMap() {
+        const markerCoords = [45.779807308777585, 3.0934636114593017];
+        
+        const map = L.map('map', {
+            center: markerCoords,
+            zoom: 16,
+            touchZoom: true,
+            scrollWheelZoom: false
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        const marker = L.marker(markerCoords).addTo(map);
+        
+        marker.bindPopup("<b>Lycée Godefroy De Bouillon</b>").openPopup();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const userCoords = [position.coords.latitude, position.coords.longitude];
+                L.marker(userCoords)
+                .addTo(map)
+                .bindPopup("Vous êtes ici")
+                .openPopup();
+            });
+        }
+    }
+
+    window.onload = initMap;
+
+    // Récupération et traitement des données
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        // Mise à jour initiale avec la première entrée
+        updateWeatherData(data.valeurs[0]);
+
+        // Écouteur de changement de date
+        document.getElementById('datetime-input').addEventListener('change', function(e) {
+          const selectedDate = new Date(e.target.value).toLocaleDateString('fr-FR');
+          const foundData = data.valeurs.find(entry => entry.date === selectedDate);
+          
+          if (foundData) {
+            updateWeatherData(foundData);
+            document.getElementById('error-message').style.display = 'none';
+          } else {
+            document.getElementById('error-message').style.display = 'block';
+            document.getElementById('error-message').textContent = "Aucune donnée disponible pour cette date.";
+          }
+        });
+      })
+      .catch(error => console.error('Erreur:', error));
+
+    // Fonction pour mettre à jour les données météo
+    function updateWeatherData(weatherData) {
+      // Mise à jour des valeurs principales
+      document.getElementById('temperature').textContent = `${weatherData.temperature}°C`;
+      document.getElementById('wind-speed').textContent = `${weatherData.vent} km/h`;
+      document.getElementById('rain-amount').textContent = `${weatherData.pluie} mm`;
+      document.getElementById('pressure').textContent = `${weatherData.pression} hPa`;
+      document.getElementById('uv-value').textContent = weatherData.uv;
+
+      // Mise à jour pollution avec unité stylisée
+      const pollutionElement = document.getElementById('pollution-value');
+      pollutionElement.innerHTML = `
+        ${weatherData.pollution} 
+        <span class="pollution-unit">µg/m³</span>
+      `;
+
+      // Mise à jour couleur du rectangle de pollution
+      const rectangle16 = document.querySelector('.Rectangle16');
+      const pollution = weatherData.pollution;
+      
+      if (pollution < 20) {
+        rectangle16.style.background = '#889e8e';
+      } else if (pollution < 50) {
+        rectangle16.style.background = '#9ba383';
+      } else if (pollution < 100) {
+        rectangle16.style.background = '#a48283';
+      } else {
+        rectangle16.style.background = '#a48283'; // Couleur pour "Dangereux"
+      }
+
+      // Mise à jour de la date
+      document.getElementById('weather-date').textContent = `Infos du ${weatherData.date}`;
+
+      // Mise à jour pollution (modal)
+      document.querySelector('.modal-dropdown').textContent = 
+        `${weatherData.pollution} µg/m³ (${getPollutionLevel(weatherData.pollution)})`;
+    }
+
+    // Fonction pour obtenir le niveau de pollution
+    function getPollutionLevel(pollution) {
+      if (pollution < 20) return 'Bon';
+      if (pollution < 50) return 'Modéré';
+      if (pollution < 100) return 'Mauvais';
+      return 'Dangereux';
+    }
+
+    // Script de rotation (à garder UNIQUEMENT SI absent dans le HTML)
+    function toggleRotation(element) {
+      const svg = element.querySelector('svg');
+      isRotating = !isRotating; // Utilisation de la variable existante
+      
+      if (isRotating) {
+        svg.style.animation = 'spin 2s linear 1';
+      } else {
+        svg.style.animation = 'none';
+      }
+    }
+    </script>
+    <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; left: 1069px; top: 98px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+      <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; background: linear-gradient(180deg, #00FF2F 0%, #3FBC38 100%); border-radius: 9999px"></div>
+    </div>
+    <style>
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(1080deg); }
+      }
+      
+      .rotate-on-click {
+        animation: spin 2s linear 1;
+        transform-origin: center;
+      }
+      
+      .VectorDefault {
+        cursor: pointer;
+      }
+      </style>
+      
+      <div data-layer="Vector/Default" class="VectorDefault" onclick="toggleRotation(this)" style="width: 30px; height: 30px; left: 1020px; top: 106px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+        <div data-layer="Vector" class="Vector" style="width: 30px; height: 30px; border-radius: 1px">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.00582 26.9942C8.0078 29.9962 11.6827 31.5 16 31.5C19.5477 31.5 22.7186 30.4166 25.4948 28.2538C27.9127 26.3701 29.6252 24.0018 30.6228 21.1567C30.964 20.1837 30.2024 19.25 29.2328 19.25H27.3051C26.6603 19.25 26.113 19.6593 25.879 20.2232C25.1083 22.0799 23.8937 23.5964 22.2263 24.7797C20.3745 26.0939 18.304 26.75 16 26.75C13.0061 26.75 10.4775 25.7079 8.3848 23.6152C6.29214 21.5225 5.25 18.9939 5.25 16C5.25 13.0061 6.29214 10.4775 8.3848 8.3848C10.4775 6.29214 13.0061 5.25 16 5.25C17.9449 5.25 19.7414 5.72761 21.3987 6.68316C22.5768 7.36244 23.5745 8.22034 24.3956 9.25777C24.5009 9.39091 24.4993 9.5297 24.435 9.64738C24.3669 9.77209 24.2238 9.875 24.0268 9.875H18.875C18.0466 9.875 17.375 10.5466 17.375 11.375V13.125C17.375 13.9534 18.0466 14.625 18.875 14.625H30C30.8284 14.625 31.5 13.9534 31.5 13.125V2C31.5 1.17157 30.8284 0.5 30 0.5H28.25C27.4216 0.5 26.75 1.17157 26.75 2V3.43343C26.75 3.65285 26.6111 3.8469 26.3603 3.94971C26.1054 4.05418 25.8191 4.02511 25.6218 3.86543C24.6412 3.07185 23.5647 2.41017 22.3936 1.88038C20.3602 0.960529 18.2275 0.5 16 0.5C11.6827 0.5 8.0078 2.00384 5.00582 5.00582C2.00384 8.0078 0.5 11.6827 0.5 16C0.5 20.3173 2.00384 23.9922 5.00582 26.9942Z" fill="white" stroke="white"/>
+          </svg>
+        </div>    
+      </div>
+      
+      <script>
+      let isRotating = false;
+      
+      function toggleRotation(element) {
+        const svg = element.querySelector('svg');
+        isRotating = !isRotating;
+        
+        if (isRotating) {
+          svg.style.animation = 'spin 2s linear 1';
+        } else {
+          svg.style.animation = 'none';
+        }
+      }
+      </script>
+    <div data-layer="light_mode" class="LightMode" style="width: 60px; height: 60px; left: 995px; top: 568px; position: absolute;">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 38.1818C32.2727 38.1818 34.2045 37.3864 35.7955 35.7955C37.3864 34.2045 38.1818 32.2727 38.1818 30C38.1818 27.7273 37.3864 25.7955 35.7955 24.2045C34.2045 22.6136 32.2727 21.8182 30 21.8182C27.7273 21.8182 25.7955 22.6136 24.2045 24.2045C22.6136 25.7955 21.8182 27.7273 21.8182 30C21.8182 32.2727 22.6136 34.2045 24.2045 35.7955C25.7955 37.3864 27.7273 38.1818 30 38.1818ZM30 43.6364C26.2273 43.6364 23.0118 42.3064 20.3536 39.6464C17.6936 36.9882 16.3636 33.7727 16.3636 30C16.3636 26.2273 17.6936 23.0109 20.3536 20.3509C23.0118 17.6927 26.2273 16.3636 30 16.3636C33.7727 16.3636 36.9891 17.6927 39.6491 20.3509C42.3073 23.0109 43.6364 26.2273 43.6364 30C43.6364 33.7727 42.3073 36.9882 39.6491 39.6464C36.9891 42.3064 33.7727 43.6364 30 43.6364ZM2.72727 32.7273C1.95455 32.7273 1.30727 32.4655 0.785455 31.9418C0.261818 31.42 0 30.7727 0 30C0 29.2273 0.261818 28.5791 0.785455 28.0555C1.30727 27.5336 1.95455 27.2727 2.72727 27.2727H8.18182C8.95455 27.2727 9.60273 27.5336 10.1264 28.0555C10.6482 28.5791 10.9091 29.2273 10.9091 30C10.9091 30.7727 10.6482 31.42 10.1264 31.9418C9.60273 32.4655 8.95455 32.7273 8.18182 32.7273H2.72727ZM51.8182 32.7273C51.0455 32.7273 50.3982 32.4655 49.8764 31.9418C49.3527 31.42 49.0909 30.7727 49.0909 30C49.0909 29.2273 49.3527 28.5791 49.8764 28.0555C50.3982 27.5336 51.0455 27.2727 51.8182 27.2727H57.2727C58.0455 27.2727 58.6927 27.5336 59.2145 28.0555C59.7382 28.5791 60 29.2273 60 30C60 30.7727 59.7382 31.42 59.2145 31.9418C58.6927 32.4655 58.0455 32.7273 57.2727 32.7273H51.8182ZM30 10.9091C29.2273 10.9091 28.58 10.6473 28.0582 10.1236C27.5345 9.60182 27.2727 8.95455 27.2727 8.18182V2.72727C27.2727 1.95455 27.5345 1.30636 28.0582 0.782727C28.58 0.260909 29.2273 0 30 0C30.7727 0 31.4209 0.260909 31.9445 0.782727C32.4664 1.30636 32.7273 1.95455 32.7273 2.72727V8.18182C32.7273 8.95455 32.4664 9.60182 31.9445 10.1236C31.4209 10.6473 30.7727 10.9091 30 10.9091ZM30 60C29.2273 60 28.58 59.7382 28.0582 59.2145C27.5345 58.6927 27.2727 58.0455 27.2727 57.2727V51.8182C27.2727 51.0455 27.5345 50.3982 28.0582 49.8764C28.58 49.3527 29.2273 49.0909 30 49.0909C30.7727 49.0909 31.4209 49.3527 31.9445 49.8764C32.4664 50.3982 32.7273 51.0455 32.7273 51.8182V57.2727C32.7273 58.0455 32.4664 58.6927 31.9445 59.2145C31.4209 59.7382 30.7727 60 30 60ZM12.6818 16.5L9.75 13.6364C9.20455 13.1364 8.94273 12.5 8.96455 11.7273C8.98818 10.9545 9.25 10.2955 9.75 9.75C10.2955 9.20455 10.9545 8.93182 11.7273 8.93182C12.5 8.93182 13.1364 9.20455 13.6364 9.75L16.5 12.6818C17 13.2273 17.25 13.8636 17.25 14.5909C17.25 15.3182 17 15.9545 16.5 16.5C16 17.0455 15.3755 17.3064 14.6264 17.2827C13.8755 17.2609 13.2273 17 12.6818 16.5ZM46.3636 50.25L43.5 47.3182C43 46.7727 42.75 46.1255 42.75 45.3764C42.75 44.6255 43 44 43.5 43.5C44 42.9545 44.6255 42.6936 45.3764 42.7173C46.1255 42.7391 46.7727 43 47.3182 43.5L50.25 46.3636C50.7955 46.8636 51.0573 47.5 51.0355 48.2727C51.0118 49.0455 50.75 49.7045 50.25 50.25C49.7045 50.7955 49.0455 51.0682 48.2727 51.0682C47.5 51.0682 46.8636 50.7955 46.3636 50.25ZM43.5 16.5C42.9545 16 42.6936 15.3745 42.7173 14.6236C42.7391 13.8745 43 13.2273 43.5 12.6818L46.3636 9.75C46.8636 9.20455 47.5 8.94273 48.2727 8.96455C49.0455 8.98818 49.7045 9.25 50.25 9.75C50.7955 10.2955 51.0682 10.9545 51.0682 11.7273C51.0682 12.5 50.7955 13.1364 50.25 13.6364L47.3182 16.5C46.7727 17 46.1364 17.25 45.4091 17.25C44.6818 17.25 44.0455 17 43.5 16.5ZM9.75 50.25C9.20455 49.7045 8.93182 49.0455 8.93182 48.2727C8.93182 47.5 9.20455 46.8636 9.75 46.3636L12.6818 43.5C13.2273 43 13.8755 42.75 14.6264 42.75C15.3755 42.75 16 43 16.5 43.5C17.0455 44 17.3073 44.6255 17.2855 45.3764C17.2618 46.1255 17 46.7727 16.5 47.3182L13.6364 50.25C13.1364 50.7955 12.5 51.0564 11.7273 51.0327C10.9545 51.0109 10.2955 50.75 9.75 50.25Z" fill="white"/></svg></div>  
+    <div data-layer="Group 52" class="Group52" style="width: 261px; height: 195px; left: 590px; top: 425px; position: absolute; opacity: 0.75">
+      <div data-layer="Rectangle 16" class="Rectangle16" style="width: 260px; height: 195px; left: 0px; top: 0px; position: absolute; opacity: 0.75; background: #FAEDFF; border-radius: 75px"></div>
+    </div>
+    <div data-layer="Pollution dans l’air" class="PollutionDansLAir" style="width: 163px; height: 31px; left: 669px; top: 385px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Pollution dans l’air</div>
+    <div data-layer="56 %"id="pollution-value" style="width: 280px;height: 89.93px;left: 590px;top: 455px;position: absolute;opacity: 0.75;text-align: center;color: white;font-size: 100px;  /* <-- Taille du nombre principal */font-family: Outfit;font-weight: 500;word-wrap: break-word">XX µg/m³</div><style>.pollution-unit {font-size: 30px;vertical-align: super;margin-left: 5px;}</style><div ...><span class="pollution-unit"></span></div>
+    <div data-layer="Vector" class="Vector" style="width: 46.67px; height: 61.25px; left: 1002px; top: 400px; position: absolute">
+      <svg width="47" height="62" viewBox="0 0 47 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 37.9167V32.0833H46.6667V37.9167H0ZM0 29.1667V23.3333H46.6667V29.1667H0ZM20.4167 61.25V51.9167L15.75 56.5833L11.6667 52.5L23.3333 40.8333L35 52.5L30.9167 56.5833L26.25 52.0625V61.25H20.4167ZM23.3333 20.4167L11.6667 8.75L15.75 4.66667L20.4167 9.33333V0H26.25V9.33333L30.9167 4.66667L35 8.75L23.3333 20.4167Z" fill="white"/></svg></div>  
+    <div data-layer="Vector" class="Vector" style="width: 40px; height: 40px; left: 610px; top: 380px; position: absolute; border-radius: 3px">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M35.6522 11.625C34.6087 12.75 33.4106 13.6042 32.058 14.1875C30.7053 14.7708 29.3527 15.0625 28 15.0625C26.6473 15.0625 25.314 14.7812 24 14.2188C22.686 13.6562 21.5072 12.7917 20.4638 11.625L16.1159 6.9375C15.5362 6.3125 14.8792 5.84375 14.1449 5.53125C13.4106 5.21875 12.657 5.0625 11.8841 5.0625C11.1111 5.0625 10.3575 5.21875 9.62319 5.53125C8.88889 5.84375 8.23188 6.3125 7.65217 6.9375L5.08057 9.71001C4.12194 10.7435 2.48676 10.7435 1.52813 9.71001C0.666215 8.78076 0.666216 7.34424 1.52813 6.41499L4.34783 3.375C5.3913 2.25 6.57005 1.40625 7.88406 0.84375C9.19807 0.28125 10.5314 0 11.8841 0C13.2367 0 14.5604 0.28125 15.8551 0.84375C17.1498 1.40625 18.3188 2.25 19.3623 3.375L23.7101 8.0625C24.3285 8.72917 25.0048 9.21875 25.7391 9.53125C26.4734 9.84375 27.2271 10 28 10C28.7729 10 29.5362 9.84375 30.2899 9.53125C31.0435 9.21875 31.7295 8.72917 32.3478 8.0625L34.9194 5.28999C35.8781 4.25646 37.5132 4.25646 38.4719 5.28999C39.3338 6.21924 39.3338 7.65576 38.4719 8.58501L35.6522 11.625ZM35.6522 24.125C34.6087 25.25 33.4203 26.0938 32.087 26.6562C30.7536 27.2188 29.4106 27.5 28.058 27.5C26.7053 27.5 25.3623 27.2188 24.029 26.6562C22.6957 26.0938 21.5072 25.25 20.4638 24.125L16.1159 19.4375C15.5362 18.8125 14.8792 18.3438 14.1449 18.0312C13.4106 17.7188 12.657 17.5625 11.8841 17.5625C11.1111 17.5625 10.3575 17.7188 9.62319 18.0312C8.88889 18.3438 8.23188 18.8125 7.65217 19.4375L5.05486 22.2377C4.10744 23.2592 2.49364 23.2663 1.53724 22.2533C0.670706 21.3354 0.659664 19.9043 1.51193 18.9732L4.34783 15.875C5.3913 14.75 6.57005 13.9062 7.88406 13.3438C9.19807 12.7812 10.5314 12.5 11.8841 12.5C13.2367 12.5 14.5604 12.7812 15.8551 13.3438C17.1498 13.9062 18.3188 14.75 19.3623 15.875L23.7101 20.5625C24.3285 21.2292 25.0048 21.7188 25.7391 22.0312C26.4734 22.3438 27.2271 22.5 28 22.5C28.7729 22.5 29.5362 22.3438 30.2899 22.0312C31.0435 21.7188 31.7295 21.2292 32.3478 20.5625L34.9194 17.79C35.8781 16.7565 37.5132 16.7565 38.4719 17.79C39.3338 18.7192 39.3338 20.1558 38.4719 21.085L35.6522 24.125ZM35.5942 36.625C34.5507 37.75 33.372 38.5938 32.058 39.1562C30.744 39.7188 29.4106 40 28.058 40C26.7053 40 25.3623 39.7188 24.029 39.1562C22.6957 38.5938 21.5072 37.75 20.4638 36.625L16.058 31.9375C15.4783 31.3125 14.8213 30.8438 14.087 30.5312C13.3527 30.2188 12.599 30.0625 11.8261 30.0625C11.0531 30.0625 10.2995 30.2188 9.56522 30.5312C8.83092 30.8438 8.17391 31.3125 7.5942 31.9375L4.99678 34.7378C4.05208 35.7563 2.44067 35.7564 1.49597 34.7378C0.650713 33.8265 0.646068 32.4192 1.4853 31.5023L4.34783 28.375C5.3913 27.25 6.57005 26.4062 7.88406 25.8438C9.19807 25.2812 10.5314 25 11.8841 25C13.2367 25 14.5604 25.2812 15.8551 25.8438C17.1498 26.4062 18.3188 27.25 19.3623 28.375L23.7101 33.0625C24.3285 33.7292 25.0145 34.2188 25.7681 34.5312C26.5217 34.8438 27.285 35 28.058 35C28.8309 35 29.5845 34.8438 30.3188 34.5312C31.0531 34.2188 31.7295 33.7292 32.3478 33.0625L34.9194 30.2901C35.8753 29.2594 37.5082 29.2666 38.455 30.3056C39.2957 31.2282 39.2895 32.641 38.4407 33.5562L35.5942 36.625Z" fill="white"/></svg></div>
+    <div data-layer="Emplacement de la station météo :" class="EmplacementDeLaStationMTO" style="width: 638px; height: 25px; left: 401px; top: 720px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Emplacement de la station météo :</div>
+  </div>
+</body>
+</html>

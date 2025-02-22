@@ -1,0 +1,22 @@
+{
+    "valeurs": [
+        {
+            "date": "20/02/2025",
+            "temperature": "12",
+            "vent": "10",
+            "pluie": "0",
+            "pollution": "18",
+            "pression": "1013",
+            "uv": "2"
+        },
+        {
+            "date": "11/09/2001",
+            "temperature": "76",
+            "vent": "20",
+            "pluie": "10",
+            "pollution": "65",
+            "pression": "2000",
+            "uv": "12"
+        }
+    ]
+}
