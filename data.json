@@ -1,7 +1,7 @@
 {
     "valeurs": [
         {
-            "date": "20/02/2025",
+            "datetime": "2025-02-20T08:00",
             "temperature": "12",
             "vent": "10",
             "pluie": "0",
@@ -10,7 +10,7 @@
             "uv": "2"
         },
         {
-            "date": "11/09/2001",
+            "datetime": "2001-09-11T14:30",
             "temperature": "76",
             "vent": "20",
             "pluie": "10",
