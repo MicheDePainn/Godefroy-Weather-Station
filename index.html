@@ -86,8 +86,6 @@
     <script>
         document.querySelector('.PlusDInfos').addEventListener('click', function() {
       document.getElementById('modalOverlay').style.display = 'flex';
-      document.body.classList.add('no-scroll');
-      document.addEventListener('wheel', preventScroll, { passive: false });
     });
 
     document.getElementById('modalOverlay').addEventListener('click', function(e) {
