@@ -323,16 +323,6 @@
         const marker = L.marker(markerCoords).addTo(map);
         
         marker.bindPopup("<b>Lycée Godefroy De Bouillon</b>").openPopup();
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const userCoords = [position.coords.latitude, position.coords.longitude];
-                L.marker(userCoords)
-                .addTo(map)
-                .bindPopup("Vous êtes ici")
-                .openPopup();
-            });
-        }
     }
 
     window.onload = initMap;
