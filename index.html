@@ -69,7 +69,7 @@
     <div data-layer="Vitesse du vent" class="VitesseDuVent" style="width: 137px; height: 31px; left: 303px; top: 386px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Vitesse du vent</div>
     <div data-layer="17 km/h" class="KmH" id="wind-speed" style="width: 200px; height: 51px; left: 300px; top: 417px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X km/h</div>
     <div data-layer="Rectangle 7" class="Rectangle7" style="width: 306px; height: 293px; left: 567px; top: 367px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
-    <div data-layer="Plus d’infos" class="PlusDInfos" style="width: 274px; height: 23px; left: 580px; top: 626px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; text-decoration: underline; word-wrap: break-word">Plus d’infos</div>
+    <div data-layer="Plus d’infos" class="PlusDInfos" style="width: 274px; height: 23px; left: 580px; top: 626px; position: absolute; cursor: pointer; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; text-decoration: underline; word-wrap: break-word">Plus d’infos</div>
     <div class="overlay" id="modalOverlay">
       <div class="modal-content">
         <div class="modal-background"></div>
@@ -128,7 +128,7 @@
     }
     .overlay {
       display: none;
-      position: fixed;
+      position: relative;
       top: 0;
       left: 0;
       width: 100%;
@@ -196,13 +196,98 @@
       font-family: Outfit;
       font-weight: 600;
     }
+    .content { display: none; }
+    .content.active { display: block; }
     </style>
     <div data-layer="Rectangle 8" class="Rectangle8" style="width: 306px; height: 126px; left: 965px; top: 367px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
     <div data-layer="Ellipse 5" class="Ellipse5" style="width: 91px; height: 91px; left: 979px; top: 385px; position: absolute; opacity: 0.30; background: black; box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25); border-radius: 9999px"></div>
     <div data-layer="Pression atmosphérique" class="PressionAtmosphRique" style="width: 159px; height: 31px; left: 1099px; top: 384px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Pression atmo.</div>
     <div data-layer="1030 hPa" class="Hpa" id="pressure" style="width: 188px; height: 51px; left: 1096px; top: 417px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X hPa</div>
     <div data-layer="Rectangle 9" class="Rectangle9" style="width: 306px; height: 126px; left: 965px; top: 534px; position: absolute; opacity: 0.40; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
-    <div data-layer="Plus d’infos" class="PlusDInfos" style="width: 274px; height: 23px; left: 1061px; top: 626px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; text-decoration: underline; word-wrap: break-word">Plus d’infos</div>
+    <div data-layer="Plus d’infos" class="PlusDInfos2" style="width: 274px; height: 23px; left: 1061px; top: 626px; position: absolute; cursor: pointer; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; text-decoration: underline; word-wrap: break-word">Plus d’infos</div>
+    <div id="uvModal" style="display: none; position: fixed; z-index: 9999; width: 1440px; height: 1024px; backdrop-filter: blur(5px); justify-content: center; align-items: center;">
+      <div style="width: 970px; height: 337px; position: relative; left: 7.5%;top: 27%;">
+        <div style="width: 970px; height: 337px; left: 126px; top: 93px; position: absolute; opacity: 0.40; background: linear-gradient(90deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+        <div class="title" data-target="content-bas" style="cursor: pointer; width: 184px; height: 60px; left: 156px; top: 127px; position: absolute; opacity: 0.90; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+        <div class="title" data-target="content-modere" style="cursor: pointer; width: 184px; height: 60px; left: 340px; top: 127px; position: absolute; opacity: 0.90; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+        <div class="title" data-target="content-haut" style="cursor: pointer; width: 184px; height: 60px; left: 524px; top: 127px; position: absolute; opacity: 0.90; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+        <div class="title" data-target="content-tres-haut" style="cursor: pointer; width: 184px; height: 60px; left: 708px; top: 127px; position: absolute; opacity: 0.90; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+        <div class="title" data-target="content-extreme" style="cursor: pointer; width: 184px; height: 60px; left: 892px; top: 127px; position: absolute; opacity: 0.90; background: linear-gradient(270deg, #E1FFAD 0%, #EAFFCA 100%); border-radius: 33px"></div>
+        <div class="title" data-target="content-bas" style="cursor: pointer; width: 60px; height: 38px; left: 217px; top: 138px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">BAS</div>
+        <div class="title" data-target="content-modere" style="cursor: pointer; width: 131px; height: 38px; left: 366px; top: 138px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">MODERE</div>
+        <div class="title" data-target="content-haut" style="cursor: pointer; width: 85px; height: 38px; left: 573px; top: 138px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">HAUT</div>
+        <div class="title" data-target="content-tres-haut" style="cursor: pointer; width: 166px; height: 38px; left: 717px; top: 138px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">TRES HAUT</div>
+        <div class="title" data-target="content-extreme" style="cursor: pointer; width: 142px; height: 38px; left: 913px; top: 138px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">EXTREME</div>
+    
+        <div id="content-bas" class="content" style="width: 976px; height: 215px; left: 124px; top: 194px; position: absolute">
+          <div style="width: 920px; height: 187px; left: 32px; top: 15px; position: absolute; opacity: 0.30; background: #3FBC38; border-radius: 33px"></div>
+          <div style="width: 210px; height: 55px; left: 68px; top: 33px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">Bas: 0-2</div>
+          <div style="width: 864px; left: 68px; top: 77px; position: absolute; text-align: justify; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Protection solaire minime requise pour les activités normales. Portez des lunettes de soleil les journées ensoleillées. Si vous restez à l’extérieur pendant plus d’une heure, couvrez-vous et utilisez un écran solaire. La réflexion par la neige peut presque doubler l’intensité des rayons UV. Portez des lunettes de soleil et appliquez un écran solaire sur votre visage.</div>
+        </div>
+    
+        <div id="content-modere" class="content" style="width: 976px; height: 215px; left: 124px; top: 194px; position: absolute">
+          <div style="width: 920px; height: 187px; left: 32px; top: 15px; position: absolute; opacity: 0.30; background: #3FBC38; border-radius: 33px"></div>
+          <div style="width: 210px; height: 55px; left: 68px; top: 33px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">Modéré: 3-5</div>
+          <div style="width: 864px; left: 68px; top: 77px; position: absolute; text-align: justify; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Prenez des précautions : couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire, surtout si vous êtes à l’extérieur pendant 30 minutes ou plus. Cherchez l’ombre à la mi-journée, quand le soleil est à son plus fort.</div>
+        </div>
+    
+        <div id="content-haut" class="content" style="width: 976px; height: 215px; left: 124px; top: 194px; position: absolute">
+          <div style="width: 920px; height: 187px; left: 32px; top: 15px; position: absolute; opacity: 0.30; background: #CBA81C; border-radius: 33px"></div>
+          <div style="width: 210px; height: 55px; left: 68px; top: 33px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">Haut: 6-7</div>
+          <div style="width: 864px; left: 68px; top: 77px; position: absolute; text-align: justify; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Protection nécessaire - les rayons UV endommagent la peau et peuvent causer des coups de soleil. Évitez le soleil entre 11 h et 15 h et prenez toutes les précautions : cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.</div>
+        </div>
+    
+        <div id="content-tres-haut" class="content" style="width: 976px; height: 215px; left: 124px; top: 194px; position: absolute">
+          <div style="width: 920px; height: 187px; left: 32px; top: 15px; position: absolute; opacity: 0.30; background: #E5571A; border-radius: 33px"></div>
+          <div style="width: 210px; height: 55px; left: 68px; top: 33px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">Très haut: 8-10</div>
+          <div style="width: 864px; left: 68px; top: 77px; position: absolute; text-align: justify; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Précautions supplémentaires nécessaires : la peau non protégée sera endommagée et peut brûler rapidement. Évitez le soleil entre 11 h et 15 h et cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.</div>
+        </div>
+    
+        <div id="content-extreme" class="content" style="width: 976px; height: 215px; left: 124px; top: 194px; position: absolute">
+          <div style="width: 920px; height: 187px; left: 32px; top: 15px; position: absolute; opacity: 0.30; background: #9747FF; border-radius: 33px"></div>
+          <div style="width: 210px; height: 55px; left: 68px; top: 33px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Outfit; font-weight: 800; word-wrap: break-word">Extrême: 11+</div>
+          <div style="width: 864px; left: 68px; top: 77px; position: absolute; text-align: justify; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word">Prenez toutes les précautions. La peau non protégée sera endommagée et peut brûler en quelques minutes. Évitez le soleil entre 11 h et 15 h, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire. N’oubliez pas que le sable blanc et les autres surfaces brillantes réfléchissent les rayons UV et augmentent l’exposition à ces rayons.</div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const titles = document.querySelectorAll('.title');
+          titles.forEach(title => {
+            title.addEventListener('click', function() {
+              const targetId = this.getAttribute('data-target');
+              const contents = document.querySelectorAll('.content');
+              contents.forEach(content => {
+                content.classList.remove('active');
+              });
+              document.getElementById(targetId).classList.add('active');
+            });
+          });
+        });
+      </script>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Gestion des onglets UV
+        const titles = document.querySelectorAll('.title');
+        titles.forEach(title => {
+          title.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+            document.getElementById(targetId).classList.add('active');
+          });
+        });
+  
+        // Afficher le modal UV
+        document.querySelector('.PlusDInfos2').addEventListener('click', function() {
+          document.getElementById('uvModal').style.display = 'block';
+        });
+  
+        // Fermer le modal en cliquant à l'extérieur
+        document.getElementById('uvModal').addEventListener('click', function(e) {
+          if (e.target === this) this.style.display = 'none';
+        });
+      });
+    </script>
     <div data-layer="Ellipse 6" class="Ellipse6" style="width: 91px; height: 91px; left: 979px; top: 553px; position: absolute; opacity: 0.30; background: black; box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25); border-radius: 9999px"></div>
     <div data-layer="Indice UV" class="IndiceUv" style="width: 137px; height: 31px; left: 1099px; top: 553px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Indice UV</div>
     <div data-layer="2.5" class="5" id="uv-value"style="width: 138px; height: 51px; left: 1099px; top: 588px; position: absolute; color: white; font-size: 40px; font-family: Outfit; font-weight: 600; word-wrap: break-word">X</div>
@@ -432,7 +517,7 @@
       <div data-layer="Rectangle 16" class="Rectangle16" style="width: 260px; height: 195px; left: 0px; top: 0px; position: absolute; opacity: 0.75; background: #FAEDFF; border-radius: 75px"></div>
     </div>
     <div data-layer="Pollution dans l’air" class="PollutionDansLAir" style="width: 163px; height: 31px; left: 669px; top: 385px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word">Pollution dans l’air</div>
-    <div data-layer="56 %"id="pollution-value" style="width: 280px;height: 89.93px;left: 590px;top: 455px;position: absolute;opacity: 0.75;text-align: center;color: white;font-size: 100px;  /* <-- Taille du nombre principal */font-family: Outfit;font-weight: 500;word-wrap: break-word">XX µg/m³</div><style>.pollution-unit {font-size: 30px;vertical-align: super;margin-left: 5px;}</style><div ...><span class="pollution-unit"></span></div>
+    <div data-layer="56 %"id="pollution-value" style="width: 280px;height: 89.93px;left: 590px;top: 455px;position: absolute;opacity: 0.75;text-align: center;color: white;font-size: 100px;  /* <-- Taille du nombre principal */font-family: Outfit;font-weight: 500;word-wrap: break-word">XX µg/m³</div><style>.pollution-unit {font-size: 30px;vertical-align: super;margin-left: 5px;}</style>
     <div data-layer="Vector" class="Vector" style="width: 46.67px; height: 61.25px; left: 1002px; top: 400px; position: absolute">
       <svg width="47" height="62" viewBox="0 0 47 62" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 37.9167V32.0833H46.6667V37.9167H0ZM0 29.1667V23.3333H46.6667V29.1667H0ZM20.4167 61.25V51.9167L15.75 56.5833L11.6667 52.5L23.3333 40.8333L35 52.5L30.9167 56.5833L26.25 52.0625V61.25H20.4167ZM23.3333 20.4167L11.6667 8.75L15.75 4.66667L20.4167 9.33333V0H26.25V9.33333L30.9167 4.66667L35 8.75L23.3333 20.4167Z" fill="white"/></svg></div>  
