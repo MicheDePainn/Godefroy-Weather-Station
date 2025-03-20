@@ -432,14 +432,14 @@
       const arrow = document.getElementById('arrow');
 
       let levelWidth;
-      if (pollution < 20) {
+      if (pollution < 10) {
         levelWidth = (pollution / 20) * 20;
-      } else if (pollution < 50) {
+      } else if (pollution < 25) {
         levelWidth = 20 + ((pollution - 20) / 30) * 30;
-      } else if (pollution < 100) {
+      } else if (pollution < 50) {
         levelWidth = 50 + ((pollution - 50) / 50) * 50;
       } else {
-        levelWidth = 100;
+        levelWidth = 50;
       }
 
       progressLevel.style.width = `${levelWidth}%`;
