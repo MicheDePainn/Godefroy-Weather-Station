@@ -420,9 +420,9 @@
 
     // Fonction pour obtenir le niveau de pollution
     function getPollutionLevel(pollution) {
-      if (pollution < 10) return 'Bon';
-      if (pollution < 25) return 'Modéré';
-      if (pollution < 50) return 'Mauvais';
+      if (pollution < 20) return 'Bon';
+      if (pollution < 50) return 'Modéré';
+      if (pollution < 100) return 'Mauvais';
       return 'Dangereux';
     }
 
@@ -432,17 +432,17 @@
       const arrow = document.getElementById('arrow');
 
       let levelWidth;
-      if (pollution < 10) {
+      if (pollution < 20) {
         levelWidth = (pollution / 20) * 20;
-      } else if (pollution < 25) {
-        levelWidth = 20 + ((pollution - 20) / 30) * 30;
       } else if (pollution < 50) {
+        levelWidth = 20 + ((pollution - 20) / 30) * 30;
+      } else if (pollution < 100) {
         levelWidth = 50 + ((pollution - 50) / 50) * 50;
       } else {
-        levelWidth = 50;
+        levelWidth = 100;
       }
 
-      progressLevel.style.width = `${levelWidth}%`;
+      progressLevel.style.left = `${levelWidth}%`;
       arrow.style.left = `${levelWidth}%`;
     }
 
