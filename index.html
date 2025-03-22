@@ -507,7 +507,6 @@
             </div>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-                    // Gestion des onglets UV
                     const titles = document.querySelectorAll(".title");
                     titles.forEach((title) => {
                         title.addEventListener("click", function () {
@@ -517,12 +516,10 @@
                         });
                     });
 
-                    // Afficher le modal UV
                     document.querySelector(".PlusDInfos2").addEventListener("click", function () {
                         document.getElementById("uvModal").style.display = "block";
                     });
 
-                    // Fermer le modal en cliquant à l'extérieur
                     document.getElementById("uvModal").addEventListener("click", function (e) {
                         if (e.target === this) this.style.display = "none";
                     });
@@ -591,14 +588,11 @@
 
                 window.onload = initMap;
 
-                // Récupération et traitement des données
                 fetch("data.json")
                     .then((response) => response.json())
                     .then((data) => {
-                        // Mise à jour initiale avec la première entrée
                         updateWeatherData(data.valeurs[0]);
 
-                        // Écouteur de changement de date et heure
                         document.getElementById("datetime-input").addEventListener("change", function (e) {
                             const selectedDateTime = new Date(e.target.value);
                             let foundData = data.valeurs.find((entry) => {
@@ -607,7 +601,6 @@
                             });
 
                             if (!foundData) {
-                                // Recherche de la donnée la plus proche
                                 let closestEntry;
                                 let minDiff = Infinity;
 
@@ -634,23 +627,19 @@
                     })
                     .catch((error) => console.error("Erreur:", error));
 
-                // Fonction pour mettre à jour les données météo
                 function updateWeatherData(weatherData) {
-                    // Mise à jour des valeurs principales
                     document.getElementById("temperature").textContent = `${weatherData.temperature}°C`;
                     document.getElementById("wind-speed").textContent = `${weatherData.vent} km/h`;
                     document.getElementById("rain-amount").textContent = `${weatherData.pluie} mm`;
                     document.getElementById("pressure").textContent = `${weatherData.pression} hPa`;
                     document.getElementById("uv-value").textContent = weatherData.uv;
 
-                    // Mise à jour pollution avec unité stylisée
                     const pollutionElement = document.getElementById("pollution-value");
                     pollutionElement.innerHTML = `
         ${weatherData.pollution} 
         <span class="pollution-unit">µg/m³</span>
       `;
 
-                    // Mise à jour couleur du rectangle de pollution
                     const rectangle16 = document.querySelector(".Rectangle16");
                     const pollution = weatherData.pollution;
 
@@ -661,10 +650,9 @@
                     } else if (pollution < 100) {
                         rectangle16.style.background = "#a48283";
                     } else {
-                        rectangle16.style.background = "#a48283"; // Couleur pour "Dangereux"
+                        rectangle16.style.background = "#a48283";
                     }
 
-                    // Mise à jour de la date et de l'heure
                     const dateTime = new Date(weatherData.datetime);
                     const formattedDateTime = dateTime.toLocaleString("fr-FR", {
                         day: "2-digit",
@@ -675,14 +663,11 @@
                     });
                     document.getElementById("weather-date").textContent = `Infos du ${formattedDateTime}`;
 
-                    // Mise à jour pollution (modal)
                     document.querySelector(".modal-dropdown").textContent = `${weatherData.pollution} µg/m³ (${getPollutionLevel(weatherData.pollution)})`;
 
-                    // Mise à jour de la barre de progression et de la flèche
                     updateProgressBar(pollution);
                 }
 
-                // Fonction pour obtenir le niveau de pollution
                 function getPollutionLevel(pollution) {
                     if (pollution < 20) return "Bon";
                     if (pollution < 50) return "Modéré";
@@ -690,7 +675,6 @@
                     return "Dangereux";
                 }
 
-                // Fonction pour mettre à jour la barre de progression et la flèche
                 function updateProgressBar(pollution) {
                     const progressLevel = document.getElementById("progress-level");
                     const arrow = document.getElementById("arrow");
@@ -710,10 +694,9 @@
                     arrow.style.left = `${levelWidth * 2}%`;
                 }
 
-                // Script de rotation (à garder UNIQUEMENT SI absent dans le HTML)
                 function toggleRotation(element) {
                     const svg = element.querySelector("svg");
-                    isRotating = !isRotating; // Utilisation de la variable existante
+                    isRotating = !isRotating;
 
                     if (isRotating) {
                         svg.style.animation = "spin 2s linear 1";
