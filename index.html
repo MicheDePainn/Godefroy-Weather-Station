@@ -527,6 +527,23 @@
                         if (e.target === this) this.style.display = "none";
                     });
                 });
+                document.addEventListener("DOMContentLoaded", function () {
+                  document.querySelector(".PlusDInfos2").addEventListener("click", function () {
+                      const uvValue = parseFloat(document.getElementById("uv-value").textContent);
+                      let targetId = "";
+
+                      if (uvValue <= 2) targetId = "content-bas";
+                      else if (uvValue <= 5) targetId = "content-modere";
+                      else if (uvValue <= 7) targetId = "content-haut";
+                      else if (uvValue <= 10) targetId = "content-tres-haut";
+                      else targetId = "content-extreme";
+
+                      document.querySelectorAll(".content").forEach(c => c.classList.remove("active"));
+                      document.getElementById(targetId).classList.add("active");
+
+                      document.getElementById("uvModal").style.display = "block";
+                  });
+              });
             </script>
             <div
                 data-layer="Ellipse 6"
@@ -689,7 +706,7 @@
                         levelWidth = 100;
                     }
 
-                    progressLevel.style.width = `${levelWidth}%`;
+                    progressLevel.style.width = `${levelWidth * 2}%`;
                     arrow.style.left = `${levelWidth * 2}%`;
                 }
 
