@@ -31,10 +31,6 @@
                     filter: blur(2px);
                 "
             ></div>
-            <div data-layer="copyright" class="Legal" style="width: 1305px; height: 51px; left: 68px; top: 948px; position: absolute; text-align: center;">
-                <a href="https://github.com/MicheDePainn/Godefroy-Weather-Station" style="color: #c5e9ff; font-size: 18px; font-family: Outfit; font-weight: 500; text-decoration: underline; word-wrap: break-word;">
-                    Learn more about this project</a>
-            </div>
             <button
                 id="datetime-btn"
                 style="
@@ -554,9 +550,10 @@
             </div>
             <div data-layer="Quantité de pluie" class="QuantitDePluie" style="left: 293px; top: 553px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word;">Quantité de pluie</div>
             <div data-layer="Rectangle 6" class="Rectangle6" style="width: 278px; height: 62px; left: 1007px; top: 90px; position: absolute; opacity: 0.8; background: #5d8fee; border-radius: 33px;"></div>
-            <div data-layer="Rectangle 5" class="Rectangle5" style="width: 278px; height: 62px; left: 1059px; top: 90px; position: absolute; opacity: 0.8; background: #d9d9d9; border-radius: 33px;"></div>
-            <div data-layer="Connecté (5min)" class="Connect5min" style="left: 1136px; top: 106px; position: absolute; text-align: center; color: black; font-size: 24px; font-family: Outfit; font-weight: 500; word-wrap: break-word;">
-                Non Connecté
+            <div data-layer="Rectangle 5" class="Rectangle5" style="width: 278px; height: 62px; left: 1059px; top: 90px; position: absolute; opacity: 0.8; background: #d9d9d9; border-radius: 33px;">
+                <div data-layer="Connecté (5min)" class="Connect5min" style="top: 15px; position: absolute; text-align: center; color: black; font-size: 24px; font-family: Outfit; font-weight: 500; word-wrap: break-word;">
+                    Non Connecté
+                </div>
             </div>
             <div data-layer="Basemap image" class="BasemapImage" style="width: 1010px; height: 120px; left: 226px; top: 761px; position: absolute; border-radius: 33px; overflow: hidden;" id="map"></div>
 
@@ -702,10 +699,50 @@
                         svg.style.animation = "none";
                     }
                 }
+                document.addEventListener("DOMContentLoaded", () => {
+                    fetch("data.json")
+                        .then(response => response.json())
+                        .then(data => {
+                            if (!data.valeurs || data.valeurs.length === 0) {
+                                console.error("Aucune donnée disponible dans data.json");
+                                return;
+                            }
+
+                            const lastEntry = data.valeurs.reduce((latest, entry) => {
+                                return new Date(entry.datetime) > new Date(latest.datetime) ? entry : latest;
+                            }, data.valeurs[0]);
+                            
+                            if (!lastEntry.datetime) {
+                                console.error("Champ 'datetime' manquant dans la dernière entrée");
+                                return;
+                            }
+
+                            const lastDate = new Date(lastEntry.datetime);
+                            const now = new Date();
+                            const diffMs = now - lastDate;
+                            const diffMinutes = Math.floor(diffMs / (1000 * 60));
+                            const diffHours = Math.floor(diffMinutes / 60);
+                            const diffDays = Math.floor(diffHours / 24);
+                            
+                            let timeAgo = "";
+                            if (diffDays > 0) {
+                                timeAgo = `(${diffDays} jour${diffDays > 1 ? 's' : ''})`;
+                            } else if (diffHours > 0) {
+                                timeAgo = `(${diffHours} heure${diffHours > 1 ? 's' : ''})`;
+                            } else if (diffMinutes > 0) {
+                                timeAgo = `(${diffMinutes} min${diffMinutes > 1 ? 's' : ''})`;
+                            }
+
+                            const connectElement = document.querySelector(".Connect5min");
+                            if (connectElement) {
+                                connectElement.textContent = `Connecté ${timeAgo}`;
+                            } else {
+                                console.error("Élément .Connect5min introuvable dans le DOM");
+                            }
+                        })
+                        .catch(error => console.error("Erreur lors du chargement des données:", error));
+                });
             </script>
-            <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; left: 1069px; top: 98px; position: absolute; justify-content: center; align-items: center; display: inline-flex;">
-                <div data-layer="Ellipse 3" class="Ellipse3" style="width: 47px; height: 47px; background: linear-gradient(180deg, #00ff2f 0%, #3fbc38 100%); border-radius: 9999px;"></div>
-            </div>
             <style>
                 @keyframes spin {
                     from {
@@ -824,6 +861,10 @@
                 style="width: 638px; height: 25px; left: 401px; top: 720px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Outfit; font-weight: 500; word-wrap: break-word;"
             >
                 Emplacement de la station météo :
+            </div>
+            <div data-layer="copyright" class="Legal" style="width: 1305px; height: 51px; left: 68px; top: 948px; position: absolute; text-align: center;">
+                <a href="https://github.com/MicheDePainn/Godefroy-Weather-Station" style="color: #c5e9ff; font-size: 18px; font-family: Outfit; font-weight: 500; text-decoration: underline; word-wrap: break-word;">
+                    Learn more about this project</a>
             </div>
         </div>
     </body>
