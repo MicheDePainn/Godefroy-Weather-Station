@@ -17,7 +17,6 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
 ## Fonctionnalités
 
 - **Affichage des conditions actuelles** : Température, humidité, vent et autres données météorologiques.
-- **Mise à jour en temps réel** : Synchronisation automatique si connectée à une API météo (ex. : OpenWeatherMap).
 
 ## Installation
 
