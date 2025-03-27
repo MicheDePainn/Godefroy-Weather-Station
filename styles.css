@@ -17,3 +17,627 @@ body {
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.progress-bar {
+	width: 75%;
+	left: 12%;
+	top: 260px;
+	height: 50px;
+	background: linear-gradient(to right, #889e8e 0%, #889e8e 20%, #9ba383 50%, #a48283 100%);
+	border-radius: 10px;
+	position: relative;
+}
+
+.progress-level {
+	height: 100%;
+	border-radius: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 15px solid #5d8fee;
+	transform: rotate(180deg);
+	position: absolute;
+	top: -15px;
+}
+
+.overlay {
+	display: none;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(5px);
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+}
+
+.modal-content {
+	position: relative;
+	width: 529px;
+	height: 404px;
+}
+
+.modal-background {
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+	position: absolute;
+}
+
+.modal-title {
+	position: absolute;
+	top: 27px;
+	left: 50%;
+	transform: translatex(-50%);
+	width: 163px;
+	height: 31px;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+}
+
+.modal-icon {
+	position: absolute;
+	top: 20px;
+	left: 27%;
+	transform: translatex(-50%);
+	width: 40px;
+	height: 40px;
+	border-radius: 3px;
+}
+
+.modal-black-bg {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translatex(-50%);
+	width: 461px;
+	height: 294px;
+	opacity: 0.3;
+	background: black;
+	border-radius: 33px;
+}
+
+.modal-dropdown {
+	position: absolute;
+	bottom: 40px;
+	top: 120px;
+	left: 55%;
+	transform: translatex(-50%);
+	width: 211px;
+	height: 50px;
+	color: white;
+	font-size: 40px;
+	font-family: Outfit;
+	font-weight: 600;
+}
+
+.content {
+	display: none;
+}
+
+.content.active {
+	display: block;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(720deg);
+	}
+}
+
+.rotate-on-click {
+	animation: spin 1s linear 1;
+	transform-origin: center;
+}
+
+.VectorDefault {
+	cursor: pointer;
+}
+.pollution-unit {
+	font-size: 30px;
+	vertical-align: super;
+	margin-left: 5px;
+}
+div.Desktop {
+	width: 1440px;
+	height: 1024px;
+}
+
+div.MenuPr {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 1305px;
+	height: 860px;
+	left: 67px;
+	top: 63px;
+	position: absolute;
+	opacity: 0.9;
+	background: #6c8f93;
+	border-radius: 33px;
+	border: 2px #5388f0 solid;
+	filter: blur(2px);
+}
+
+button {
+	position: absolute;
+	left: 169px;
+	top: 300px;
+	width: 306px;
+	padding: 15px 25px;
+	font-family: Outfit, sans-serif;
+	font-size: 16px;
+	color: white;
+	background: rgba(225, 255, 173, 0.4);
+	border: none;
+	border-radius: 33px;
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+	transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	transform: scale(1);
+}
+
+div.InfosDuXxXxXxxx {
+	width: 257px;
+	height: 38px;
+	left: 1022px;
+	top: 295px;
+	position: absolute;
+	color: white;
+	font-size: 25px;
+	font-family: Outfit;
+	font-weight: 600;
+	word-wrap: break-word;
+}
+input {
+	position: absolute;
+	left: 169px;
+	top: 300px;
+	width: 280px;
+	padding: 12.5px;
+	font-family: 'Outfit', sans-serif;
+	font-size: 16px;
+	border: 2px solid rgba(225, 255, 173, 0.4);
+	border-radius: 33px;
+	display: none;
+}
+p {
+	color: red;
+	display: none;
+	position: absolute;
+	left: 580px;
+	top: 300px;
+	font-family: 'Outfit', sans-serif;
+	font-size: 14px;
+}
+div.C {
+	width: 284px;
+	height: 114px;
+	left: 236px;
+	top: 146px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 100px;
+	font-family: Outfit;
+	font-weight: 500;
+	word-wrap: break-word;
+}
+
+div.material-symbols-outlined {
+	width: 64.5px;
+	height: 64.5px;
+	left: 200px;
+	top: 182px;
+	position: absolute;
+	border-radius: 3px;
+}
+
+div.ClermontFerrandFrance {
+	width: 696px;
+	height: 67px;
+	left: 475px;
+	top: 179px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+	font-family: Outfit;
+	font-weight: 500;
+	word-wrap: break-word;
+}
+
+img.Image1 {
+	width: 96px;
+	height: 96px;
+	left: 1175px;
+	top: 166px;
+	position: absolute;
+}
+
+div.Rectangle1 {
+	width: 306px;
+	height: 126px;
+	left: 169px;
+	top: 367px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+
+div.Rectangle2 {
+	width: 306px;
+	height: 126px;
+	left: 169px;
+	top: 534px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+
+div.Ellipse1 {
+	width: 91px;
+	height: 91px;
+	left: 183px;
+	top: 385px;
+	position: absolute;
+	opacity: 0.3;
+	background: black;
+	box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 9999px;
+}
+
+div.Ellipse2 {
+	width: 91px;
+	height: 91px;
+	left: 181px;
+	top: 553px;
+	position: absolute;
+	opacity: 0.3;
+	background: black;
+	box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 9999px;
+}
+
+div.Rainy {
+	width: 58.33px;
+	height: 58.39px;
+	left: 196.83px;
+	top: 567.83px;
+	position: absolute;
+	border-radius: 2px;
+}
+
+div.VitesseDuVent {
+	width: 137px;
+	height: 31px;
+	left: 303px;
+	top: 386px;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	word-wrap: break-word;
+}
+
+div.KmH {
+	width: 200px;
+	height: 51px;
+	left: 300px;
+	top: 417px;
+	position: absolute;
+	color: white;
+	font-size: 40px;
+	font-family: Outfit;
+	font-weight: 600;
+	word-wrap: break-word;
+}
+
+div.Rectangle7 {
+	width: 306px;
+	height: 293px;
+	left: 567px;
+	top: 367px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+
+div.PlusDInfos {
+	width: 274px;
+	height: 23px;
+	left: 580px;
+	top: 626px;
+	position: absolute;
+	cursor: pointer;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	text-decoration: underline;
+	word-wrap: break-word;
+}
+
+div.Rectangle8 {
+	width: 306px;
+	height: 126px;
+	left: 965px;
+	top: 367px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+
+div.Ellipse5 {
+	width: 91px;
+	height: 91px;
+	left: 979px;
+	top: 385px;
+	position: absolute;
+	opacity: 0.3;
+	background: black;
+	box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 9999px;
+}
+
+div.PressionAtmosphRique {
+	width: 159px;
+	height: 31px;
+	left: 1099px;
+	top: 384px;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	word-wrap: break-word;
+}
+
+div.Hpa {
+	width: 188px;
+	height: 51px;
+	left: 1096px;
+	top: 417px;
+	position: absolute;
+	color: white;
+	font-size: 40px;
+	font-family: Outfit;
+	font-weight: 600;
+	word-wrap: break-word;
+}
+
+div.Rectangle9 {
+	width: 306px;
+	height: 126px;
+	left: 965px;
+	top: 534px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+
+div.PlusDInfos2 {
+	width: 274px;
+	height: 23px;
+	left: 1061px;
+	top: 626px;
+	position: absolute;
+	cursor: pointer;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	text-decoration: underline;
+	word-wrap: break-word;
+}
+div.Ellipse6 {
+	width: 91px;
+	height: 91px;
+	left: 979px;
+	top: 553px;
+	position: absolute;
+	opacity: 0.3;
+	background: black;
+	box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 9999px;
+}
+
+div.IndiceUv {
+	width: 137px;
+	height: 31px;
+	left: 1099px;
+	top: 553px;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	word-wrap: break-word;
+}
+div.uvvalue {
+	width: 138px;
+	height: 51px;
+	left: 1099px;
+	top: 588px;
+	position: absolute;
+	color: white;
+	font-size: 40px;
+	font-family: Outfit;
+	font-weight: 600;
+	word-wrap: break-word;
+}
+
+div.Mm {
+	width: 138px;
+	height: 51px;
+	left: 300px;
+	top: 589px;
+	position: absolute;
+	color: white;
+	font-size: 40px;
+	font-family: Outfit;
+	font-weight: 600;
+	word-wrap: break-word;
+}
+
+div.QuantitDePluie {
+	left: 293px;
+	top: 553px;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	word-wrap: break-word;
+}
+
+div.Rectangle6 {
+	width: 278px;
+	height: 62px;
+	left: 1007px;
+	top: 90px;
+	position: absolute;
+	opacity: 0.8;
+	background: #5d8fee;
+	border-radius: 33px;
+}
+
+div.Rectangle5 {
+	width: 278px;
+	height: 62px;
+	left: 1059px;
+	top: 90px;
+	position: absolute;
+	opacity: 0.8;
+	background: #d9d9d9;
+	border-radius: 33px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.Connect5min {
+	text-align: center;
+	color: black;
+	font-size: 24px;
+	font-family: Outfit;
+	font-weight: 500;
+	word-wrap: break-word;
+}
+
+div.BasemapImage {
+	width: 1010px;
+	height: 120px;
+	left: 226px;
+	top: 761px;
+	position: absolute;
+	border-radius: 33px;
+	overflow: hidden;
+}
+
+div.VectorDefault {
+	width: 30px;
+	height: 30px;
+	left: 1020px;
+	top: 106px;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	display: inline-flex;
+}
+
+div.LightMode {
+	width: 60px;
+	height: 60px;
+	left: 995px;
+	top: 568px;
+	position: absolute;
+}
+
+div.Group52 {
+	width: 261px;
+	height: 195px;
+	left: 590px;
+	top: 425px;
+	position: absolute;
+	opacity: 0.75;
+}
+
+div.Rectangle16 {
+	width: 260px;
+	height: 195px;
+	left: 0px;
+	top: 0px;
+	position: absolute;
+	opacity: 0.75;
+	background: #faedff;
+	border-radius: 75px;
+}
+
+div.PollutionDansLAir {
+	width: 163px;
+	height: 31px;
+	left: 669px;
+	top: 385px;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 400;
+	word-wrap: break-word;
+}
+
+div.EmplacementDeLaStationMTO {
+	width: 638px;
+	height: 25px;
+	left: 401px;
+	top: 720px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	font-family: Outfit;
+	font-weight: 500;
+	word-wrap: break-word;
+}
+
+div.Legal {
+	width: 1305px;
+	height: 51px;
+	left: 68px;
+	top: 948px;
+	position: absolute;
+	text-align: center;
+}
+a {
+	color: #c5e9ff;
+	font-size: 18px;
+	font-family: Outfit;
+	font-weight: 500;
+	text-decoration: underline;
+	word-wrap: break-word;
+}
