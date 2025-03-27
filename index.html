@@ -25,9 +25,8 @@
                     position: absolute;
                     opacity: 0.9;
                     background: #6c8f93;
-                    box-shadow: 2px 2px 2px;
                     border-radius: 33px;
-                    border: 3px #5388f0 solid;
+                    border: 2px #5388f0 solid;
                     filter: blur(2px);
                 "
             ></div>
@@ -550,11 +549,11 @@
             </div>
             <div data-layer="Quantité de pluie" class="QuantitDePluie" style="left: 293px; top: 553px; position: absolute; color: white; font-size: 20px; font-family: Outfit; font-weight: 400; word-wrap: break-word;">Quantité de pluie</div>
             <div data-layer="Rectangle 6" class="Rectangle6" style="width: 278px; height: 62px; left: 1007px; top: 90px; position: absolute; opacity: 0.8; background: #5d8fee; border-radius: 33px;"></div>
-            <div data-layer="Rectangle 5" class="Rectangle5" style="width: 278px; height: 62px; left: 1059px; top: 90px; position: absolute; opacity: 0.8; background: #d9d9d9; border-radius: 33px;">
-                <div data-layer="Connecté (5min)" class="Connect5min" style="top: 15px; position: absolute; text-align: center; color: black; font-size: 24px; font-family: Outfit; font-weight: 500; word-wrap: break-word;">
-                    Non Connecté
-                </div>
-            </div>
+            <div data-layer="Rectangle 5" class="Rectangle5" style="width: 278px; height: 62px; left: 1059px; top: 90px; position: absolute; opacity: 0.8; background: #d9d9d9; border-radius: 33px; display: flex; justify-content: center; align-items: center;">
+              <div data-layer="Connecté (5min)" class="Connect5min" style="text-align: center; color: black; font-size: 24px; font-family: Outfit; font-weight: 500; word-wrap: break-word;">
+                  Non Connecté
+              </div>
+          </div>
             <div data-layer="Basemap image" class="BasemapImage" style="width: 1010px; height: 120px; left: 226px; top: 761px; position: absolute; border-radius: 33px; overflow: hidden;" id="map"></div>
 
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -744,55 +743,58 @@
                 });
             </script>
             <style>
-                @keyframes spin {
-                    from {
-                        transform: rotate(0deg);
-                    }
-                    to {
-                        transform: rotate(1080deg);
-                    }
-                }
+              @keyframes spin {
+                  from {
+                      transform: rotate(0deg);
+                  }
+                  to {
+                      transform: rotate(720deg);
+                  }
+              }
 
-                .rotate-on-click {
-                    animation: spin 2s linear 1;
-                    transform-origin: center;
-                }
+              .rotate-on-click {
+                  animation: spin 1s linear 1;
+                  transform-origin: center;
+              }
 
-                .VectorDefault {
-                    cursor: pointer;
-                }
+              .VectorDefault {
+                  cursor: pointer;
+              }
             </style>
 
             <div
-                data-layer="Vector/Default"
-                class="VectorDefault"
-                onclick="toggleRotation(this)"
-                style="width: 30px; height: 30px; left: 1020px; top: 106px; position: absolute; justify-content: center; align-items: center; display: inline-flex;"
+              data-layer="Vector/Default"
+              class="VectorDefault"
+              onclick="toggleRotation(this)"
+              style="width: 30px; height: 30px; left: 1020px; top: 106px; position: absolute; justify-content: center; align-items: center; display: inline-flex;"
             >
-                <div data-layer="Vector" class="Vector" style="width: 30px; height: 30px; border-radius: 1px;">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M5.00582 26.9942C8.0078 29.9962 11.6827 31.5 16 31.5C19.5477 31.5 22.7186 30.4166 25.4948 28.2538C27.9127 26.3701 29.6252 24.0018 30.6228 21.1567C30.964 20.1837 30.2024 19.25 29.2328 19.25H27.3051C26.6603 19.25 26.113 19.6593 25.879 20.2232C25.1083 22.0799 23.8937 23.5964 22.2263 24.7797C20.3745 26.0939 18.304 26.75 16 26.75C13.0061 26.75 10.4775 25.7079 8.3848 23.6152C6.29214 21.5225 5.25 18.9939 5.25 16C5.25 13.0061 6.29214 10.4775 8.3848 8.3848C10.4775 6.29214 13.0061 5.25 16 5.25C17.9449 5.25 19.7414 5.72761 21.3987 6.68316C22.5768 7.36244 23.5745 8.22034 24.3956 9.25777C24.5009 9.39091 24.4993 9.5297 24.435 9.64738C24.3669 9.77209 24.2238 9.875 24.0268 9.875H18.875C18.0466 9.875 17.375 10.5466 17.375 11.375V13.125C17.375 13.9534 18.0466 14.625 18.875 14.625H30C30.8284 14.625 31.5 13.9534 31.5 13.125V2C31.5 1.17157 30.8284 0.5 30 0.5H28.25C27.4216 0.5 26.75 1.17157 26.75 2V3.43343C26.75 3.65285 26.6111 3.8469 26.3603 3.94971C26.1054 4.05418 25.8191 4.02511 25.6218 3.86543C24.6412 3.07185 23.5647 2.41017 22.3936 1.88038C20.3602 0.960529 18.2275 0.5 16 0.5C11.6827 0.5 8.0078 2.00384 5.00582 5.00582C2.00384 8.0078 0.5 11.6827 0.5 16C0.5 20.3173 2.00384 23.9922 5.00582 26.9942Z"
-                            fill="white"
-                            stroke="white"
-                        />
-                    </svg>
-                </div>
+              <div data-layer="Vector" class="Vector" style="width: 30px; height: 30px; border-radius: 1px;">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M5.00582 26.9942C8.0078 29.9962 11.6827 31.5 16 31.5C19.5477 31.5 22.7186 30.4166 25.4948 28.2538C27.9127 26.3701 29.6252 24.0018 30.6228 21.1567C30.964 20.1837 30.2024 19.25 29.2328 19.25H27.3051C26.6603 19.25 26.113 19.6593 25.879 20.2232C25.1083 22.0799 23.8937 23.5964 22.2263 24.7797C20.3745 26.0939 18.304 26.75 16 26.75C13.0061 26.75 10.4775 25.7079 8.3848 23.6152C6.29214 21.5225 5.25 18.9939 5.25 16C5.25 13.0061 6.29214 10.4775 8.3848 8.3848C10.4775 6.29214 13.0061 5.25 16 5.25C17.9449 5.25 19.7414 5.72761 21.3987 6.68316C22.5768 7.36244 23.5745 8.22034 24.3956 9.25777C24.5009 9.39091 24.4993 9.5297 24.435 9.64738C24.3669 9.77209 24.2238 9.875 24.0268 9.875H18.875C18.0466 9.875 17.375 10.5466 17.375 11.375V13.125C17.375 13.9534 18.0466 14.625 18.875 14.625H30C30.8284 14.625 31.5 13.9534 31.5 13.125V2C31.5 1.17157 30.8284 0.5 30 0.5H28.25C27.4216 0.5 26.75 1.17157 26.75 2V3.43343C26.75 3.65285 26.6111 3.8469 26.3603 3.94971C26.1054 4.05418 25.8191 4.02511 25.6218 3.86543C24.6412 3.07185 23.5647 2.41017 22.3936 1.88038C20.3602 0.960529 18.2275 0.5 16 0.5C11.6827 0.5 8.0078 2.00384 5.00582 5.00582C2.00384 8.0078 0.5 11.6827 0.5 16C0.5 20.3173 2.00384 23.9922 5.00582 26.9942Z"
+                          fill="white"
+                          stroke="white"
+                      />
+                  </svg>
+              </div>
             </div>
 
             <script>
-                let isRotating = false;
+              let isRotating = false;
 
-                function toggleRotation(element) {
-                    const svg = element.querySelector("svg");
-                    isRotating = !isRotating;
+              function toggleRotation(element) {
+                  const svg = element.querySelector("svg");
+                  isRotating = !isRotating;
 
-                    if (isRotating) {
-                        svg.style.animation = "spin 2s linear 1";
-                    } else {
-                        svg.style.animation = "none";
-                    }
-                }
+                  if (isRotating) {
+                      svg.style.animation = "spin 1s linear 1";
+                      svg.addEventListener('animationend', function() {
+                          location.reload();
+                      }, { once: true });
+                  } else {
+                      svg.style.animation = "none";
+                  }
+              }
             </script>
             <div data-layer="light_mode" class="LightMode" style="width: 60px; height: 60px; left: 995px; top: 568px; position: absolute;">
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
