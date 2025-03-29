@@ -1,8 +1,18 @@
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(720deg)
+    }
+}
+
 .outfit-uniqueClass {
-    font-family: "Outfit", serif;
+    font-family: "Outfit",serif;
     font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal;
+    font-style: normal
 }
 
 body {
@@ -10,14 +20,14 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed
 }
 
 .Desktop {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
 }
 
 .progress-bar {
@@ -25,9 +35,9 @@ body {
     left: 12%;
     top: 260px;
     height: 50px;
-    background: linear-gradient(to right, #889e8e 0%, #889e8e 20%, #9ba383 50%, #a48283 100%);
+    background: linear-gradient(to right,#889e8e 0,#889e8e 20%,#9ba383 50%,#a48283 100%);
     border-radius: 10px;
-    position: relative;
+    position: relative
 }
 
 .progress-level {
@@ -35,7 +45,7 @@ body {
     border-radius: 10px;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0
 }
 
 .arrow {
@@ -46,7 +56,7 @@ body {
     border-bottom: 15px solid #5d8fee;
     transform: rotate(180deg);
     position: absolute;
-    top: -15px;
+    top: -15px
 }
 
 .overlay {
@@ -59,22 +69,22 @@ body {
     backdrop-filter: blur(5px);
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 9999
 }
 
 .modal-content {
     position: relative;
     width: 529px;
-    height: 404px;
+    height: 404px
 }
 
 .modal-background {
     width: 100%;
     height: 100%;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+    opacity: .4;
+    background: linear-gradient(270deg,#e1ffad 0,#eaffca 100%);
     border-radius: 33px;
-    position: absolute;
+    position: absolute
 }
 
 .modal-title {
@@ -84,84 +94,73 @@ body {
     transform: translatex(-50%);
     width: 163px;
     height: 31px;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
-    font-weight: 400;
+    font-weight: 400
 }
 
 .modal-icon {
-    position: absolute;
     top: 20px;
     left: 27%;
-    transform: translatex(-50%);
     width: 40px;
     height: 40px;
-    border-radius: 3px;
+    border-radius: 3px
+}
+
+.modal-black-bg,.modal-dropdown,.modal-icon {
+    position: absolute;
+    transform: translatex(-50%)
 }
 
 .modal-black-bg {
-    position: absolute;
     bottom: 20px;
     left: 50%;
-    transform: translatex(-50%);
     width: 461px;
     height: 294px;
-    opacity: 0.3;
-    background: black;
-    border-radius: 33px;
+    opacity: .3;
+    background: #000;
+    border-radius: 33px
 }
 
 .modal-dropdown {
-    position: absolute;
     bottom: 40px;
     top: 120px;
     left: 55%;
-    transform: translatex(-50%);
     width: 211px;
     height: 50px;
-    color: white;
+    color: #fff;
     font-size: 40px;
     font-family: Outfit;
-    font-weight: 600;
+    font-weight: 600
 }
 
 .content {
-    display: none;
+    display: none
 }
 
 .content.active {
-    display: block;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(720deg);
-    }
+    display: block
 }
 
 .rotate-on-click {
     animation: spin 1s linear 1;
-    transform-origin: center;
+    transform-origin: center
 }
 
 .VectorDefault {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .pollution-unit {
     font-size: 30px;
     vertical-align: super;
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 div.Desktop {
     width: 1440px;
-    height: 1024px;
+    height: 1024px
 }
 
 div.MenuPr {
@@ -173,29 +172,31 @@ div.MenuPr {
     left: 67px;
     top: 63px;
     position: absolute;
-    opacity: 0.9;
+    opacity: .9;
     background: #6c8f93;
     border-radius: 33px;
     border: 2px #5388f0 solid;
-    filter: blur(2px);
+    filter: blur(2px)
+}
+
+button,input {
+    left: 169px;
+    font-size: 16px;
+    border-radius: 33px
 }
 
 button {
-    position: absolute;
-    left: 169px;
     top: 300px;
     width: 306px;
     padding: 15px 25px;
-    font-family: Outfit, sans-serif;
-    font-size: 16px;
-    color: white;
-    background: rgba(225, 255, 173, 0.4);
-    border: none;
-    border-radius: 33px;
+    font-family: Outfit,sans-serif;
+    color: #fff;
+    background: rgba(225,255,173,.4);
+    border: 0;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform: scale(1);
+    box-shadow: rgba(0,0,0,.1)0 4px 6px;
+    transition: all .3s cubic-bezier(.25,.46,.45,.94);
+    transform: scale(1)
 }
 
 div.InfosDuXxXxXxxx {
@@ -204,34 +205,33 @@ div.InfosDuXxXxXxxx {
     left: 1022px;
     top: 295px;
     position: absolute;
-    color: white;
+    color: #fff;
     font-size: 25px;
     font-family: Outfit;
     font-weight: 600;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 input {
-    position: absolute;
-    left: 169px;
-    top: 300px;
     width: 280px;
     padding: 12.5px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 16px;
-    border: 2px solid rgba(225, 255, 173, 0.4);
-    border-radius: 33px;
+    border: 2px solid rgba(225,255,173,.4)
+}
+
+button,div.C,img.Image1,input,p {
+    position: absolute
+}
+
+input,p {
     display: none;
+    top: 300px;
+    font-family: "Outfit",sans-serif
 }
 
 p {
     color: red;
-    display: none;
-    position: absolute;
     left: 580px;
-    top: 300px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
+    font-size: 14px
 }
 
 div.C {
@@ -239,13 +239,12 @@ div.C {
     height: 114px;
     left: 236px;
     top: 146px;
-    position: absolute;
     text-align: center;
-    color: white;
+    color: #fff;
     font-size: 100px;
     font-family: Outfit;
     font-weight: 500;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.material-symbols-outlined {
@@ -254,7 +253,7 @@ div.material-symbols-outlined {
     left: 200px;
     top: 182px;
     position: absolute;
-    border-radius: 3px;
+    border-radius: 3px
 }
 
 div.ClermontFerrandFrance {
@@ -264,65 +263,50 @@ div.ClermontFerrandFrance {
     top: 179px;
     position: absolute;
     text-align: center;
-    color: white;
+    color: #fff;
     font-size: 50px;
     font-family: Outfit;
     font-weight: 500;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 img.Image1 {
     width: 96px;
     height: 96px;
     left: 1175px;
-    top: 166px;
-    position: absolute;
+    top: 166px
 }
 
-div.Rectangle1 {
+div.Rectangle1,div.Rectangle2 {
     width: 306px;
     height: 126px;
     left: 169px;
     top: 367px;
     position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    opacity: .4;
+    background: linear-gradient(270deg,#e1ffad 0,#eaffca 100%);
+    border-radius: 33px
 }
 
 div.Rectangle2 {
-    width: 306px;
-    height: 126px;
-    left: 169px;
-    top: 534px;
-    position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    top: 534px
 }
 
-div.Ellipse1 {
+div.Ellipse1,div.Ellipse2 {
     width: 91px;
     height: 91px;
     left: 183px;
     top: 385px;
     position: absolute;
-    opacity: 0.3;
-    background: black;
-    box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 9999px;
+    opacity: .3;
+    background: #000;
+    box-shadow: 0 4px 27.700000762939453px 4px rgba(0,0,0,.25);
+    border-radius: 9999px
 }
 
 div.Ellipse2 {
-    width: 91px;
-    height: 91px;
     left: 181px;
-    top: 553px;
-    position: absolute;
-    opacity: 0.3;
-    background: black;
-    box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 9999px;
+    top: 553px
 }
 
 div.Rainy {
@@ -331,20 +315,20 @@ div.Rainy {
     left: 196.83px;
     top: 567.83px;
     position: absolute;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
-div.VitesseDuVent {
+div.KmH,div.VitesseDuVent {
     width: 137px;
     height: 31px;
     left: 303px;
     top: 386px;
     position: absolute;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
     font-weight: 400;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.KmH {
@@ -352,12 +336,8 @@ div.KmH {
     height: 51px;
     left: 300px;
     top: 417px;
-    position: absolute;
-    color: white;
     font-size: 40px;
-    font-family: Outfit;
-    font-weight: 600;
-    word-wrap: break-word;
+    font-weight: 600
 }
 
 div.Rectangle7 {
@@ -366,9 +346,9 @@ div.Rectangle7 {
     left: 567px;
     top: 367px;
     position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    opacity: .4;
+    background: linear-gradient(270deg,#e1ffad 0,#eaffca 100%);
+    border-radius: 33px
 }
 
 div.PlusDInfos {
@@ -379,12 +359,12 @@ div.PlusDInfos {
     position: absolute;
     cursor: pointer;
     text-align: center;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
     font-weight: 400;
     text-decoration: underline;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.Rectangle8 {
@@ -393,9 +373,9 @@ div.Rectangle8 {
     left: 965px;
     top: 367px;
     position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    opacity: .4;
+    background: linear-gradient(270deg,#e1ffad 0,#eaffca 100%);
+    border-radius: 33px
 }
 
 div.Ellipse5 {
@@ -404,23 +384,23 @@ div.Ellipse5 {
     left: 979px;
     top: 385px;
     position: absolute;
-    opacity: 0.3;
-    background: black;
-    box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 9999px;
+    opacity: .3;
+    background: #000;
+    box-shadow: 0 4px 27.700000762939453px 4px rgba(0,0,0,.25);
+    border-radius: 9999px
 }
 
-div.PressionAtmosphRique {
+div.Hpa,div.PressionAtmosphRique {
     width: 159px;
     height: 31px;
     left: 1099px;
     top: 384px;
     position: absolute;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
     font-weight: 400;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.Hpa {
@@ -428,12 +408,8 @@ div.Hpa {
     height: 51px;
     left: 1096px;
     top: 417px;
-    position: absolute;
-    color: white;
     font-size: 40px;
-    font-family: Outfit;
-    font-weight: 600;
-    word-wrap: break-word;
+    font-weight: 600
 }
 
 div.Rectangle9 {
@@ -442,9 +418,9 @@ div.Rectangle9 {
     left: 965px;
     top: 534px;
     position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    opacity: .4;
+    background: linear-gradient(270deg,#e1ffad 0,#eaffca 100%);
+    border-radius: 33px
 }
 
 div.PlusDInfos2 {
@@ -455,37 +431,38 @@ div.PlusDInfos2 {
     position: absolute;
     cursor: pointer;
     text-align: center;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
     font-weight: 400;
     text-decoration: underline;
-    word-wrap: break-word;
+    word-wrap: break-word
+}
+
+div.Ellipse6,div.IndiceUv {
+    top: 553px;
+    position: absolute
 }
 
 div.Ellipse6 {
     width: 91px;
     height: 91px;
     left: 979px;
-    top: 553px;
-    position: absolute;
-    opacity: 0.3;
-    background: black;
-    box-shadow: 0px 4px 27.700000762939453px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 9999px;
+    opacity: .3;
+    background: #000;
+    box-shadow: 0 4px 27.700000762939453px 4px rgba(0,0,0,.25);
+    border-radius: 9999px
 }
 
 div.IndiceUv {
     width: 137px;
     height: 31px;
     left: 1099px;
-    top: 553px;
-    position: absolute;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
     font-weight: 400;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.uvvalue {
@@ -493,12 +470,15 @@ div.uvvalue {
     height: 51px;
     left: 1099px;
     top: 588px;
-    position: absolute;
-    color: white;
     font-size: 40px;
+    font-weight: 600
+}
+
+div.Mm,div.QuantitDePluie,div.uvvalue {
+    position: absolute;
+    color: #fff;
     font-family: Outfit;
-    font-weight: 600;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.Mm {
@@ -506,57 +486,46 @@ div.Mm {
     height: 51px;
     left: 300px;
     top: 589px;
-    position: absolute;
-    color: white;
     font-size: 40px;
-    font-family: Outfit;
-    font-weight: 600;
-    word-wrap: break-word;
+    font-weight: 600
 }
 
 div.QuantitDePluie {
     left: 293px;
     top: 553px;
-    position: absolute;
-    color: white;
     font-size: 20px;
-    font-family: Outfit;
-    font-weight: 400;
-    word-wrap: break-word;
+    font-weight: 400
+}
+
+div.Rectangle5,div.Rectangle6 {
+    width: 278px;
+    height: 62px;
+    top: 90px;
+    position: absolute;
+    opacity: .8;
+    border-radius: 33px
 }
 
 div.Rectangle6 {
-    width: 278px;
-    height: 62px;
     left: 1007px;
-    top: 90px;
-    position: absolute;
-    opacity: 0.8;
-    background: #5d8fee;
-    border-radius: 33px;
+    background: #5d8fee
 }
 
 div.Rectangle5 {
-    width: 278px;
-    height: 62px;
     left: 1059px;
-    top: 90px;
-    position: absolute;
-    opacity: 0.8;
     background: #d9d9d9;
-    border-radius: 33px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 
 div.Connect5min {
     text-align: center;
-    color: black;
+    color: #000;
     font-size: 24px;
     font-family: Outfit;
     font-weight: 500;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 div.BasemapImage {
@@ -566,7 +535,7 @@ div.BasemapImage {
     top: 761px;
     position: absolute;
     border-radius: 33px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 div.VectorDefault {
@@ -577,7 +546,7 @@ div.VectorDefault {
     position: absolute;
     justify-content: center;
     align-items: center;
-    display: inline-flex;
+    display: inline-flex
 }
 
 div.LightMode {
@@ -585,27 +554,24 @@ div.LightMode {
     height: 60px;
     left: 995px;
     top: 568px;
-    position: absolute;
+    position: absolute
 }
 
-div.Group52 {
+div.Group52,div.Rectangle16 {
     width: 261px;
     height: 195px;
     left: 590px;
     top: 425px;
     position: absolute;
-    opacity: 0.75;
+    opacity: .75
 }
 
 div.Rectangle16 {
     width: 260px;
-    height: 195px;
-    left: 0px;
-    top: 0px;
-    position: absolute;
-    opacity: 0.75;
+    left: 0;
+    top: 0;
     background: #faedff;
-    border-radius: 75px;
+    border-radius: 75px
 }
 
 div.PollutionDansLAir {
@@ -614,11 +580,17 @@ div.PollutionDansLAir {
     left: 669px;
     top: 385px;
     position: absolute;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-family: Outfit;
     font-weight: 400;
-    word-wrap: break-word;
+    word-wrap: break-word
+}
+
+a,div.EmplacementDeLaStationMTO {
+    font-family: Outfit;
+    font-weight: 500;
+    word-wrap: break-word
 }
 
 div.EmplacementDeLaStationMTO {
@@ -628,11 +600,8 @@ div.EmplacementDeLaStationMTO {
     top: 720px;
     position: absolute;
     text-align: center;
-    color: white;
-    font-size: 20px;
-    font-family: Outfit;
-    font-weight: 500;
-    word-wrap: break-word;
+    color: #fff;
+    font-size: 20px
 }
 
 div.Legal {
@@ -641,79 +610,44 @@ div.Legal {
     left: 68px;
     top: 948px;
     position: absolute;
-    text-align: center;
+    text-align: center
 }
 
 a {
     color: #c5e9ff;
     font-size: 18px;
-    font-family: Outfit;
-    font-weight: 500;
-    text-decoration: underline;
-    word-wrap: break-word;
+    text-decoration: underline
 }
 
-div.title1 {
+div.title1,div.title2,div.title3,div.title4,div.title5 {
     cursor: pointer;
     width: 184px;
     height: 60px;
     left: 30px;
     top: 34px;
     position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    opacity: .4;
+    background: linear-gradient(270deg,#e1ffad 0,#eaffca 100%);
+    border-radius: 33px
 }
 
-div.title2 {
-    cursor: pointer;
-    width: 184px;
-    height: 60px;
-    left: 214px;
-    top: 34px;
-    position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+div.title2,div.title3,div.title4,div.title5 {
+    left: 214px
 }
 
-div.title3 {
-    cursor: pointer;
-    width: 184px;
-    height: 60px;
-    left: 398px;
-    top: 34px;
-    position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+div.title3,div.title4,div.title5 {
+    left: 398px
 }
 
-div.title4 {
-    cursor: pointer;
-    width: 184px;
-    height: 60px;
-    left: 582px;
-    top: 34px;
-    position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+div.title4,div.title5 {
+    left: 582px
 }
 
 div.title5 {
-    cursor: pointer;
-    width: 184px;
-    height: 60px;
-    left: 766px;
-    top: 34px;
-    position: absolute;
-    opacity: 0.4;
-    background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
-    border-radius: 33px;
+    left: 766px
 }
 
-div.title6 {
+div.title10,div.title6,div.title7,div.title8,div.title9 {
     cursor: pointer;
     width: 60px;
     height: 38px;
@@ -721,79 +655,39 @@ div.title6 {
     top: 45px;
     position: absolute;
     text-align: center;
-    color: white;
+    color: #fff;
     font-size: 30px;
     font-family: Outfit;
     font-weight: 800;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
-div.title7 {
-    cursor: pointer;
+div.title10,div.title7,div.title8,div.title9 {
     width: 131px;
-    height: 38px;
-    left: 240px;
-    top: 45px;
-    position: absolute;
-    text-align: center;
-    color: white;
-    font-size: 30px;
-    font-family: Outfit;
-    font-weight: 800;
-    word-wrap: break-word;
+    left: 240px
 }
 
-div.title8 {
-    cursor: pointer;
+div.title10,div.title8,div.title9 {
     width: 85px;
-    height: 38px;
-    left: 447px;
-    top: 45px;
-    position: absolute;
-    text-align: center;
-    color: white;
-    font-size: 30px;
-    font-family: Outfit;
-    font-weight: 800;
-    word-wrap: break-word;
+    left: 447px
 }
 
-div.title9 {
-    cursor: pointer;
+div.title10,div.title9 {
     width: 166px;
-    height: 38px;
-    left: 591px;
-    top: 45px;
-    position: absolute;
-    text-align: center;
-    color: white;
-    font-size: 30px;
-    font-family: Outfit;
-    font-weight: 800;
-    word-wrap: break-word;
+    left: 591px
 }
 
 div.title10 {
-    cursor: pointer;
     width: 142px;
-    height: 38px;
-    left: 787px;
-    top: 45px;
-    position: absolute;
-    text-align: center;
-    color: white;
-    font-size: 30px;
-    font-family: Outfit;
-    font-weight: 800;
-    word-wrap: break-word;
+    left: 787px
 }
 
-div.content {
+div.Vector1,div.content {
     width: 976px;
     height: 215px;
     left: -2px;
     top: 101px;
-    position: absolute;
+    position: absolute
 }
 
 div.Vector1 {
@@ -801,22 +695,21 @@ div.Vector1 {
     height: 58.79px;
     left: 193px;
     top: 401px;
-    position: absolute;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 div.Vector2 {
     width: 30px;
     height: 30px;
-    border-radius: 1px;
+    border-radius: 1px
 }
 
-div.Vector3 {
+div.Vector3,div.Vector4 {
     width: 46.67px;
     height: 61.25px;
     left: 1002px;
     top: 400px;
-    position: absolute;
+    position: absolute
 }
 
 div.Vector4 {
@@ -824,6 +717,223 @@ div.Vector4 {
     height: 40px;
     left: 610px;
     top: 380px;
+    border-radius: 3px
+}
+
+div.uvModal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    width: 1440px;
+    height: 1024px;
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center
+}
+
+div.ground1uvModal {
+    width: 970px;
+    height: 337px;
+    position: relative;
+    left: 16%;
+    top: 37%
+}
+
+div.groun2duvModal {
+    width: 970px;
+    height: 337px;
     position: absolute;
-    border-radius: 3px;
+    opacity: .4;
+    background: linear-gradient(90deg,#e1ffad 0,#eaffca 100%);
+    border-radius: 33px
+}
+
+div.content-bas1 {
+    width: 920px;
+    height: 187px;
+    left: 32px;
+    top: 15px;
+    position: absolute;
+    opacity: .3;
+    background: #3fbc38;
+    border-radius: 33px
+}
+
+div.content-bas2,div.content-bas3 {
+    left: 68px;
+    position: absolute;
+    color: #fff;
+    font-family: Outfit;
+    word-wrap: break-word
+}
+
+div.content-bas2 {
+    width: 210px;
+    height: 55px;
+    top: 33px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800
+}
+
+div.content-bas3 {
+    width: 864px;
+    top: 77px;
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 500
+}
+
+div.content-modere1 {
+    width: 920px;
+    height: 187px;
+    left: 32px;
+    top: 15px;
+    position: absolute;
+    opacity: .3;
+    background: #3fbc38;
+    border-radius: 33px
+}
+
+div.content-modere2,div.content-modere3 {
+    left: 68px;
+    position: absolute;
+    color: #fff;
+    font-family: Outfit;
+    word-wrap: break-word
+}
+
+div.content-modere2 {
+    width: 210px;
+    height: 55px;
+    top: 33px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800
+}
+
+div.content-modere3 {
+    width: 864px;
+    top: 77px;
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 500
+}
+
+div.content-haut1 {
+    width: 920px;
+    height: 187px;
+    left: 32px;
+    top: 15px;
+    position: absolute;
+    opacity: .3;
+    background: #cba81c;
+    border-radius: 33px
+}
+
+div.content-haut2,div.content-haut3 {
+    left: 68px;
+    position: absolute;
+    color: #fff;
+    font-family: Outfit;
+    word-wrap: break-word
+}
+
+div.content-haut2 {
+    width: 210px;
+    height: 55px;
+    top: 33px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800
+}
+
+div.content-haut3 {
+    width: 864px;
+    top: 77px;
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 500
+}
+
+div.content-tres-haut1 {
+    width: 920px;
+    height: 187px;
+    left: 32px;
+    top: 15px;
+    position: absolute;
+    opacity: .3;
+    background: #e5571a;
+    border-radius: 33px
+}
+
+div.content-tres-haut2,div.content-tres-haut3 {
+    left: 68px;
+    position: absolute;
+    color: #fff;
+    font-family: Outfit;
+    word-wrap: break-word
+}
+
+div.content-tres-haut2 {
+    width: 210px;
+    height: 55px;
+    top: 33px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800
+}
+
+div.content-tres-haut3 {
+    width: 864px;
+    top: 77px;
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 500
+}
+
+div.content-extreme1 {
+    width: 920px;
+    height: 187px;
+    left: 32px;
+    top: 15px;
+    position: absolute;
+    opacity: .3;
+    background: #9747ff;
+    border-radius: 33px
+}
+
+div.content-extreme2,div.content-extreme3,div.pollution-value {
+    left: 68px;
+    position: absolute;
+    color: #fff;
+    font-family: Outfit;
+    word-wrap: break-word
+}
+
+div.content-extreme2 {
+    width: 210px;
+    height: 55px;
+    top: 33px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800
+}
+
+div.content-extreme3,div.pollution-value {
+    width: 864px;
+    top: 77px;
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 500
+}
+
+div.pollution-value {
+    width: 280px;
+    height: 89.93px;
+    left: 590px;
+    top: 455px;
+    opacity: .75;
+    text-align: center;
+    font-size: 100px
 }
