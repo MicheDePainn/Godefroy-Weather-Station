@@ -766,3 +766,41 @@ div.title10 {
 	font-weight: 800;
 	word-wrap: break-word;
 }
+div.content {
+	width: 976px;
+	height: 215px;
+	left: -2px;
+	top: 101px;
+	position: absolute;
+}
+div.Vector1 {
+	width: 69.17px;
+	height: 58.79px;
+	left: 193px;
+	top: 401px;
+	position: absolute;
+	border-radius: 2px;
+}
+
+div.Vector2 {
+	width: 30px;
+	height: 30px;
+	border-radius: 1px;
+}
+
+div.Vector3 {
+	width: 46.67px;
+	height: 61.25px;
+	left: 1002px;
+	top: 400px;
+	position: absolute;
+}
+
+div.Vector4 {
+	width: 40px;
+	height: 40px;
+	left: 610px;
+	top: 380px;
+	position: absolute;
+	border-radius: 3px;
+}
