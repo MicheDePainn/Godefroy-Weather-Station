@@ -22,14 +22,11 @@ document.getElementById("modalOverlay").addEventListener("click", function (e) {
     }
 });
 document.addEventListener("DOMContentLoaded", function () {
-    const titles = document.querySelectorAll(".title");
+    const titles = document.querySelectorAll("[class^='title']");
     titles.forEach((title) => {
         title.addEventListener("click", function () {
             const targetId = this.getAttribute("data-target");
-            const contents = document.querySelectorAll(".content");
-            contents.forEach((content) => {
-                content.classList.remove("active");
-            });
+            document.querySelectorAll(".content").forEach((c) => c.classList.remove("active"));
             document.getElementById(targetId).classList.add("active");
         });
     });
