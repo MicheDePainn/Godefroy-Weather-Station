@@ -937,3 +937,11 @@ div.pollution-value {
     text-align: center;
     font-size: 100px
 }
+/* Ajustements pour les petits écrans */
+@media screen and (max-width: 768px) {
+
+}
+/* Ajustements pour les très petits écrans */
+@media screen and (max-width: 480px) {
+    
+}
