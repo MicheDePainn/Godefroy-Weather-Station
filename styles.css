@@ -641,3 +641,128 @@ a {
 	text-decoration: underline;
 	word-wrap: break-word;
 }
+div.title1 {
+	cursor: pointer;
+	width: 184px;
+	height: 60px;
+	left: 30px;
+	top: 34px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+div.title2 {
+	cursor: pointer;
+	width: 184px;
+	height: 60px;
+	left: 214px;
+	top: 34px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+div.title3 {
+	cursor: pointer;
+	width: 184px;
+	height: 60px;
+	left: 398px;
+	top: 34px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+div.title4 {
+	cursor: pointer;
+	width: 184px;
+	height: 60px;
+	left: 582px;
+	top: 34px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+div.title5 {
+	cursor: pointer;
+	width: 184px;
+	height: 60px;
+	left: 766px;
+	top: 34px;
+	position: absolute;
+	opacity: 0.4;
+	background: linear-gradient(270deg, #e1ffad 0%, #eaffca 100%);
+	border-radius: 33px;
+}
+div.title6 {
+	cursor: pointer;
+	width: 60px;
+	height: 38px;
+	left: 91px;
+	top: 45px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+	font-family: Outfit;
+	font-weight: 800;
+	word-wrap: break-word;
+}
+div.title7 {
+	cursor: pointer;
+	width: 131px;
+	height: 38px;
+	left: 240px;
+	top: 45px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+	font-family: Outfit;
+	font-weight: 800;
+	word-wrap: break-word;
+}
+div.title8 {
+	cursor: pointer;
+	width: 85px;
+	height: 38px;
+	left: 447px;
+	top: 45px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+	font-family: Outfit;
+	font-weight: 800;
+	word-wrap: break-word;
+}
+div.title9 {
+	cursor: pointer;
+	width: 166px;
+	height: 38px;
+	left: 591px;
+	top: 45px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+	font-family: Outfit;
+	font-weight: 800;
+	word-wrap: break-word;
+}
+div.title10 {
+	cursor: pointer;
+	width: 142px;
+	height: 38px;
+	left: 787px;
+	top: 45px;
+	position: absolute;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+	font-family: Outfit;
+	font-weight: 800;
+	word-wrap: break-word;
+}
