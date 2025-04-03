@@ -937,11 +937,3 @@ div.pollution-value {
     text-align: center;
     font-size: 100px
 }
-@media screen and (max-width: 768px) {
-    div.MenuPr {
-        width: 381px;
-        height: 1950px;
-        display: flex;
-        justify-content: center;
-    }
-}
