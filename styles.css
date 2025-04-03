@@ -531,7 +531,7 @@ div.Connect5min {
 div.BasemapImage {
     width: 1010px;
     height: 120px;
-    left: 226px;
+    left: 215px;
     top: 761px;
     position: absolute;
     border-radius: 33px;
@@ -607,7 +607,7 @@ div.EmplacementDeLaStationMTO {
 div.Legal {
     width: 1305px;
     height: 51px;
-    left: 68px;
+    left: 67px;
     top: 948px;
     position: absolute;
     text-align: center
@@ -937,11 +937,11 @@ div.pollution-value {
     text-align: center;
     font-size: 100px
 }
-/* Ajustements pour les petits écrans */
 @media screen and (max-width: 768px) {
-
-}
-/* Ajustements pour les très petits écrans */
-@media screen and (max-width: 480px) {
-    
+    div.MenuPr {
+        width: 381px;
+        height: 1950px;
+        display: flex;
+        justify-content: center;
+    }
 }
