@@ -938,7 +938,7 @@ div.pollution-value {
     font-size: 100px
 }
 /* Mobile Styles */
-@media (max-width: 767px) {
+@media (max-width: 1300px) {
     .Desktop {
         width: 100%;
         height: auto;
