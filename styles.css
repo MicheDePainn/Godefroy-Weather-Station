@@ -939,31 +939,80 @@ div.pollution-value {
     text-align: center;
     font-size: 100px
 }
-@media (max-width: 768px) {
+/* Mobile Styles */
+@media (max-width: 767px) {
     .Desktop {
         width: 100%;
         height: auto;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
     }
 
-    div.MenuPr {
-        width: 100%;
-        padding: 15px;
+    .progress-bar {
+        width: 90%;
+        left: 5%;
+        top: 50px; /* ajusté pour plus d'espace */
+        height: 40px;
     }
 
-    div.title1, div.title2, div.title3, div.title4, div.title5 {
-        width: 100%;
-        left: 0;
-        top: 0;
-        margin: 5px 0;
-        text-align: center;
+    .arrow {
+        top: -10px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 12px solid #5d8fee;
     }
 
+    .overlay {
+        display: flex;
+    }
+
+    .modal-content {
+        width: 90%;
+        height: auto;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .modal-icon {
+        width: 30px;
+        height: 30px;
+        left: 20%;
+    }
+
+    .modal-dropdown {
+        width: 80%;
+        font-size: 30px;
+    }
+
+    /* Adaptation des boutons */
     button {
         width: 80%;
+        font-size: 14px;
     }
 
-    div.Rectangle1, div.Rectangle2 {
-        width: 90%;
+    .Rectangle1, .Rectangle2, .Rectangle7, .Rectangle8, .Rectangle9 {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    /* Réduction de la taille du texte */
+    div.KmH, div.Hpa, div.IndiceUv, div.Mm {
+        font-size: 20px;
+    }
+
+    div.KmH {
+        font-size: 30px;
+    }
+
+    div.PlusDInfos, div.PlusDInfos2 {
+        font-size: 16px;
     }
 
     div.Ellipse1, div.Ellipse2 {
@@ -971,12 +1020,29 @@ div.pollution-value {
         height: 60px;
     }
 
-    div.Mm, div.KmH, div.Hpa {
-        font-size: 30px;
+    /* Cacher des éléments non essentiels */
+    div.LightMode, div.Vector1, div.Vector2, div.Vector3 {
+        display: none;
+    }
+
+    /* Adaptation de l'image */
+    img.Image1 {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Adapter les blocs de texte */
+    div.ClermontFerrandFrance, div.InfosDuXxXxXxxx {
+        font-size: 20px;
+        width: 100%;
+        top: 30px;
         text-align: center;
     }
 
-    div.uvvalue, div.content-haut1, div.content-modere1, div.content-tres-haut1, div.content-extreme1 {
-        font-size: 20px;
+    /* Ajustement des images de fond */
+    div.BasemapImage {
+        width: 100%;
+        height: 200px;
+        left: 0;
     }
 }
