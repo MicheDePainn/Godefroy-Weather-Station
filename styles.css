@@ -939,3 +939,44 @@ div.pollution-value {
     text-align: center;
     font-size: 100px
 }
+@media (max-width: 768px) {
+    .Desktop {
+        width: 100%;
+        height: auto;
+    }
+
+    div.MenuPr {
+        width: 100%;
+        padding: 15px;
+    }
+
+    div.title1, div.title2, div.title3, div.title4, div.title5 {
+        width: 100%;
+        left: 0;
+        top: 0;
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    button {
+        width: 80%;
+    }
+
+    div.Rectangle1, div.Rectangle2 {
+        width: 90%;
+    }
+
+    div.Ellipse1, div.Ellipse2 {
+        width: 60px;
+        height: 60px;
+    }
+
+    div.Mm, div.KmH, div.Hpa {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    div.uvvalue, div.content-haut1, div.content-modere1, div.content-tres-haut1, div.content-extreme1 {
+        font-size: 20px;
+    }
+}
