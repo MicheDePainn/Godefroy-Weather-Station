@@ -19,6 +19,8 @@ body {
     background-image: url(images/le_fond_pc.png);
     background-repeat: no-repeat;
     background-size: cover;
+    background-pisition: center;
+    background-attachment: fixed
 }
 
 .Desktop {
