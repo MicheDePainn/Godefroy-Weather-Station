@@ -45,7 +45,7 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
 1. **Cloner le dépôt**  
    Ouvrez votre terminal et exécutez :
    ```bash
-   git clone https://github.com/votre-utilisateur/nom-du-repo.git
+   git clone https://github.com/MicheDePainn/Godefroy-Weather-Station/
    ```
 > [!NOTE]
 > Vous devez avoir l'application [Git](https://git-scm.com/) installé sur votre machine.
