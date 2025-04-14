@@ -1,5 +1,16 @@
 # Station Météo - Établissement Godefroy de Bouillon de Clermont-Ferrand
 
+<h3 align="center">
+  <br>
+  <img src="https://github.com/MicheDePainn/Godefroy-Weather-Station/blob/main/images/favicon.png" alt="Icone Météo"/>
+  <br>
+  <br>
+  <b>Station Météo</b>
+</h3>
+<h4 align="center">
+  <b>Front-end pour afficher des données météorologiques d'une station self-made.</b>
+</h4>
+
 > [!TIP]
 > Ce projet est un site web HTML qui présente une station météo interactive spécialement conçue pour l'établissement Godefroy de Bouillon de Clermont-Ferrand. L'objectif est de fournir aux utilisateurs une interface simple et intuitive pour consulter les informations météorologiques actuelles.
 
