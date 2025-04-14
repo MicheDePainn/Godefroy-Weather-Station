@@ -41,17 +41,6 @@ div.Desktop {
     height: 1024px
 }
 
-@media (max-width: 1309px) {
-    .Desktop {
-        width: 100%;
-        height: auto;
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-    }
-}
-
 .progress-bar {
     width: 75%;
     left: 12%;
