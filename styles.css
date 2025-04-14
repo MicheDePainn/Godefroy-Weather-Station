@@ -23,6 +23,12 @@ body {
   background-attachment: fixed;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: url("images/le_fond_pc_night.png");
+  }
+}
+
 .Desktop {
     position: absolute;
     top: 50%;
