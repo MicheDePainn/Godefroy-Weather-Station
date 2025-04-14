@@ -29,7 +29,7 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
 ## Fonctionnalités
 
 - **Affichage des conditions actuelles** : Consultez la température, l'humidité, la vitesse du vent et d'autres données météorologiques.
-  
+
 - **Historique des conditions météorologiques** : Sélectionnez une date pour visualiser les conditions météorologiques passées.
 
 - **Affichage de la dernière connexion** : Indique le temps écoulé depuis la dernière mise à jour des données météorologiques.
@@ -37,22 +37,16 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
 - **Carte Interactive** : Une carte [OpenStreetMap](https://www.openstreetmap.org/) indique l'emplacement de la Station.
 
 - **Informations complémentaires** : Certaines conditions sont interactives, permettant d'obtenir des informations supplémentaires en cliquant dessus.
-  
+
 - **Thème sombre** : Le fond change selon le thème de votre navigateur.
 
 ## Installation
 
 1. **Cloner le dépôt**  
    Ouvrez votre terminal et exécutez :
-
-<div style="border-radius: 8px; overflow: hidden; background: #1e1e1e; padding: 1em; color: white; margin-top: 0.5em; margin-bottom: 0.5em;">
-
-```bash
-git clone https://github.com/MicheDePainn/Godefroy-Weather-Station/
-```
-
-</div>
-
+   ```bash
+   git clone https://github.com/MicheDePainn/Godefroy-Weather-Station/
+   ```
 > [!NOTE]
 > Vous devez avoir l'application [Git](https://git-scm.com/) installé sur votre machine.
 
