@@ -32,6 +32,14 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
   
 - **Historique des conditions météorologiques** : Sélectionnez une date pour visualiser les conditions météorologiques passées.
 
+- **Affichage de la dernière connexion** : Indique le temps écoulé depuis la dernière mise à jour des données météorologiques.
+
+- **Carte Interactive** : Une carte [OpenStreetMap](https://www.openstreetmap.org/) indique l'emplacement de la Station.
+
+- **Informations complémentaires** : Certaines conditions sont interactives, permettant d'obtenir des informations supplémentaires en cliquant dessus.
+  
+- **Thème sombre** : Le fond change selon le thème de votre navigateur.
+
 ## Installation
 
 1. **Cloner le dépôt**  
