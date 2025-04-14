@@ -47,6 +47,7 @@ div.Desktop {
         height: auto;
         position: relative;
         top: auto;
+        left: auto;
         transform: none;
     }
 }
