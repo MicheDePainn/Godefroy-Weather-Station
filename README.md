@@ -12,7 +12,7 @@ Ce projet est un site web HTML qui présente une station météo interactive sp�
 
 ## Présentation
 
-Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle permet d'afficher en temps réel les conditions météorologiques. L'application a été développée dans le cadre d'un projet Vittascience pour l'établissement Godefroy de Bouillon de Clermont-Ferrand.
+Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle permet d'afficher en temps réel les conditions météorologiques. L'application a été développée dans le cadre d'un projet Accrosciences pour l'établissement Godefroy de Bouillon de Clermont-Ferrand.
 
 ## Fonctionnalités
 
