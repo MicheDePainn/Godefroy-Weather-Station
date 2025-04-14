@@ -1,6 +1,7 @@
 # Station Météo - Établissement Godefroy de Bouillon de Clermont-Ferrand
 
-Ce projet est un site web HTML qui présente une station météo interactive spécialement conçue pour l'établissement Godefroy de Bouillon de Clermont-Ferrand. L'objectif est de fournir aux utilisateurs une interface simple et intuitive pour consulter les informations météorologiques actuelles.
+> [!TIP]
+> Ce projet est un site web HTML qui présente une station météo interactive spécialement conçue pour l'établissement Godefroy de Bouillon de Clermont-Ferrand. L'objectif est de fournir aux utilisateurs une interface simple et intuitive pour consulter les informations météorologiques actuelles.
 
 ## Table des matières
 
@@ -16,10 +17,9 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
 
 ## Fonctionnalités
 
-- **Affichage des conditions actuelles** : Température, humidité, vent et autres données météorologiques.
-
-- **Historique des conditions météorologiques** :
-Sélection de date pour voir les conditions météo.
+- **Affichage des conditions actuelles** : Consultez la température, l'humidité, la vitesse du vent et d'autres données météorologiques.
+  
+- **Historique des conditions météorologiques** : Sélectionnez une date pour visualiser les conditions météorologiques passées.
 
 ## Installation
 
@@ -28,17 +28,21 @@ Sélection de date pour voir les conditions météo.
    ```bash
    git clone https://github.com/votre-utilisateur/nom-du-repo.git
    ```
+> [!NOTE]
+> Vous devez avoir l'application [Git](https://git-scm.com/) installé sur votre machine.
 
 2. **Ouvrir le projet**  
-   Naviguez dans le dossier cloné et hostez le site web (Lancer simplement le fichier index.html ne marchera pas en raison des restrictions CORS)
+   Naviguez dans le dossier cloné et hostez le site web.
+> [!IMPORTANT]
+> Pour héberger le site web, utilisez un serveur local (par exemple, [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) pour Visual Studio Code) car l'ouverture directe du fichier `index.html` entraine des restrictions CORS.
 
 ## Utilisation
 
 - **Accès au site**  
-  Rendez-vous sur https://michedepainn.github.io/Godefroy-Weather-Station/.
+  Rendez-vous sur [ce site](https://michedepainn.github.io/Godefroy-Weather-Station/) ou votre serveur local (si vous hostez vous-mêmes).
 
 - **Consultation des données**  
-  Les informations météorologiques actuelles s'affichent automatiquement. Actualisez les données pour obtenir les dernières informations.
+  Les informations météorologiques actuelles s'affichent à l'aide des données dans `data.json`. Actualisez la page pour obtenir les dernières informations.
 
 ## Licence
 
