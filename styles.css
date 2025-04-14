@@ -36,6 +36,21 @@ body {
     transform: translate(-50%,-50%)
 }
 
+div.Desktop {
+    width: 1440px;
+    height: 1024px
+}
+
+@media (max-width: 1309px) {
+    .Desktop {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: auto;
+        transform: translate(-50%,-30%)
+    }
+}
+
 .progress-bar {
     width: 75%;
     left: 12%;
@@ -162,11 +177,6 @@ body {
     font-size: 30px;
     vertical-align: super;
     margin-left: 5px
-}
-
-div.Desktop {
-    width: 1440px;
-    height: 1024px
 }
 
 div.MenuPr {
@@ -942,15 +952,4 @@ div.pollution-value {
     opacity: .75;
     text-align: center;
     font-size: 100px
-}
-
-@media (max-width: 1309px) {
-    .Desktop {
-        width: 100%;
-        height: auto;
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-    }
 }
