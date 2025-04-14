@@ -18,6 +18,9 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
 
 - **Affichage des conditions actuelles** : Température, humidité, vent et autres données météorologiques.
 
+- **Historique des conditions météorologiques** :
+Sélection de date pour voir les conditions météo.
+
 ## Installation
 
 1. **Cloner le dépôt**  
@@ -27,12 +30,12 @@ Ce projet consiste en un site web basée sur HTML, CSS et JavaScript. Elle perme
    ```
 
 2. **Ouvrir le projet**  
-   Naviguez dans le dossier cloné et ouvrez le fichier `index.html` avec votre navigateur web.
+   Naviguez dans le dossier cloné et hostez le site web (Lancer simplement le fichier index.html ne marchera pas en raison des restrictions CORS)
 
 ## Utilisation
 
 - **Accès au site**  
-  Ouvrez le fichier `index.html` dans votre navigateur pour visualiser l'interface de la station météo ou rendez-vous sur https://michedepainn.github.io/Godefroy-Weather-Station/.
+  Rendez-vous sur https://michedepainn.github.io/Godefroy-Weather-Station/.
 
 - **Consultation des données**  
   Les informations météorologiques actuelles s'affichent automatiquement. Actualisez les données pour obtenir les dernières informations.
