@@ -68,46 +68,44 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 let map;
-let lightTile, darkTile;
 
 function initMap() {
     const markerCoords = [45.779807308777585, 3.0934636114593017];
 
-    lightTile = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-    });
-
-    darkTile = L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=8808fe1d-b0f0-4cd2-aedd-16abaa634f39", {
-        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-        maxZoom: 19
-    });    
-
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (map) {
+        map.remove();
+    }
 
     map = L.map("map", {
         center: markerCoords,
         zoom: 16,
         touchZoom: true,
-        scrollWheelZoom: false,
-        layers: [prefersDark ? darkTile : lightTile],
+        scrollWheelZoom: false
     });
+
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const tileLayer = isDarkMode
+        ? L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=8808fe1d-b0f0-4cd2-aedd-16abaa634f39", {
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        })
+        : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        });
+
+    tileLayer.addTo(map);
 
     const marker = L.marker(markerCoords).addTo(map);
     marker.bindPopup("<b>Lycée Godefroy De Bouillon</b>").openPopup();
 }
 
-function updateMapTheme() {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    map.eachLayer(function(layer) {
-        map.removeLayer(layer);
-    });
-    map.addLayer(prefersDark ? darkTile : lightTile);
-}
-
 window.onload = initMap;
 
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateMapTheme);
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    initMap();
+});
 
 fetch("data.json")
     .then((response) => response.json())
