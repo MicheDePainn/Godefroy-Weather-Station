@@ -16,17 +16,26 @@
 }
 
 body {
-  background-image: url(images/le_fond_pc.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    background-image: url(images/le_fond_pc.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-image: url("images/le_fond_pc_night.png");
-  }
+    body {
+        background-image: url("images/le_fond_pc_night.png");
+    }
+    div.MenuPr {
+        background: #3f5457;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    div.MenuPr {
+        background: #6c8f93;
+    }
 }
 
 .Desktop {
@@ -179,9 +188,7 @@ div.MenuPr {
     top: 63px;
     position: absolute;
     opacity: .9;
-    background: #6c8f93;
     border-radius: 33px;
-    border: 2px #5388f0 solid;
     filter: blur(2px)
 }
 
@@ -942,4 +949,16 @@ div.pollution-value {
     opacity: .75;
     text-align: center;
     font-size: 100px
+}
+
+.leaflet-control-attribution {
+    font-size: 13px !important;
+    opacity: 0.6;
+    padding: 2px 4px;
+}
+
+.leaflet-control-attribution a {
+    font-size: 13px !important;
+    color: #888 !important;
+    text-decoration: none;
 }

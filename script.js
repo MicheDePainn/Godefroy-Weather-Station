@@ -66,27 +66,48 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("uvModal").style.display = "block";
     });
 });
+
+let map;
+let lightTile, darkTile;
+
 function initMap() {
     const markerCoords = [45.779807308777585, 3.0934636114593017];
 
-    const map = L.map("map", {
+    lightTile = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+    });
+
+    darkTile = L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        maxZoom: 19
+    });
+
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    map = L.map("map", {
         center: markerCoords,
         zoom: 16,
         touchZoom: true,
         scrollWheelZoom: false,
+        layers: [prefersDark ? darkTile : lightTile],
     });
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-    }).addTo(map);
-
     const marker = L.marker(markerCoords).addTo(map);
-
     marker.bindPopup("<b>Lycée Godefroy De Bouillon</b>").openPopup();
 }
 
+function updateMapTheme() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    map.eachLayer(function(layer) {
+        map.removeLayer(layer);
+    });
+    map.addLayer(prefersDark ? darkTile : lightTile);
+}
+
 window.onload = initMap;
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateMapTheme);
 
 fetch("data.json")
     .then((response) => response.json())
