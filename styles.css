@@ -199,7 +199,6 @@ div.MenuPr {
     position: absolute;
     opacity: .9;
     border-radius: 33px;
-    filter: blur(2px)
 }
 
 button,input {
