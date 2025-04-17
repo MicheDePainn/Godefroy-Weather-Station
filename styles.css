@@ -29,12 +29,22 @@ body {
     }
     div.MenuPr {
         background: #3f5457;
+        background-image: url(images/grain-bg.png);
+        background-position: center;
+        background-repeat: repeat;
+        background-size: 100px;
+        background-blend-mode: hard-light;
     }
 }
 
 @media (prefers-color-scheme: light) {
     div.MenuPr {
         background: #6c8f93;
+        background-image: url(images/grain-bg.png);
+        background-position: center;
+        background-repeat: repeat;
+        background-size: 100px;
+        background-blend-mode: hard-light;
     }
 }
 
