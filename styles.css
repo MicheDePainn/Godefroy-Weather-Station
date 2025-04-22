@@ -29,22 +29,12 @@ body {
     }
     div.MenuPr {
         background: #3f5457;
-        background-image: url(images/grain-bg.png);
-        background-position: center;
-        background-repeat: repeat;
-        background-size: 100px;
-        background-blend-mode: hard-light;
     }
 }
 
 @media (prefers-color-scheme: light) {
     div.MenuPr {
         background: #6c8f93;
-        background-image: url(images/grain-bg.png);
-        background-position: center;
-        background-repeat: repeat;
-        background-size: 100px;
-        background-blend-mode: hard-light;
     }
 }
 
@@ -91,7 +81,7 @@ div.Desktop {
 
 .overlay {
     display: none;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -542,7 +532,7 @@ div.Rectangle5 {
     align-items: center
 }
 
-div.Connect5min {
+div.Connect {
     text-align: center;
     color: #000;
     font-size: 24px;
@@ -580,21 +570,14 @@ div.lightmode_icon {
     position: absolute
 }
 
-div.Group52,div.Rectangle16 {
-    width: 261px;
+div.Rectangle16 {
+    width: 260px;
     height: 195px;
     left: 590px;
     top: 425px;
+    border-radius: 50px;
     position: absolute;
-    opacity: .75
-}
-
-div.Rectangle16 {
-    width: 260px;
-    left: 0;
-    top: 0;
-    background: #faedff;
-    border-radius: 75px
+    opacity: .75;
 }
 
 div.PollutionDansLAir {
@@ -631,7 +614,7 @@ div.Legal {
     width: 1305px;
     height: 51px;
     left: 67px;
-    top: 948px;
+    top: 940px;
     position: absolute;
     text-align: center
 }
@@ -745,7 +728,7 @@ div.pollution_icon {
 
 div.uvModal {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 9999;
     width: 1440px;
     height: 1024px;

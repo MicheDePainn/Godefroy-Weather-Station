@@ -254,11 +254,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 timeAgo = `(${diffMinutes} min${diffMinutes > 1 ? 's' : ''})`;
             }
 
-            const connectElement = document.querySelector(".Connect5min");
+            const connectElement = document.querySelector(".Connect");
             if (connectElement) {
                 connectElement.textContent = `Connecté ${timeAgo}`;
             } else {
-                console.error("Élément .Connect5min introuvable dans le DOM");
+                console.error("Élément .Connect introuvable dans le DOM");
             }
         })
         .catch(error => console.error("Erreur lors du chargement des données:", error));
