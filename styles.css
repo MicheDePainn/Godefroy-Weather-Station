@@ -749,12 +749,12 @@ div.ground1uvModal {
 }
 
 div.groun2duvModal {
-    width: 970px;
-    height: 337px;
-    position: absolute;
+    width: 100%;
+    height: 100%;
     opacity: .4;
-    background: linear-gradient(90deg,#e1ffad 0,#eaffca 100%);
-    border-radius: 33px
+    background: linear-gradient(270deg, #e1ffad 0, #eaffca 100%);
+    border-radius: 33px;
+    position: absolute;
 }
 
 div.content-bas1 {
