@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.querySelector(".PlusDInfos2").addEventListener("click", function () {
-        document.getElementById("uvModal").style.display = "block";
+        document.getElementById("uvModal").style.display = "flex";
     });
 
     document.getElementById("uvModal").addEventListener("click", function (e) {
@@ -179,7 +179,7 @@ function updateWeatherData(weatherData) {
     });
     document.getElementById("weather-date").textContent = `Infos du ${formattedDateTime}`;
 
-    document.querySelector(".modal-dropdown").textContent = `${weatherData.pollution} µg/m³ (${getPollutionLevel(weatherData.pollution)})`;
+    document.querySelector(".modal-dropdown-pollution").textContent = `${weatherData.pollution} µg/m³ (${getPollutionLevel(weatherData.pollution)})`;
 
     updateProgressBar(pollution);
 }
@@ -278,3 +278,13 @@ function toggleRotation(element) {
         svg.style.animation = "none";
     }
 }
+
+document.querySelector(".settings_icon").addEventListener("click", function () {
+    document.getElementById("settingsModal").style.display = "flex";
+});
+
+document.getElementById("settingsModal").addEventListener("click", function (e) {
+    if (e.target === this) {
+        this.style.display = "none";
+    }
+});

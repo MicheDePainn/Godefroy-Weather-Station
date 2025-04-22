@@ -14,6 +14,39 @@
     <div data-layer="Desktop" class="Desktop">
       <div data-layer="main_box" class="MenuPr"></div>
 
+      <section id="settings">
+        <div data-layer="settings_icon" class="settings_icon">
+          <svg
+            width="50"
+            height="50"
+            viewBox="0 -960 960 960"
+            fill="white"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
+          </svg>
+        </div>
+        <div id="settingsModal" class="settingsModal">
+          <div class="settingsModalcontent">
+            <div class="modal-background-settings"></div>
+            <div class="modal-title-settings">Paramètres</div>
+            <div data-layer="modal-icon-settings" class="modal-icon-settings">
+              <svg
+                width="50"
+                height="50"
+                viewBox="0 -960 960 960"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
+              </svg>
+            </div>
+            <div class="modal-black-bg-settings"></div>
+            <div class="modal-dropdown-settings">Coming soon ...</div>
+          </div>
+        </div>
+      </section>
+
       <section id="refresh">
         <div data-layer="Rectangle 6" class="Rectangle6"></div>
         <div data-layer="Rectangle 5" class="Rectangle5">
@@ -58,10 +91,10 @@
           </svg>
         </div>
         <div data-layer="temperature_main" class="C" id="temperature">X°C</div>
-        <div data-layer="Clermont Ferrand, France" class="ClermontFerrandFrance">
+        <div data-layer="ClermontFerrand" class="ClermontFerrand">
           Clermont-Ferrand, France
         </div>
-        <img data-layer="image 1" class="Image1" src="images/la_france.png" alt="Drapeau de la France" />
+        <img data-layer="FrFlag" class="FrFlag" src="images/la_france.png" alt="Drapeau de la France" />
       </section>
 
       <section id="datetime">
@@ -114,13 +147,13 @@
         <div data-layer="Vitesse du vent" class="VitesseDuVent">
           Vitesse du vent
         </div>
-        <div data-layer="17 km/h" class="KmH" id="wind-speed">X km/h</div>
+        <div data-layer="wind-speed" class="wind-speed" id="wind-speed">X km/h</div>
       </section>
 
       <section id="rainy">
         <div data-layer="Rectangle 2" class="Rectangle2"></div>
         <div data-layer="Ellipse 2" class="Ellipse2"></div>
-        <div data-layer="12 mm" class="Mm" id="rain-amount">X mm</div>
+        <div data-layer="rain-amount" class="rain-amount" id="rain-amount">X mm</div>
         <div data-layer="Quantité de pluie" class="QuantitDePluie">
           Quantité de pluie
         </div>
@@ -160,11 +193,11 @@
             />
           </svg>
         </div>
-        <div class="overlay" id="modalOverlay">
-          <div class="modal-content">
-            <div class="modal-background"></div>
-            <div class="modal-title">Pollution dans l’air</div>
-            <div class="modal-icon">
+        <div class="overlay-pollution" id="modalOverlay">
+          <div class="modal-content-pollution">
+            <div class="modal-background-pollution"></div>
+            <div class="modal-title-pollution">Pollution dans l’air</div>
+            <div class="modal-icon-pollution">
               <svg
                 width="42"
                 height="42"
@@ -178,8 +211,8 @@
                 />
               </svg>
             </div>
-            <div class="modal-black-bg"></div>
-            <div class="modal-dropdown">dropdown</div>
+            <div class="modal-black-bg-pollution"></div>
+            <div class="modal-dropdown-pollution">dropdown</div>
             <div class="progress-bar">
               <div class="progress-level" id="progress-level"></div>
               <div class="arrow" id="arrow"></div>
@@ -194,7 +227,7 @@
         <div data-layer="Pression atmosphérique" class="PressionAtmosphRique">
           Pression atmo.
         </div>
-        <div data-layer="1030 hPa" class="Hpa" id="pressure">X hPa</div>
+        <div data-layer="pressure" class="pressure" id="pressure">X hPa</div>
         <div data-layer="pression_atmo" class="pression_atmo_icon">
           <svg
             width="47"
@@ -216,7 +249,7 @@
         <div data-layer="Plus d’infos" class="PlusDInfos2">Plus d’infos</div>
         <div data-layer="Ellipse 6" class="Ellipse6"></div>
         <div data-layer="Indice UV" class="IndiceUv">Indice UV</div>
-        <div data-layer="2.5" class="uvvalue" id="uv-value">X</div>
+        <div data-layer="uv-value" class="uv-value" id="uv-value">X</div>
         <div data-layer="light_mode" class="lightmode_icon">
           <svg
             width="60"
