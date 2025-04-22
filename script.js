@@ -86,9 +86,9 @@ function initMap() {
     const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     const tileLayer = isDarkMode
-        ? L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=8808fe1d-b0f0-4cd2-aedd-16abaa634f39", {
-            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-            maxZoom: 19
+        ? L.tileLayer("https://{s}.tile.openstreetmap.fr/transport/{z}/{x}/{y}.png", {
+            attribution: '&copy; les contributeurs d’<a href="https://www.openstreetmap.org/">OpenStreetMap</a> & OSM-FR',
+            maxZoom: 20
         })
         : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
