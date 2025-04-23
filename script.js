@@ -102,6 +102,16 @@ function initMap() {
     marker.on('click', function() {
         marker.openPopup();
     });
+
+    const mapHeight = map.getSize().y;
+    const offset = mapHeight * 0.5;
+
+    const newCenter = [
+        markerCoords[0] + (offset / 100000),
+        markerCoords[1]
+    ];
+
+    map.setView(newCenter, 16, { animate: true });
 }
 
 window.onload = initMap;
