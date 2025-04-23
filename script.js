@@ -98,10 +98,7 @@ function initMap() {
     tileLayer.addTo(map);
 
     const marker = L.marker(markerCoords).addTo(map);
-    marker.bindPopup("<b>Lycée Godefroy De Bouillon</b>");
-    marker.on('click', function() {
-        marker.openPopup();
-    });
+    marker.bindPopup("<b>Lycée Godefroy De Bouillon</b>").openPopup();
 
     const mapHeight = map.getSize().y;
     const offset = mapHeight * 0.5;
