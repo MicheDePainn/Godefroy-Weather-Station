@@ -298,3 +298,182 @@ document.getElementById("settingsModal").addEventListener("click", function (e) 
         this.style.display = "none";
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const langBtn = document.getElementById('langSwitcher');
+    const langDropdown = document.getElementById('langDropdown');
+    const currentFlag = document.getElementById('currentFlag');
+    const htmlElement = document.documentElement;
+
+    if (!langBtn || !langDropdown || !currentFlag) {
+        console.error("Erreur: Un ou plusieurs éléments du sélecteur de langue sont introuvables.");
+        return;
+    }
+
+    const translations = {
+        en: {
+            "modal-title-settings": "Settings",
+            "languetext": "Language",
+            "datetime-btn": "Select a date and time",
+            "error-message": "The date and time must be in the past or current.",
+            "VitesseDuVent": "Wind Speed",
+            "QuantitDePluie": "Rain Amount",
+            "PollutionDansLAir": "Air Pollution",
+            "PlusDInfos": "More info",
+            "modal-title-pollution": "Air Pollution",
+            "PressionAtmosphRique": "Atmos. Pressure",
+            "PlusDInfos2": "More info",
+            "IndiceUv": "UV Index",
+            "title6": "LOW",
+            "title7": "MODERATE",
+            "title8": "HIGH",
+            "title9": "VERY HIGH",
+            "title10": "EXTREME",
+            "content-bas2": "Low: 0-2",
+            "content-bas3": "Minimal sun protection required for normal activities. Wear sunglasses on sunny days. If you stay outside for more than an hour, cover up and use sunscreen. Snow reflection can almost double UV strength. Wear sunglasses and apply sunscreen to your face.",
+            "content-modere2": "Moderate: 3-5",
+            "content-modere3": "Take precautions: cover up, wear a hat and sunglasses, and apply sunscreen, especially if you are outdoors for 30 minutes or more. Seek shade during midday when the sun is strongest.",
+            "content-haut2": "High: 6-7",
+            "content-haut3": "Protection needed - UV rays damage the skin and can cause sunburn. Avoid the sun between 11 a.m. and 3 p.m. and take full precautions: seek shade, cover up, wear a hat and sunglasses, and apply sunscreen.",
+            "content-tres-haut2": "Very High: 8-10",
+            "content-tres-haut3": "Extra precautions needed: unprotected skin will be damaged and can burn quickly. Avoid the sun between 11 a.m. and 3 p.m. and seek shade, cover up, wear a hat and sunglasses, and apply sunscreen.",
+            "content-extreme2": "Extreme: 11+",
+            "content-extreme3": "Take all precautions. Unprotected skin will be damaged and can burn in minutes. Avoid the sun between 11 a.m. and 3 p.m., cover up, wear a hat and sunglasses, and apply sunscreen. Remember that white sand and other bright surfaces reflect UV rays and increase UV exposure.",
+            "EmplacementDeLaStationMTO": "Weather station location:",
+            "fr": "French",
+            "en": "English",
+        },
+        fr: {
+            "modal-title-settings": "Paramètres",
+            "languetext": "Langue",
+            "datetime-btn": "Sélectionner une date et une heure",
+            "error-message": "La date et l'heure doivent être dans le passé ou actuelle.",
+            "VitesseDuVent": "Vitesse du vent",
+            "QuantitDePluie": "Quantité de pluie",
+            "PollutionDansLAir": "Pollution dans l’air",
+            "PlusDInfos": "Plus d’infos",
+            "modal-title-pollution": "Pollution dans l’air",
+            "PressionAtmosphRique": "Pression atmo.",
+            "PlusDInfos2": "Plus d’infos",
+            "IndiceUv": "Indice UV",
+            "title6": "BAS",
+            "title7": "MODERE",
+            "title8": "HAUT",
+            "title9": "TRES HAUT",
+            "title10": "EXTREME",
+            "content-bas2": "Bas: 0-2",
+            "content-bas3": "Protection solaire minime requise pour les activités normales. Portez des lunettes de soleil les journées ensoleillées. Si vous restez à l’extérieur pendant plus d’une heure, couvrez-vous et utilisez un écran solaire. La réflexion par la neige peut presque doubler l’intensité des rayons UV. Portez des lunettes de soleil et appliquez un écran solaire sur votre visage.",
+            "content-modere2": "Modéré: 3-5",
+            "content-modere3": "Prenez des précautions : couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire, surtout si vous êtes à l’extérieur pendant 30 minutes ou plus. Cherchez l’ombre à la mi-journée, quand le soleil est à son plus fort.",
+            "content-haut2": "Haut: 6-7",
+            "content-haut3": "Protection nécessaire - les rayons UV endommagent la peau et peuvent causer des coups de soleil. Évitez le soleil entre 11 h et 15 h et prenez toutes les précautions : cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.",
+            "content-tres-haut2": "Très haut: 8-10",
+            "content-tres-haut3": "Précautions supplémentaires nécessaires : la peau non protégée sera endommagée et peut brûler rapidement. Évitez le soleil entre 11 h et 15 h et cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.",
+            "content-extreme2": "Extrême: 11+",
+            "content-extreme3": "Prenez toutes les précautions. La peau non protégée sera endommagée et peut brûler en quelques minutes. Évitez le soleil entre 11 h et 15 h, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire. N’oubliez pas que le sable blanc et les autres surfaces brillantes réfléchissent les rayons UV et augmentent l’exposition à ces rayons.",
+            "EmplacementDeLaStationMTO": "Emplacement de la station météo :",
+            "fr": "Français",
+            "en": "Anglais",
+        }
+    };
+
+    function switchLang(lang) {
+        if (translations[lang]) {
+            htmlElement.lang = lang;
+
+            currentFlag.src = `https://flagcdn.com/${lang === 'en' ? 'gb' : 'fr'}.svg`;
+            currentFlag.alt = lang === 'en' ? 'English Flag' : 'Drapeau Français';
+
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                } else {
+                    console.warn(`Clé de traduction manquante pour "${key}" en langue "${lang}"`);
+                }
+            });
+
+            langDropdown.classList.add('hidden');
+
+        } else {
+            console.error(`Langue non supportée : ${lang}`);
+        }
+    }
+
+    langBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        langDropdown.classList.toggle('hidden');
+    });
+
+    langDropdown.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const targetLink = event.target.closest('a.lang-item[data-lang]');
+        if (targetLink) {
+            event.preventDefault();
+            const selectedLang = targetLink.getAttribute('data-lang');
+            switchLang(selectedLang);
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!langBtn.contains(event.target) && !langDropdown.contains(event.target)) {
+            langDropdown.classList.add('hidden');
+        }
+    });
+
+    const initialLang = htmlElement.lang || 'fr';
+    switchLang(initialLang);
+
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mainNavLinks = document.getElementById('mainNavLinks');
+
+    if (mobileMenuButton && mainNavLinks) {
+        mobileMenuButton.addEventListener('click', () => {
+            mainNavLinks.classList.toggle('mobile-menu-open');
+            const isExpanded = mainNavLinks.classList.contains('mobile-menu-open');
+            mobileMenuButton.setAttribute('aria-expanded', isExpanded);
+            if (isExpanded) {
+                mobileMenuButton.setAttribute('aria-label', 'Fermer le menu');
+            } else {
+                mobileMenuButton.setAttribute('aria-label', 'Ouvrir le menu');
+            }
+        });
+
+        mainNavLinks.addEventListener('click', (event) => {
+            if (event.target.matches('.nav-link')) {
+                if (mainNavLinks.classList.contains('mobile-menu-open')) {
+                    mainNavLinks.classList.remove('mobile-menu-open');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenuButton.setAttribute('aria-label', 'Ouvrir le menu');
+                }
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            const isClickInsideNav = mainNavLinks.contains(event.target);
+            const isClickOnToggleButton = mobileMenuButton.contains(event.target);
+
+            if (!isClickInsideNav && !isClickOnToggleButton && mainNavLinks.classList.contains('mobile-menu-open')) {
+                mainNavLinks.classList.remove('mobile-menu-open');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.setAttribute('aria-label', 'Ouvrir le menu');
+            }
+        });
+
+    } else {
+        console.error("Erreur: Le bouton du menu mobile ou les liens de navigation principaux sont introuvables dans le DOM.");
+    }
+
+    const projectOverlays = document.querySelectorAll('.project-overlay');
+
+    projectOverlays.forEach(overlay => {
+        overlay.addEventListener('click', function(event) {
+            const projectLink = this.querySelector('.project-link');
+            if (projectLink && projectLink.href) {
+                window.location.href = projectLink.href;
+            }
+        });
+    });
+});

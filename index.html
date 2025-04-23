@@ -29,7 +29,7 @@
         <div id="settingsModal" class="settingsModal">
           <div class="settingsModalcontent">
             <div class="modal-background-settings"></div>
-            <div class="modal-title-settings">Paramètres</div>
+            <div class="modal-title-settings" data-lang="modal-title-settings">Paramètres</div>
             <div data-layer="modal-icon-settings" class="modal-icon-settings">
               <svg
                 width="50"
@@ -42,7 +42,18 @@
               </svg>
             </div>
             <div class="modal-black-bg-settings"></div>
-            <div class="modal-dropdown-settings">Coming soon ...</div>
+            <div class="languetext" data-lang="languetext">Langue</div>
+            <div class="lang-switcher-container">
+              <div class="lang-switcher-container">
+                <button id="langSwitcher" class="lang-switcher-button" aria-label="Changer de langue">
+                  <img id="currentFlag" src="https://flagcdn.com/fr.svg" alt="Drapeau Français" class="flag-icon">
+                </button>
+                <div id="langDropdown" class="lang-dropdown hidden">
+                  <a href="#" class="lang-item" data-lang="fr">Français</a>
+                  <a href="#" class="lang-item" data-lang="en">English</a>
+                </div>
+              </div>
+            </div>            
           </div>
         </div>
       </section>
@@ -50,7 +61,7 @@
       <section id="refresh">
         <div data-layer="Rectangle 6" class="Rectangle6"></div>
         <div data-layer="Rectangle 5" class="Rectangle5">
-          <div data-layer="Connecté" class="Connect">Non Connecté</div>
+          <div data-layer="Connecte" class="Connect">Non Connecté</div>
         </div>
         <div
           data-layer="Vector/Default"
@@ -99,7 +110,7 @@
 
       <section id="datetime">
         <button
-          id="datetime-btn"
+          id="datetime-btn" data-lang="datetime-btn"
           onmouseover="this.style.background='rgba(190, 215, 120, 0.6)'; 
                   this.style.transform='scale(1.02)';
                   this.style.boxShadow='0 6px 20px rgba(160, 180, 100, 0.3)';"
@@ -122,7 +133,7 @@
           id="datetime-input"
           onchange="validateDateTime()"
         />
-        <p class="error-message" id="error-message">
+        <p class="error-message" id="error-message" data-lang="error-message">
           La date et l'heure doivent être dans le passé ou actuelle.
         </p>
       </section>
@@ -144,7 +155,7 @@
             />
           </svg>
         </div>
-        <div data-layer="Vitesse du vent" class="VitesseDuVent">
+        <div data-layer="Vitesse du vent" class="VitesseDuVent" data-lang="VitesseDuVent">
           Vitesse du vent
         </div>
         <div data-layer="wind-speed" class="wind-speed" id="wind-speed">X km/h</div>
@@ -154,7 +165,7 @@
         <div data-layer="Rectangle 2" class="Rectangle2"></div>
         <div data-layer="Ellipse 2" class="Ellipse2"></div>
         <div data-layer="rain-amount" class="rain-amount" id="rain-amount">X mm</div>
-        <div data-layer="Quantité de pluie" class="QuantitDePluie">
+        <div data-layer="Quantité de pluie" class="QuantitDePluie" data-lang="QuantitDePluie">
           Quantité de pluie
         </div>
         <div data-layer="rainy" class="rainy_icon">
@@ -176,9 +187,9 @@
       <section id="pollution">
         <div data-layer="Rectangle 7" class="Rectangle7"></div>
         <div data-layer="Rectangle 16" class="Rectangle16"></div>
-        <div data-layer="Pollution dans l’air" class="PollutionDansLAir">Pollution dans l’air</div>
+        <div data-layer="Pollution dans l’air" class="PollutionDansLAir" data-lang="PollutionDansLAir">Pollution dans l’air</div>
         <div data-layer="pollution-value" id="pollution-value" class="pollution-value">XX µg/m³</div>
-        <div data-layer="Plus d’infos" class="PlusDInfos">Plus d’infos</div>
+        <div data-layer="Plus d’infos" class="PlusDInfos" data-lang="PlusDInfos">Plus d’infos</div>
         <div data-layer="pollution" class="pollution_icon">
           <svg
             width="40"
@@ -196,7 +207,7 @@
         <div class="overlay-pollution" id="modalOverlay">
           <div class="modal-content-pollution">
             <div class="modal-background-pollution"></div>
-            <div class="modal-title-pollution">Pollution dans l’air</div>
+            <div class="modal-title-pollution" data-lang="modal-title-pollution">Pollution dans l’air</div>
             <div class="modal-icon-pollution">
               <svg
                 width="42"
@@ -224,7 +235,7 @@
       <section id="pression_atmo">
         <div data-layer="Rectangle 8" class="Rectangle8"></div>
         <div data-layer="Ellipse 5" class="Ellipse5"></div>
-        <div data-layer="Pression atmosphérique" class="PressionAtmosphRique">
+        <div data-layer="Pression atmosphérique" class="PressionAtmosphRique" data-lang="PressionAtmosphRique">
           Pression atmo.
         </div>
         <div data-layer="pressure" class="pressure" id="pressure">X hPa</div>
@@ -246,9 +257,9 @@
 
       <section id="IndiceUv">
         <div data-layer="Rectangle 9" class="Rectangle9"></div>
-        <div data-layer="Plus d’infos" class="PlusDInfos2">Plus d’infos</div>
+        <div data-layer="Plus d’infos" class="PlusDInfos2" data-lang="PlusDInfos2">Plus d’infos</div>
         <div data-layer="Ellipse 6" class="Ellipse6"></div>
-        <div data-layer="Indice UV" class="IndiceUv">Indice UV</div>
+        <div data-layer="Indice UV" class="IndiceUv" data-lang="IndiceUv">Indice UV</div>
         <div data-layer="uv-value" class="uv-value" id="uv-value">X</div>
         <div data-layer="light_mode" class="lightmode_icon">
           <svg
@@ -272,16 +283,16 @@
             <div class="title3" data-target="content-haut"></div>
             <div class="title4" data-target="content-tres-haut"></div>
             <div class="title5" data-target="content-extreme"></div>
-            <div class="title6" data-target="content-bas">BAS</div>
-            <div class="title7" data-target="content-modere">MODERE</div>
-            <div class="title8" data-target="content-haut">HAUT</div>
-            <div class="title9" data-target="content-tres-haut">TRES HAUT</div>
-            <div class="title10" data-target="content-extreme">EXTREME</div>
+            <div class="title6" data-target="content-bas" data-lang="title6">BAS</div>
+            <div class="title7" data-target="content-modere" data-lang="title7">MODERE</div>
+            <div class="title8" data-target="content-haut" data-lang="title8">HAUT</div>
+            <div class="title9" data-target="content-tres-haut" data-lang="title9">TRES HAUT</div>
+            <div class="title10" data-target="content-extreme" data-lang="title10">EXTREME</div>
 
             <div id="content-bas" class="content">
               <div class="content-bas1"></div>
-              <div class="content-bas2">Bas: 0-2</div>
-              <div class="content-bas3">
+              <div class="content-bas2" data-lang="content-bas2">Bas: 0-2</div>
+              <div class="content-bas3" data-lang="content-bas3">
                 Protection solaire minime requise pour les activités normales.
                 Portez des lunettes de soleil les journées ensoleillées. Si vous
                 restez à l’extérieur pendant plus d’une heure, couvrez-vous et
@@ -293,8 +304,8 @@
 
             <div id="content-modere" class="content">
               <div class="content-modere1"></div>
-              <div class="content-modere2">Modéré: 3-5</div>
-              <div class="content-modere3">
+              <div class="content-modere2" data-lang="content-modere2">Modéré: 3-5</div>
+              <div class="content-modere3" data-lang="content-modere3">
                 Prenez des précautions : couvrez-vous, portez un chapeau et des
                 lunettes de soleil, et appliquez un écran solaire, surtout si vous
                 êtes à l’extérieur pendant 30 minutes ou plus. Cherchez l’ombre à
@@ -304,8 +315,8 @@
 
             <div id="content-haut" class="content">
               <div class="content-haut1"></div>
-              <div class="content-haut2">Haut: 6-7</div>
-              <div class="content-haut3">
+              <div class="content-haut2" data-lang="content-haut2">Haut: 6-7</div>
+              <div class="content-haut3" data-lang="content-haut3">
                 Protection nécessaire - les rayons UV endommagent la peau et
                 peuvent causer des coups de soleil. Évitez le soleil entre 11 h et
                 15 h et prenez toutes les précautions : cherchez l’ombre,
@@ -316,8 +327,8 @@
 
             <div id="content-tres-haut" class="content">
               <div class="content-tres-haut1"></div>
-              <div class="content-tres-haut2">Très haut: 8-10</div>
-              <div class="content-tres-haut3">
+              <div class="content-tres-haut2" data-lang="content-tres-haut2">Très haut: 8-10</div>
+              <div class="content-tres-haut3" data-lang="content-tres-haut3">
                 Précautions supplémentaires nécessaires : la peau non protégée
                 sera endommagée et peut brûler rapidement. Évitez le soleil entre
                 11 h et 15 h et cherchez l’ombre, couvrez-vous, portez un chapeau
@@ -327,8 +338,8 @@
 
             <div id="content-extreme" class="content">
               <div class="content-extreme1"></div>
-              <div class="content-extreme2">Extrême: 11+</div>
-              <div class="content-extreme3">
+              <div class="content-extreme2" data-lang="content-extreme2">Extrême: 11+</div>
+              <div class="content-extreme3" data-lang="content-extreme3">
                 Prenez toutes les précautions. La peau non protégée sera
                 endommagée et peut brûler en quelques minutes. Évitez le soleil
                 entre 11 h et 15 h, couvrez-vous, portez un chapeau et des
@@ -344,6 +355,7 @@
       <div
         data-layer="Emplacement de la station météo :"
         class="EmplacementDeLaStationMTO"
+        data-lang="EmplacementDeLaStationMTO"
       >
         Emplacement de la station météo :
       </div>

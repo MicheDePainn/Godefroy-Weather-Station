@@ -656,9 +656,9 @@ div.title5 {
 
 div.title10,div.title6,div.title7,div.title8,div.title9 {
     cursor: pointer;
-    width: 60px;
+    width: 80px;
     height: 38px;
-    left: 91px;
+    left: 83px;
     top: 45px;
     position: absolute;
     text-align: center;
@@ -666,12 +666,12 @@ div.title10,div.title6,div.title7,div.title8,div.title9 {
     font-size: 30px;
     font-family: Outfit;
     font-weight: 800;
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 div.title10,div.title7,div.title8,div.title9 {
-    width: 131px;
-    left: 240px
+    width: 170px;
+    left: 220px;
 }
 
 div.title10,div.title8,div.title9 {
@@ -1006,7 +1006,7 @@ div.settingsModalcontent {
     border-radius: 3px
 }
 
-.modal-black-bg-settings,.modal-dropdown-settings,.modal-icon-settings {
+.modal-black-bg-settings,.modal-icon-settings {
     position: absolute;
     transform: translatex(-50%)
 }
@@ -1021,18 +1021,6 @@ div.settingsModalcontent {
     border-radius: 33px
 }
 
-.modal-dropdown-settings {
-    bottom: 40px;
-    top: 120px;
-    left: 55%;
-    width: 211px;
-    height: 50px;
-    color: #fff;
-    font-size: 40px;
-    font-family: Outfit;
-    font-weight: 600
-}
-
 .leaflet-control-attribution {
     font-size: 13px !important;
     opacity: 0.6;
@@ -1043,4 +1031,81 @@ div.settingsModalcontent {
     font-size: 13px !important;
     color: #888 !important;
     text-decoration: none;
+}
+
+.lang-switcher-container {
+    position: relative;
+}
+
+
+.lang-switcher-button {
+    position: relative;
+    left: 20%;
+    top: 85px;
+    align-items: center;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    width: auto;
+}
+
+.lang-switcher-button:hover {
+    background-color: #374151;
+}
+
+.flag-icon {
+    width: 50px;
+    height: auto;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 120px;
+    left: 12%;
+    margin-top: 6px;
+    width: 10rem;
+    background-color: #1f2937;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.lang-dropdown.hidden {
+    display: none;
+}
+
+.lang-item {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.875rem;
+    color: #d1d5db;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.lang-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+    border-radius: 15px;
+}
+
+.lang-item img {
+    margin-right: 0.5rem;
+}
+
+.languetext {
+    position: relative;
+    bottom: 40px;
+    top: 130px;
+    left: 45%;
+    width: 211px;
+    height: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-family: Outfit;
+    font-weight: 600
 }
