@@ -120,7 +120,7 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
 fetch("data.json")
     .then((response) => response.json())
     .then((data) => {
-        updateWeatherData(data.valeurs[0]);
+        // updateWeatherData(data.valeurs[0]);
 
         document.getElementById("datetime-input").addEventListener("change", function (e) {
             const selectedDateTime = new Date(e.target.value);

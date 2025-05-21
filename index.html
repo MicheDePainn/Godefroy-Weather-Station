@@ -103,7 +103,7 @@
             />
           </svg>
         </div>
-        <div data-layer="temperature_main" class="C" id="temperature">X°C</div>
+        <div data-layer="temperature_main" class="C" id="temperature">{{temperature}}°C</div>
         <div data-layer="ClermontFerrand" class="ClermontFerrand">
           Clermont-Ferrand, France
         </div>
@@ -128,7 +128,7 @@
           class="InfosDuXxXxXxxx"
           id="weather-date"
         >
-          Infos du XX/XX/XXXX
+          Infos du {{datetime}}
         </div>
         <input
           type="datetime-local"
@@ -160,13 +160,13 @@
         <div data-layer="Vitesse du vent" class="VitesseDuVent" data-lang="VitesseDuVent">
           Vitesse du vent
         </div>
-        <div data-layer="wind-speed" class="wind-speed" id="wind-speed">X km/h</div>
+        <div data-layer="wind-speed" class="wind-speed" id="wind-speed">{{vent}} km/h</div>
       </section>
 
       <section id="rainy">
         <div data-layer="Rectangle 2" class="Rectangle2"></div>
         <div data-layer="Ellipse 2" class="Ellipse2"></div>
-        <div data-layer="rain-amount" class="rain-amount" id="rain-amount">X mm</div>
+        <div data-layer="rain-amount" class="rain-amount" id="rain-amount">{{pluie}} mm</div>
         <div data-layer="Quantité de pluie" class="QuantitDePluie" data-lang="QuantitDePluie">
           Quantité de pluie
         </div>
@@ -190,7 +190,7 @@
         <div data-layer="Rectangle 7" class="Rectangle7"></div>
         <div data-layer="Rectangle 16" class="Rectangle16"></div>
         <div data-layer="Pollution dans l’air" class="PollutionDansLAir" data-lang="PollutionDansLAir">Pollution dans l’air</div>
-        <div data-layer="pollution-value" id="pollution-value" class="pollution-value">XX µg/m³</div>
+        <div data-layer="pollution-value" id="pollution-value" class="pollution-value">{{pollution}} µg/m³</div>
         <div data-layer="Plus d’infos" class="PlusDInfos" data-lang="PlusDInfos">Plus d’infos</div>
         <div data-layer="pollution" class="pollution_icon">
           <svg
@@ -240,7 +240,7 @@
         <div data-layer="Pression atmosphérique" class="PressionAtmosphRique" data-lang="PressionAtmosphRique">
           Pression atmo.
         </div>
-        <div data-layer="pressure" class="pressure" id="pressure">X hPa</div>
+        <div data-layer="pressure" class="pressure" id="pressure">{{pression}} hPa</div>
         <div data-layer="pression_atmo" class="pression_atmo_icon">
           <svg
             width="47"
@@ -262,7 +262,7 @@
         <div data-layer="Plus d’infos" class="PlusDInfos2" data-lang="PlusDInfos2">Plus d’infos</div>
         <div data-layer="Ellipse 6" class="Ellipse6"></div>
         <div data-layer="Indice UV" class="IndiceUv" data-lang="IndiceUv">Indice UV</div>
-        <div data-layer="uv-value" class="uv-value" id="uv-value">X</div>
+        <div data-layer="uv-value" class="uv-value" id="uv-value">{{uv}}</div>
         <div data-layer="light_mode" class="lightmode_icon">
           <svg
             width="60"
