@@ -579,6 +579,7 @@ div.Rectangle16 {
     border-radius: 50px;
     position: absolute;
     opacity: .75;
+    background-color: #889e8e;
 }
 
 div.PollutionDansLAir {
