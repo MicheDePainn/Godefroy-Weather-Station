@@ -131,16 +131,34 @@ function updateProgressBar(pollution) {
 function updateWeatherData(weatherData) {
     lastWeatherData = weatherData;
 
-    document.getElementById("temperature").textContent = `${weatherData.temperature}°C`;
-    document.getElementById("wind-speed").textContent = `${weatherData.vent} km/h`;
-    document.getElementById("rain-amount").textContent = `${weatherData.pluie} mm`;
-    document.getElementById("pressure").textContent = `${weatherData.pression} hPa`;
-    document.getElementById("uv-value").textContent = weatherData.uv;
+    const temperatureValue = Number(weatherData.temperature);
+    const windValue = Number(weatherData.vent);
+    const rainValue = Number(weatherData.pluie);
+    const pressureValue = Number(weatherData.pression);
+    const uvValue = Number(weatherData.uv);
+    const pollutionValue = Number(weatherData.pollution);
+
+    document.getElementById("temperature").textContent = Number.isFinite(temperatureValue)
+        ? `${temperatureValue}°C`
+        : `${weatherData.temperature}°C`;
+    document.getElementById("wind-speed").textContent = Number.isFinite(windValue)
+        ? `${windValue} km/h`
+        : `${weatherData.vent} km/h`;
+    document.getElementById("rain-amount").textContent = Number.isFinite(rainValue)
+        ? `${rainValue} mm`
+        : `${weatherData.pluie} mm`;
+    document.getElementById("pressure").textContent = Number.isFinite(pressureValue)
+        ? `${pressureValue} hPa`
+        : `${weatherData.pression} hPa`;
+    document.getElementById("uv-value").textContent = Number.isFinite(uvValue)
+        ? uvValue
+        : weatherData.uv;
 
     const pollutionElement = document.getElementById("pollution-value");
-    pollutionElement.innerHTML = `${weatherData.pollution} <span class="pollution-unit">µg/m³</span>`;
+    const pollutionDisplayValue = Number.isFinite(pollutionValue) ? pollutionValue : weatherData.pollution;
+    pollutionElement.innerHTML = `${pollutionDisplayValue} <span class="pollution-unit">µg/m³</span>`;
 
-    const pollutionLevel = getPollutionLevel(weatherData.pollution);
+    const pollutionLevel = getPollutionLevel(Number.isFinite(pollutionValue) ? pollutionValue : 0);
     updatePollutionClasses(pollutionLevel);
 
     const dateTime = new Date(weatherData.datetime);
@@ -155,10 +173,10 @@ function updateWeatherData(weatherData) {
 
     const modalLabel = document.querySelector(".modal-dropdown-pollution");
     if (modalLabel) {
-        modalLabel.textContent = `${weatherData.pollution} µg/m³ (${pollutionLevel})`;
+        modalLabel.textContent = `${pollutionDisplayValue} µg/m³ (${pollutionLevel})`;
     }
 
-    updateProgressBar(weatherData.pollution);
+    updateProgressBar(Number.isFinite(pollutionValue) ? pollutionValue : 0);
 }
 
 function updateConnectionStatus(entries) {
@@ -176,7 +194,7 @@ function updateConnectionStatus(entries) {
 
     const lastDate = new Date(lastEntry.datetime);
     const now = new Date();
-    const diffMs = now - lastDate;
+    const diffMs = Math.max(0, now - lastDate);
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMinutes / 60);
     const diffDays = Math.floor(diffHours / 24);
@@ -188,6 +206,8 @@ function updateConnectionStatus(entries) {
         timeAgo = `(${diffHours} heure${diffHours > 1 ? 's' : ''})`;
     } else if (diffMinutes > 0) {
         timeAgo = `(${diffMinutes} min${diffMinutes > 1 ? 's' : ''})`;
+    } else if (diffMs === 0) {
+        timeAgo = `(à l'instant)`;
     }
 
     const connectElement = document.querySelector(".Connect");
@@ -286,7 +306,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pollutionButton && pollutionModal) {
         pollutionButton.addEventListener("click", () => {
             if (lastWeatherData) {
-                updateProgressBar(lastWeatherData.pollution);
+                const pollutionValue = Number(lastWeatherData.pollution);
+                updateProgressBar(Number.isFinite(pollutionValue) ? pollutionValue : 0);
             }
             pollutionModal.style.display = "flex";
         });
@@ -479,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            weatherEntries = data.valeurs;
+            weatherEntries = [...data.valeurs].sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
             updateWeatherData(weatherEntries[0]);
             updateConnectionStatus(weatherEntries);
         })
