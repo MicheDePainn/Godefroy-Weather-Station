@@ -9,6 +9,12 @@
     --text-muted: #47606a;
     --border-radius: 28px;
     --shadow: 0 20px 45px rgba(10, 35, 41, 0.15);
+
+    --level-good: #206d58;
+    --level-moderate: #826e13;
+    --level-poor: #b8572b;
+    --level-severe: #a03c30;
+    --level-extreme: #8c2433;
 }
 
 @keyframes spin {
@@ -31,6 +37,13 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
+    :root {
+        --level-good: #51b89a;
+        --level-moderate: #d6be3f;
+        --level-poor: #e88d5f;
+        --level-severe: #e5715c;
+        --level-extreme: #f16478;
+    }
     body {
         background: radial-gradient(circle at top, rgba(38, 77, 85, 0.55), transparent 55%),
             linear-gradient(180deg, rgba(9, 21, 25, 0.95), rgba(10, 26, 32, 0.92));
@@ -170,6 +183,7 @@ body::before {
     place-items: center;
     border-radius: 50%;
     cursor: pointer;
+    flex-shrink: 0;
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
@@ -357,74 +371,103 @@ body::before {
 .pollution-card .progress-bar,
 .overlay-pollution .progress-bar {
     position: relative;
-    height: 12px;
+    height: 10px;
+    background: transparent;
+    border-radius: 0;
+}
+
+.pollution-card .progress-bar::before,
+.overlay-pollution .progress-bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     border-radius: 999px;
-    background: linear-gradient(90deg, #8fb7a8 0%, #a6b880 50%, #c5807e 100%);
-    overflow: hidden;
+    background: linear-gradient(90deg, #8fb7a8 0%, #d4c575 50%, #c5807e 100%);
 }
 
 .progress-level {
     position: absolute;
-    height: 100%;
-    left: 0;
+    height: 10px;
+    right: 0;
     top: 0;
     background: rgba(255, 255, 255, 0.9);
     width: 0%;
     transition: width 0.4s ease;
+    border-radius: 0 999px 999px 0;
 }
 
 .pollution-card .progress-level {
     background: rgba(14, 27, 32, 0.25);
 }
+@media (prefers-color-scheme: dark) {
+    .pollution-card .progress-level {
+        background: rgba(14, 27, 32, 0.6);
+    }
+}
 
 .arrow {
     position: absolute;
-    top: -12px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 12px solid var(--accent-strong);
+    top: -2px;
+    width: 4px;
+    height: 14px;
+    background: white;
+    border-radius: 2px;
     transform: translateX(-50%);
-}
-
-.pollution-card .arrow {
-    border-bottom-color: var(--accent-strong);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    transition: left 0.4s ease;
 }
 
 .pollution-card {
     --pollution-color: var(--accent-strong);
 }
 
-.pollution-card .card-header .icon,
-.pollution-card .link-button {
-    color: var(--pollution-color);
-}
-
-.pollution-card .card-header .icon {
-    background: color-mix(in srgb, var(--pollution-color) 18%, transparent);
-}
-
 .pollution-card.level-good {
-    --pollution-color: #2f7a66;
+    --pollution-color: var(--level-good);
 }
 
 .pollution-card.level-moderate {
-    --pollution-color: #8c7c2a;
+    --pollution-color: var(--level-moderate);
 }
 
 .pollution-card.level-poor {
-    --pollution-color: #a04c3d;
+    --pollution-color: var(--level-severe);
 }
 
 .pollution-card.level-severe {
-    --pollution-color: #8c2433;
+    --pollution-color: var(--level-extreme);
 }
 
 .pollution-unit {
     font-size: 0.9rem;
     opacity: 0.7;
     margin-left: 4px;
+}
+
+.uv-card {
+    --uv-color: var(--accent-strong);
+}
+
+.uv-card.uv-bas {
+    --uv-color: var(--level-good);
+}
+
+.uv-card.uv-modere {
+    --uv-color: var(--level-moderate);
+}
+
+.uv-card.uv-haut {
+    --uv-color: var(--level-poor);
+}
+
+.uv-card.uv-tres-haut {
+    --uv-color: var(--level-severe);
+}
+
+.uv-card.uv-extreme {
+    --uv-color: var(--level-extreme);
 }
 
 .map-card {
@@ -465,7 +508,7 @@ body::before {
     }
 
     .brand {
-        grid-column: span 6;
+        grid-column: span 5;
     }
 
     .menu-toggle {
@@ -564,54 +607,73 @@ body::before {
 }
 
 .lang-switcher-container {
+    position: relative;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
 }
 
 .lang-switcher-button {
-    border: none;
-    background: rgba(93, 163, 153, 0.18);
-    border-radius: 999px;
-    padding: 10px 18px;
+    border: 1px solid rgba(93, 163, 153, 0.3);
+    background: transparent;
+    border-radius: 8px;
+    padding: 8px 12px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    color: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
 }
 
-.flag-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+.lang-switcher-button:hover {
+    background: rgba(93, 163, 153, 0.1);
 }
 
 .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.85);
-    box-shadow: var(--shadow);
+    padding: 6px;
+    border-radius: 12px;
+    background: var(--card-light);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    min-width: 120px;
+    
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.lang-dropdown.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
 }
 
 @media (prefers-color-scheme: dark) {
     .lang-dropdown {
-        background: rgba(19, 34, 39, 0.85);
+        background: var(--card-dark);
+        border-color: rgba(255,255,255,0.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 }
 
-.lang-dropdown.hidden {
-    display: none;
-}
-
 .lang-item {
+    padding: 8px 12px;
     color: inherit;
     text-decoration: none;
     font-weight: 500;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.lang-item:hover, .lang-item:focus-visible {
+    background: rgba(93, 163, 153, 0.15);
 }
 
 /* Pollution modal */
@@ -641,11 +703,19 @@ body::before {
     }
 }
 
+.overlay-pollution {
+    --pollution-color: var(--accent-strong);
+}
+.overlay-pollution.level-good { --pollution-color: var(--level-good); }
+.overlay-pollution.level-moderate { --pollution-color: var(--level-moderate); }
+.overlay-pollution.level-poor { --pollution-color: var(--level-severe); }
+.overlay-pollution.level-severe { --pollution-color: var(--level-extreme); }
+
 .modal-background-pollution {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(225, 255, 173, 0.35), rgba(234, 255, 202, 0.4));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--pollution-color) 25%, transparent), color-mix(in srgb, var(--pollution-color) 5%, transparent));
     z-index: -2;
 }
 
@@ -667,16 +737,22 @@ body::before {
 }
 
 .overlay-pollution .progress-bar {
-    height: 16px;
-    border-radius: 999px;
+    height: 14px;
 }
-
 .overlay-pollution .progress-level {
+    height: 14px;
+    top: 0;
     background: rgba(14, 27, 32, 0.25);
 }
-
+@media (prefers-color-scheme: dark) {
+    .overlay-pollution .progress-level {
+        background: rgba(14, 27, 32, 0.6);
+    }
+}
 .overlay-pollution .arrow {
-    border-bottom-color: rgba(255, 255, 255, 0.9);
+    top: -3px;
+    width: 6px;
+    height: 20px;
 }
 
 /* UV modal (existing styles retained) */
@@ -691,38 +767,82 @@ body::before {
     z-index: 1100;
 }
 
+.uvModal.uv-bas { --uv-modal-color: var(--level-good); }
+.uvModal.uv-modere { --uv-modal-color: var(--level-moderate); }
+.uvModal.uv-haut { --uv-modal-color: var(--level-poor); }
+.uvModal.uv-tres-haut { --uv-modal-color: var(--level-severe); }
+.uvModal.uv-extreme { --uv-modal-color: var(--level-extreme); }
+
 .ground1uvModal {
     position: relative;
     width: min(640px, calc(100% - 56px));
-    min-height: 420px;
-    border-radius: 36px;
-    padding: 32px;
-    background: linear-gradient(180deg, rgba(225, 255, 173, 0.85), rgba(234, 255, 202, 0.75));
-    color: var(--text-color);
-    overflow: hidden;
+    border-radius: 32px;
+    padding: 36px;
+    background: var(--card-light);
+    box-shadow: 0 28px 50px rgba(6, 20, 26, 0.3);
+    color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .ground1uvModal {
+        background: var(--card-dark);
+    }
 }
 
 .groun2duvModal {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--uv-modal-color, #2f7a66) 30%, transparent), color-mix(in srgb, var(--uv-modal-color, #2f7a66) 10%, transparent));
     z-index: -1;
 }
 
-[class^="title"] {
+.uv-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 12px;
+}
+
+.uv-tab {
     cursor: pointer;
     font-weight: 600;
-    margin-bottom: 6px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: background 0.2s ease, color 0.2s ease;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.uv-tab.active {
+    background: var(--accent-strong);
+    color: white;
+}
+
+.uv-tab[data-target="content-bas"].active { background: var(--level-good); }
+.uv-tab[data-target="content-modere"].active { background: var(--level-moderate); }
+.uv-tab[data-target="content-haut"].active { background: var(--level-poor); }
+.uv-tab[data-target="content-tres-haut"].active { background: var(--level-severe); }
+.uv-tab[data-target="content-extreme"].active { background: var(--level-extreme); }
+
+.uv-tab:hover {
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .content {
     display: none;
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.4);
     padding: 16px 18px;
     border-radius: 20px;
     margin-top: 12px;
     font-size: 0.95rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .content {
+        background: rgba(0, 0, 0, 0.2);
+    }
 }
 
 .content.active {

@@ -3,6 +3,83 @@ let isRotating = false;
 let weatherEntries = [];
 let lastWeatherData = null;
 
+const translations = {
+    en: {
+        "modal-title-settings": "Settings",
+        "languetext": "Language",
+        "datetime-btn": "Select a date and time",
+        "error-message": "The date and time must be in the past or current.",
+        "VitesseDuVent": "Wind Speed",
+        "QuantitDePluie": "Rain Amount",
+        "PollutionDansLAir": "Air Pollution",
+        "PlusDInfos": "More info",
+        "modal-title-pollution": "Air Pollution",
+        "PressionAtmosphRique": "Atmos. Pressure",
+        "PlusDInfos2": "More info",
+        "IndiceUv": "UV Index",
+        "title6": "LOW",
+        "title7": "MODERATE",
+        "title8": "HIGH",
+        "title9": "VERY HIGH",
+        "title10": "EXTREME",
+        "content-bas2": "Low: 0-2",
+        "content-bas3": "Minimal sun protection required for normal activities. Wear sunglasses on sunny days. If you stay outside for more than an hour, cover up and use sunscreen. Snow reflection can almost double UV strength. Wear sunglasses and apply sunscreen to your face.",
+        "content-modere2": "Moderate: 3-5",
+        "content-modere3": "Take precautions: cover up, wear a hat and sunglasses, and apply sunscreen, especially if you are outdoors for 30 minutes or more. Seek shade during midday when the sun is strongest.",
+        "content-haut2": "High: 6-7",
+        "content-haut3": "Protection needed - UV rays damage the skin and can cause sunburn. Avoid the sun between 11 a.m. and 3 p.m. and take full precautions: seek shade, cover up, wear a hat and sunglasses, and apply sunscreen.",
+        "content-tres-haut2": "Very High: 8-10",
+        "content-tres-haut3": "Extra precautions needed: unprotected skin will be damaged and can burn quickly. Avoid the sun between 11 a.m. and 3 p.m. and seek shade, cover up, wear a hat and sunglasses, and apply sunscreen.",
+        "content-extreme2": "Extreme: 11+",
+        "content-extreme3": "Take all precautions. Unprotected skin will be damaged and can burn in minutes. Avoid the sun between 11 a.m. and 3 p.m., cover up, wear a hat and sunglasses, and apply sunscreen. Remember that white sand and other bright surfaces reflect UV rays and increase UV exposure.",
+        "EmplacementDeLaStationMTO": "Weather station location:",
+        "fr": "French",
+        "en": "English",
+        "pollution-good": "Good",
+        "pollution-moderate": "Moderate",
+        "pollution-poor": "Poor",
+        "pollution-severe": "Dangerous",
+        "InfoPrefix": "Info from"
+    },
+    fr: {
+        "modal-title-settings": "Paramètres",
+        "languetext": "Langue",
+        "datetime-btn": "Sélectionner une date et une heure",
+        "error-message": "La date et l'heure doivent être dans le passé ou actuelle.",
+        "VitesseDuVent": "Vitesse du vent",
+        "QuantitDePluie": "Quantité de pluie",
+        "PollutionDansLAir": "Pollution dans l’air",
+        "PlusDInfos": "Plus d’infos",
+        "modal-title-pollution": "Pollution dans l’air",
+        "PressionAtmosphRique": "Pression atmo.",
+        "PlusDInfos2": "Plus d’infos",
+        "IndiceUv": "Indice UV",
+        "title6": "BAS",
+        "title7": "MODERE",
+        "title8": "HAUT",
+        "title9": "TRES HAUT",
+        "title10": "EXTREME",
+        "content-bas2": "Bas: 0-2",
+        "content-bas3": "Protection solaire minime requise pour les activités normales. Portez des lunettes de soleil les journées ensoleillées. Si vous restez à l’extérieur pendant plus d’une heure, couvrez-vous et utilisez un écran solaire. La réflexion par la neige peut presque doubler l’intensité des rayons UV. Portez des lunettes de soleil et appliquez un écran solaire sur votre visage.",
+        "content-modere2": "Modéré: 3-5",
+        "content-modere3": "Prenez des précautions : couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire, surtout si vous êtes à l’extérieur pendant 30 minutes ou plus. Cherchez l’ombre à la mi-journée, quand le soleil est à son plus fort.",
+        "content-haut2": "Haut: 6-7",
+        "content-haut3": "Protection nécessaire - les rayons UV endommagent la peau et peuvent causer des coups de soleil. Évitez le soleil entre 11 h et 15 h et prenez toutes les précautions : cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.",
+        "content-tres-haut2": "Très haut: 8-10",
+        "content-tres-haut3": "Précautions supplémentaires nécessaires : la peau non protégée sera endommagée et peut brûler rapidement. Évitez le soleil entre 11 h et 15 h et cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.",
+        "content-extreme2": "Extrême: 11+",
+        "content-extreme3": "Prenez toutes les précautions. La peau non protégée sera endommagée et peut brûler en quelques minutes. Évitez le soleil entre 11 h et 15 h, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire. N’oubliez pas que le sable blanc et les autres surfaces brillantes réfléchissent les rayons UV et augmentent l’exposition à ces rayons.",
+        "EmplacementDeLaStationMTO": "Emplacement de la station météo :",
+        "fr": "Français",
+        "en": "Anglais",
+        "pollution-good": "Bon",
+        "pollution-moderate": "Modéré",
+        "pollution-poor": "Mauvais",
+        "pollution-severe": "Dangereux",
+        "InfoPrefix": "Infos du"
+    }
+};
+
 function validateDateTime() {
     const input = document.getElementById("datetime-input");
     const errorMessage = document.getElementById("error-message");
@@ -73,33 +150,47 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
 });
 
 function getPollutionLevel(pollution) {
-    if (pollution < 20) return "Bon";
-    if (pollution < 50) return "Modéré";
-    if (pollution < 100) return "Mauvais";
-    return "Dangereux";
+    if (pollution < 20) return "pollution-good";
+    if (pollution < 50) return "pollution-moderate";
+    if (pollution < 100) return "pollution-poor";
+    return "pollution-severe";
 }
 
 function updatePollutionClasses(level) {
     const pollutionCard = document.querySelector(".pollution-card");
-    if (!pollutionCard) {
-        return;
-    }
+    const pollutionModal = document.getElementById("modalOverlay");
 
-    pollutionCard.classList.remove("level-good", "level-moderate", "level-poor", "level-severe");
+    [pollutionCard, pollutionModal].forEach(el => {
+        if (!el) return;
+        el.classList.remove("level-good", "level-moderate", "level-poor", "level-severe");
 
-    switch (level) {
-        case "Bon":
-            pollutionCard.classList.add("level-good");
-            break;
-        case "Modéré":
-            pollutionCard.classList.add("level-moderate");
-            break;
-        case "Mauvais":
-            pollutionCard.classList.add("level-poor");
-            break;
-        default:
-            pollutionCard.classList.add("level-severe");
-    }
+        switch (level) {
+            case "pollution-good":
+                el.classList.add("level-good");
+                break;
+            case "pollution-moderate":
+                el.classList.add("level-moderate");
+                break;
+            case "pollution-poor":
+                el.classList.add("level-poor");
+                break;
+            default:
+                el.classList.add("level-severe");
+        }
+    });
+}
+
+function updateUVClasses(uvValue) {
+    const uvCard = document.querySelector(".uv-card");
+    if (!uvCard) return;
+
+    uvCard.classList.remove("uv-bas", "uv-modere", "uv-haut", "uv-tres-haut", "uv-extreme");
+    
+    if (uvValue <= 2) uvCard.classList.add("uv-bas");
+    else if (uvValue <= 5) uvCard.classList.add("uv-modere");
+    else if (uvValue <= 7) uvCard.classList.add("uv-haut");
+    else if (uvValue <= 10) uvCard.classList.add("uv-tres-haut");
+    else uvCard.classList.add("uv-extreme");
 }
 
 function updateProgressBar(pollution) {
@@ -117,7 +208,7 @@ function updateProgressBar(pollution) {
 
     progressTargets.forEach((target) => {
         if (target) {
-            target.style.width = `${percentage}%`;
+            target.style.width = `${100 - percentage}%`;
         }
     });
 
@@ -158,22 +249,31 @@ function updateWeatherData(weatherData) {
     const pollutionDisplayValue = Number.isFinite(pollutionValue) ? pollutionValue : weatherData.pollution;
     pollutionElement.innerHTML = `${pollutionDisplayValue} <span class="pollution-unit">µg/m³</span>`;
 
-    const pollutionLevel = getPollutionLevel(Number.isFinite(pollutionValue) ? pollutionValue : 0);
-    updatePollutionClasses(pollutionLevel);
+    const pollutionLevelKey = getPollutionLevel(Number.isFinite(pollutionValue) ? pollutionValue : 0);
+    updatePollutionClasses(pollutionLevelKey);
+    
+    const uvValueParsed = Number.isFinite(uvValue) ? uvValue : parseFloat(weatherData.uv) || 0;
+    updateUVClasses(uvValueParsed);
 
     const dateTime = new Date(weatherData.datetime);
-    const formattedDateTime = dateTime.toLocaleString("fr-FR", {
+    const lang = document.documentElement.lang || "fr";
+    const locale = lang === 'en' ? 'en-GB' : 'fr-FR';
+    const formattedDateTime = dateTime.toLocaleString(locale, {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
     });
-    document.getElementById("weather-date").textContent = `Infos du ${formattedDateTime}`;
+    
+    const infoPrefix = translations[lang] && translations[lang]["InfoPrefix"] ? translations[lang]["InfoPrefix"] : (lang === 'en' ? "Info from" : "Infos du");
+    document.getElementById("weather-date").textContent = `${infoPrefix} ${formattedDateTime}`;
 
     const modalLabel = document.querySelector(".modal-dropdown-pollution");
     if (modalLabel) {
-        modalLabel.textContent = `${pollutionDisplayValue} µg/m³ (${pollutionLevel})`;
+        const lang = document.documentElement.lang || "fr";
+        const pollutionLevelText = translations[lang] ? translations[lang][pollutionLevelKey] : "Inconnu";
+        modalLabel.textContent = `${pollutionDisplayValue} µg/m³ (${pollutionLevelText})`;
     }
 
     updateProgressBar(Number.isFinite(pollutionValue) ? pollutionValue : 0);
@@ -273,6 +373,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (foundData) {
+                const foundDate = new Date(foundData.datetime);
+                const tzOffset = foundDate.getTimezoneOffset() * 60000;
+                e.target.value = (new Date(foundDate - tzOffset)).toISOString().slice(0, 16);
+
                 updateWeatherData(foundData);
                 errorMessage.style.display = "none";
             } else {
@@ -333,9 +437,20 @@ document.addEventListener("DOMContentLoaded", () => {
             else targetId = "content-extreme";
 
             document.querySelectorAll(".content").forEach((c) => c.classList.remove("active"));
+            document.querySelectorAll(".uv-tab").forEach(t => t.classList.remove("active"));
+
             const target = document.getElementById(targetId);
             if (target) {
                 target.classList.add("active");
+                const activeTab = document.querySelector(`.uv-tab[data-target="${targetId}"]`);
+                if (activeTab) activeTab.classList.add("active");
+                
+                uvModal.classList.remove("uv-bas", "uv-modere", "uv-haut", "uv-tres-haut", "uv-extreme");
+                if (targetId === "content-bas") uvModal.classList.add("uv-bas");
+                else if (targetId === "content-modere") uvModal.classList.add("uv-modere");
+                else if (targetId === "content-haut") uvModal.classList.add("uv-haut");
+                else if (targetId === "content-tres-haut") uvModal.classList.add("uv-tres-haut");
+                else if (targetId === "content-extreme") uvModal.classList.add("uv-extreme");
             }
 
             uvModal.style.display = "flex";
@@ -346,86 +461,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 uvModal.style.display = "none";
             }
         });
+
+        const uvTabs = document.querySelectorAll(".uv-tab");
+        uvTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                const targetId = tab.getAttribute("data-target");
+                document.querySelectorAll(".uv-tab").forEach(t => t.classList.remove("active"));
+                document.querySelectorAll(".uvModal .content").forEach(c => c.classList.remove("active"));
+
+                tab.classList.add("active");
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.classList.add("active");
+                    uvModal.classList.remove("uv-bas", "uv-modere", "uv-haut", "uv-tres-haut", "uv-extreme");
+                    if (targetId === "content-bas") uvModal.classList.add("uv-bas");
+                    else if (targetId === "content-modere") uvModal.classList.add("uv-modere");
+                    else if (targetId === "content-haut") uvModal.classList.add("uv-haut");
+                    else if (targetId === "content-tres-haut") uvModal.classList.add("uv-tres-haut");
+                    else if (targetId === "content-extreme") uvModal.classList.add("uv-extreme");
+                }
+            });
+        });
     }
 
     const langBtn = document.getElementById('langSwitcher');
     const langDropdown = document.getElementById('langDropdown');
-    const currentFlag = document.getElementById('currentFlag');
+    const currentLangText = document.getElementById('currentLangText');
     const htmlElement = document.documentElement;
 
-    if (langBtn && langDropdown && currentFlag) {
-        const translations = {
-            en: {
-                "modal-title-settings": "Settings",
-                "languetext": "Language",
-                "datetime-btn": "Select a date and time",
-                "error-message": "The date and time must be in the past or current.",
-                "VitesseDuVent": "Wind Speed",
-                "QuantitDePluie": "Rain Amount",
-                "PollutionDansLAir": "Air Pollution",
-                "PlusDInfos": "More info",
-                "modal-title-pollution": "Air Pollution",
-                "PressionAtmosphRique": "Atmos. Pressure",
-                "PlusDInfos2": "More info",
-                "IndiceUv": "UV Index",
-                "title6": "LOW",
-                "title7": "MODERATE",
-                "title8": "HIGH",
-                "title9": "VERY HIGH",
-                "title10": "EXTREME",
-                "content-bas2": "Low: 0-2",
-                "content-bas3": "Minimal sun protection required for normal activities. Wear sunglasses on sunny days. If you stay outside for more than an hour, cover up and use sunscreen. Snow reflection can almost double UV strength. Wear sunglasses and apply sunscreen to your face.",
-                "content-modere2": "Moderate: 3-5",
-                "content-modere3": "Take precautions: cover up, wear a hat and sunglasses, and apply sunscreen, especially if you are outdoors for 30 minutes or more. Seek shade during midday when the sun is strongest.",
-                "content-haut2": "High: 6-7",
-                "content-haut3": "Protection needed - UV rays damage the skin and can cause sunburn. Avoid the sun between 11 a.m. and 3 p.m. and take full precautions: seek shade, cover up, wear a hat and sunglasses, and apply sunscreen.",
-                "content-tres-haut2": "Very High: 8-10",
-                "content-tres-haut3": "Extra precautions needed: unprotected skin will be damaged and can burn quickly. Avoid the sun between 11 a.m. and 3 p.m. and seek shade, cover up, wear a hat and sunglasses, and apply sunscreen.",
-                "content-extreme2": "Extreme: 11+",
-                "content-extreme3": "Take all precautions. Unprotected skin will be damaged and can burn in minutes. Avoid the sun between 11 a.m. and 3 p.m., cover up, wear a hat and sunglasses, and apply sunscreen. Remember that white sand and other bright surfaces reflect UV rays and increase UV exposure.",
-                "EmplacementDeLaStationMTO": "Weather station location:",
-                "fr": "French",
-                "en": "English",
-            },
-            fr: {
-                "modal-title-settings": "Paramètres",
-                "languetext": "Langue",
-                "datetime-btn": "Sélectionner une date et une heure",
-                "error-message": "La date et l'heure doivent être dans le passé ou actuelle.",
-                "VitesseDuVent": "Vitesse du vent",
-                "QuantitDePluie": "Quantité de pluie",
-                "PollutionDansLAir": "Pollution dans l’air",
-                "PlusDInfos": "Plus d’infos",
-                "modal-title-pollution": "Pollution dans l’air",
-                "PressionAtmosphRique": "Pression atmo.",
-                "PlusDInfos2": "Plus d’infos",
-                "IndiceUv": "Indice UV",
-                "title6": "BAS",
-                "title7": "MODERE",
-                "title8": "HAUT",
-                "title9": "TRES HAUT",
-                "title10": "EXTREME",
-                "content-bas2": "Bas: 0-2",
-                "content-bas3": "Protection solaire minime requise pour les activités normales. Portez des lunettes de soleil les journées ensoleillées. Si vous restez à l’extérieur pendant plus d’une heure, couvrez-vous et utilisez un écran solaire. La réflexion par la neige peut presque doubler l’intensité des rayons UV. Portez des lunettes de soleil et appliquez un écran solaire sur votre visage.",
-                "content-modere2": "Modéré: 3-5",
-                "content-modere3": "Prenez des précautions : couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire, surtout si vous êtes à l’extérieur pendant 30 minutes ou plus. Cherchez l’ombre à la mi-journée, quand le soleil est à son plus fort.",
-                "content-haut2": "Haut: 6-7",
-                "content-haut3": "Protection nécessaire - les rayons UV endommagent la peau et peuvent causer des coups de soleil. Évitez le soleil entre 11 h et 15 h et prenez toutes les précautions : cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.",
-                "content-tres-haut2": "Très haut: 8-10",
-                "content-tres-haut3": "Précautions supplémentaires nécessaires : la peau non protégée sera endommagée et peut brûler rapidement. Évitez le soleil entre 11 h et 15 h et cherchez l’ombre, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire.",
-                "content-extreme2": "Extrême: 11+",
-                "content-extreme3": "Prenez toutes les précautions. La peau non protégée sera endommagée et peut brûler en quelques minutes. Évitez le soleil entre 11 h et 15 h, couvrez-vous, portez un chapeau et des lunettes de soleil, et appliquez un écran solaire. N’oubliez pas que le sable blanc et les autres surfaces brillantes réfléchissent les rayons UV et augmentent l’exposition à ces rayons.",
-                "EmplacementDeLaStationMTO": "Emplacement de la station météo :",
-                "fr": "Français",
-                "en": "Anglais",
-            }
-        };
+    if (langBtn && langDropdown && currentLangText) {
 
         function switchLang(lang) {
             if (translations[lang]) {
                 htmlElement.lang = lang;
-                currentFlag.src = `https://flagcdn.com/${lang === 'en' ? 'gb' : 'fr'}.svg`;
-                currentFlag.alt = lang === 'en' ? 'English Flag' : 'Drapeau Français';
+                localStorage.setItem('preferredLang', lang);
+                currentLangText.textContent = lang === 'en' ? 'English' : 'Français';
 
                 document.querySelectorAll('[data-lang]').forEach(element => {
                     const key = element.getAttribute('data-lang');
@@ -435,12 +505,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 langDropdown.classList.add('hidden');
+                langBtn.setAttribute('aria-expanded', 'false');
+                
+                if (typeof lastWeatherData !== 'undefined' && lastWeatherData) {
+                    updateWeatherData(lastWeatherData);
+                }
             }
         }
 
         langBtn.addEventListener('click', (event) => {
             event.stopPropagation();
-            langDropdown.classList.toggle('hidden');
+            const isHidden = langDropdown.classList.toggle('hidden');
+            langBtn.setAttribute('aria-expanded', !isHidden);
         });
 
         langDropdown.addEventListener('click', (event) => {
@@ -455,10 +531,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (event) => {
             if (!langBtn.contains(event.target) && !langDropdown.contains(event.target)) {
                 langDropdown.classList.add('hidden');
+                langBtn.setAttribute('aria-expanded', 'false');
             }
         });
 
-        const initialLang = htmlElement.lang || 'fr';
+        const savedLang = localStorage.getItem('preferredLang');
+        const browserLang = navigator.language.startsWith('en') ? 'en' : 'fr';
+        const initialLang = savedLang || browserLang;
         switchLang(initialLang);
     }
 

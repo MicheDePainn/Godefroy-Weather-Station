@@ -218,8 +218,9 @@
         <div class="modal-black-bg-settings"></div>
         <div class="languetext" data-lang="languetext">Langue</div>
         <div class="lang-switcher-container">
-          <button id="langSwitcher" class="lang-switcher-button" aria-label="Changer de langue">
-            <img id="currentFlag" src="https://flagcdn.com/fr.svg" alt="Drapeau Français" class="flag-icon" />
+          <button id="langSwitcher" class="lang-switcher-button" aria-label="Changer de langue" aria-haspopup="true" aria-expanded="false">
+            <span id="currentLangText">Français</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
           <div id="langDropdown" class="lang-dropdown hidden" role="menu">
             <a href="#" class="lang-item" data-lang="fr" role="menuitem">Français</a>
@@ -245,16 +246,13 @@
     <div id="uvModal" class="uvModal" role="dialog" aria-modal="true" aria-labelledby="uvModalTitle">
       <div class="ground1uvModal">
         <div class="groun2duvModal"></div>
-        <div class="title1" data-target="content-bas"></div>
-        <div class="title2" data-target="content-modere"></div>
-        <div class="title3" data-target="content-haut"></div>
-        <div class="title4" data-target="content-tres-haut"></div>
-        <div class="title5" data-target="content-extreme"></div>
-        <div class="title6" data-target="content-bas" data-lang="title6">BAS</div>
-        <div class="title7" data-target="content-modere" data-lang="title7">MODERE</div>
-        <div class="title8" data-target="content-haut" data-lang="title8">HAUT</div>
-        <div class="title9" data-target="content-tres-haut" data-lang="title9">TRES HAUT</div>
-        <div class="title10" data-target="content-extreme" data-lang="title10">EXTREME</div>
+        <div class="uv-tabs">
+          <div class="uv-tab active" data-target="content-bas" data-lang="title6">BAS</div>
+          <div class="uv-tab" data-target="content-modere" data-lang="title7">MODERE</div>
+          <div class="uv-tab" data-target="content-haut" data-lang="title8">HAUT</div>
+          <div class="uv-tab" data-target="content-tres-haut" data-lang="title9">TRES HAUT</div>
+          <div class="uv-tab" data-target="content-extreme" data-lang="title10">EXTREME</div>
+        </div>
 
         <div id="content-bas" class="content">
           <div class="content-bas1"></div>
