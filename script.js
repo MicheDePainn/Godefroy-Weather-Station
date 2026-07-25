@@ -9,6 +9,9 @@ const translations = {
         "languetext": "Language",
         "datetime-btn": "Select a date and time",
         "error-message": "The date and time must be in the past or current.",
+        "error-no-data": "No data available for this date and time.",
+        "error-select-datetime": "Please select a date and time.",
+        "error-future-date": "The date and time must be in the past or current.",
         "VitesseDuVent": "Wind Speed",
         "QuantitDePluie": "Rain Amount",
         "PollutionDansLAir": "Air Pollution",
@@ -39,13 +42,24 @@ const translations = {
         "pollution-moderate": "Moderate",
         "pollution-poor": "Poor",
         "pollution-severe": "Dangerous",
-        "InfoPrefix": "Info from"
+        "InfoPrefix": "Info from",
+        "conn-connected": "Connected",
+        "conn-just-now": "(just now)",
+        "conn-day": "day",
+        "conn-days": "days",
+        "conn-hour": "hour",
+        "conn-hours": "hours",
+        "conn-min": "min",
+        "conn-mins": "mins"
     },
     fr: {
         "modal-title-settings": "Paramètres",
         "languetext": "Langue",
         "datetime-btn": "Sélectionner une date et une heure",
         "error-message": "La date et l'heure doivent être dans le passé ou actuelle.",
+        "error-no-data": "Aucune donnée disponible pour cette date et heure.",
+        "error-select-datetime": "Veuillez sélectionner une date et une heure.",
+        "error-future-date": "La date et l'heure doivent être dans le passé ou actuelle.",
         "VitesseDuVent": "Vitesse du vent",
         "QuantitDePluie": "Quantité de pluie",
         "PollutionDansLAir": "Pollution dans l’air",
@@ -76,7 +90,15 @@ const translations = {
         "pollution-moderate": "Modéré",
         "pollution-poor": "Mauvais",
         "pollution-severe": "Dangereux",
-        "InfoPrefix": "Infos du"
+        "InfoPrefix": "Infos du",
+        "conn-connected": "Connecté",
+        "conn-just-now": "(à l'instant)",
+        "conn-day": "jour",
+        "conn-days": "jours",
+        "conn-hour": "heure",
+        "conn-hours": "heures",
+        "conn-min": "min",
+        "conn-mins": "mins"
     }
 };
 
@@ -84,18 +106,20 @@ function validateDateTime() {
     const input = document.getElementById("datetime-input");
     const errorMessage = document.getElementById("error-message");
 
-    if (!input) {
+    if (!input || !errorMessage) {
         return;
     }
 
+    const lang = document.documentElement.lang || "fr";
     const inputDate = input.value ? new Date(input.value).getTime() : null;
     const now = new Date().getTime();
 
     if (!input.value || inputDate > now) {
         errorMessage.style.display = "block";
-        errorMessage.textContent = inputDate > now
-            ? "La date et l'heure doivent être dans le passé ou actuelle."
-            : "Veuillez sélectionner une date et une heure.";
+        const key = inputDate > now ? "error-future-date" : "error-select-datetime";
+        errorMessage.textContent = (translations[lang] && translations[lang][key])
+            ? translations[lang][key]
+            : (inputDate > now ? "La date et l'heure doivent être dans le passé ou actuelle." : "Veuillez sélectionner une date et une heure.");
     } else {
         errorMessage.style.display = "none";
     }
@@ -174,8 +198,10 @@ function updatePollutionClasses(level) {
             case "pollution-poor":
                 el.classList.add("level-poor");
                 break;
+            case "pollution-severe":
             default:
                 el.classList.add("level-severe");
+                break;
         }
     });
 }
@@ -271,7 +297,6 @@ function updateWeatherData(weatherData) {
 
     const modalLabel = document.querySelector(".modal-dropdown-pollution");
     if (modalLabel) {
-        const lang = document.documentElement.lang || "fr";
         const pollutionLevelText = translations[lang] ? translations[lang][pollutionLevelKey] : "Inconnu";
         modalLabel.textContent = `${pollutionDisplayValue} µg/m³ (${pollutionLevelText})`;
     }
@@ -284,13 +309,13 @@ function updateConnectionStatus(entries) {
         return;
     }
 
-    const lastEntry = entries.reduce((latest, entry) => {
-        return new Date(entry.datetime) > new Date(latest.datetime) ? entry : latest;
-    }, entries[0]);
-
-    if (!lastEntry.datetime) {
+    const lastEntry = entries[entries.length - 1];
+    if (!lastEntry || !lastEntry.datetime) {
         return;
     }
+
+    const lang = document.documentElement.lang || "fr";
+    const t = translations[lang] || translations.fr;
 
     const lastDate = new Date(lastEntry.datetime);
     const now = new Date();
@@ -301,19 +326,72 @@ function updateConnectionStatus(entries) {
 
     let timeAgo = "";
     if (diffDays > 0) {
-        timeAgo = `(${diffDays} jour${diffDays > 1 ? 's' : ''})`;
+        const unit = diffDays > 1 ? t["conn-days"] : t["conn-day"];
+        timeAgo = `(${diffDays} ${unit})`;
     } else if (diffHours > 0) {
-        timeAgo = `(${diffHours} heure${diffHours > 1 ? 's' : ''})`;
+        const unit = diffHours > 1 ? t["conn-hours"] : t["conn-hour"];
+        timeAgo = `(${diffHours} ${unit})`;
     } else if (diffMinutes > 0) {
-        timeAgo = `(${diffMinutes} min${diffMinutes > 1 ? 's' : ''})`;
-    } else if (diffMs === 0) {
-        timeAgo = `(à l'instant)`;
+        const unit = diffMinutes > 1 ? t["conn-mins"] : t["conn-min"];
+        timeAgo = `(${diffMinutes} ${unit})`;
+    } else {
+        timeAgo = t["conn-just-now"];
     }
 
     const connectElement = document.querySelector(".Connect");
     if (connectElement) {
-        connectElement.textContent = `Connecté ${timeAgo}`;
+        connectElement.textContent = `${t["conn-connected"]} ${timeAgo}`;
     }
+}
+
+function findClosestWeatherEntry(targetTimestamp) {
+    if (!weatherEntries.length) return null;
+
+    let low = 0;
+    let high = weatherEntries.length - 1;
+    let closest = weatherEntries[0];
+    let minDiff = Math.abs(weatherEntries[0].timestamp - targetTimestamp);
+
+    while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        const midTime = weatherEntries[mid].timestamp;
+        const diff = Math.abs(midTime - targetTimestamp);
+
+        if (diff < minDiff) {
+            minDiff = diff;
+            closest = weatherEntries[mid];
+        }
+
+        if (midTime === targetTimestamp) {
+            return weatherEntries[mid];
+        } else if (midTime < targetTimestamp) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    const checkStart = Math.max(0, low - 2);
+    const checkEnd = Math.min(weatherEntries.length - 1, high + 2);
+    for (let i = checkStart; i <= checkEnd; i++) {
+        const diff = Math.abs(weatherEntries[i].timestamp - targetTimestamp);
+        if (diff < minDiff) {
+            minDiff = diff;
+            closest = weatherEntries[i];
+        }
+    }
+
+    return closest;
+}
+
+function closeAllModals() {
+    const settingsModal = document.getElementById("settingsModal");
+    const pollutionModal = document.getElementById("modalOverlay");
+    const uvModal = document.getElementById("uvModal");
+
+    if (settingsModal) settingsModal.style.display = "none";
+    if (pollutionModal) pollutionModal.style.display = "none";
+    if (uvModal) uvModal.style.display = "none";
 }
 
 function toggleRotation(button) {
@@ -343,47 +421,43 @@ document.addEventListener("DOMContentLoaded", () => {
             datetimeInput.focus();
         });
 
-        datetimeInput.addEventListener("change", (e) => {
+        function handleDateTimeSelection(val) {
             validateDateTime();
 
-            if (!weatherEntries.length) {
+            if (!weatherEntries.length || !val) {
                 return;
             }
 
-            const selectedDateTime = new Date(e.target.value);
-            let foundData = weatherEntries.find((entry) => {
-                const entryDateTime = new Date(entry.datetime);
-                return entryDateTime.getTime() === selectedDateTime.getTime();
-            });
-
-            if (!foundData) {
-                let closestEntry;
-                let minDiff = Infinity;
-
-                weatherEntries.forEach((entry) => {
-                    const entryDateTime = new Date(entry.datetime);
-                    const diff = Math.abs(entryDateTime - selectedDateTime);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        closestEntry = entry;
-                    }
-                });
-
-                foundData = closestEntry;
+            let targetTimestamp;
+            if (val.length === 10 && val.includes("-")) {
+                targetTimestamp = new Date(val + "T12:00").getTime();
+            } else {
+                targetTimestamp = new Date(val).getTime();
             }
+
+            if (isNaN(targetTimestamp)) {
+                return;
+            }
+
+            const foundData = findClosestWeatherEntry(targetTimestamp);
 
             if (foundData) {
-                const foundDate = new Date(foundData.datetime);
-                const tzOffset = foundDate.getTimezoneOffset() * 60000;
-                e.target.value = (new Date(foundDate - tzOffset)).toISOString().slice(0, 16);
-
+                datetimeInput.value = foundData.datetime.slice(0, 16);
                 updateWeatherData(foundData);
-                errorMessage.style.display = "none";
+                if (errorMessage) errorMessage.style.display = "none";
             } else {
-                errorMessage.style.display = "block";
-                errorMessage.textContent = "Aucune donnée disponible pour cette date et heure.";
+                if (errorMessage) {
+                    const lang = document.documentElement.lang || "fr";
+                    errorMessage.style.display = "block";
+                    errorMessage.textContent = translations[lang] && translations[lang]["error-no-data"]
+                        ? translations[lang]["error-no-data"]
+                        : "Aucune donnée disponible pour cette date et heure.";
+                }
             }
-        });
+        }
+
+        datetimeInput.addEventListener("input", (e) => handleDateTimeSelection(e.target.value));
+        datetimeInput.addEventListener("change", (e) => handleDateTimeSelection(e.target.value));
     }
 
     const refreshButton = document.getElementById("refreshButton");
@@ -484,6 +558,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    document.querySelectorAll(".close-modal-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            closeAllModals();
+        });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            closeAllModals();
+        }
+    });
+
     const langBtn = document.getElementById('langSwitcher');
     const langDropdown = document.getElementById('langDropdown');
     const currentLangText = document.getElementById('currentLangText');
@@ -509,6 +596,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 if (typeof lastWeatherData !== 'undefined' && lastWeatherData) {
                     updateWeatherData(lastWeatherData);
+                }
+                if (weatherEntries.length) {
+                    updateConnectionStatus(weatherEntries);
                 }
             }
         }
@@ -579,9 +669,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            weatherEntries = [...data.valeurs].sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
-            updateWeatherData(weatherEntries[0]);
-            updateConnectionStatus(weatherEntries);
+            const parsedEntries = data.valeurs.map((entry) => ({
+                ...entry,
+                timestamp: new Date(entry.datetime).getTime()
+            })).filter(entry => !isNaN(entry.timestamp));
+
+            if (parsedEntries.length > 0) {
+                parsedEntries.sort((a, b) => a.timestamp - b.timestamp);
+                weatherEntries = parsedEntries;
+                const latestEntry = weatherEntries[weatherEntries.length - 1];
+                updateWeatherData(latestEntry);
+                updateConnectionStatus(weatherEntries);
+            }
         })
         .catch((error) => console.error("Erreur:", error));
 });
